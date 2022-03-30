@@ -3,22 +3,16 @@
 #include <QString>
 #include <QDebug>
 #include "date.h"
+#include "item.h"
 
 class Member {
 private:
-    QString name; /*!< \var member name */
-    int id; /*!< \var member id */
-    Date expiration; /*!< \var expiration date */
-    float receipt; /*!< \var running total of all member fees that are due */
+    QString _name; /*!< \var member name */
+    int _id; /*!< \var member id */
+    Date _expiration; /*!< \var expiration date */
+    std::vector<Item> _receipt; /*!< \var running total of all member fees that are due */
 
 public:
-    /*!
-     * \brief Member default constructor
-    */
-    Member() : name(""), id(0), expiration(Date()), receipt(0) {
-
-    }
-
     /*!
      * \brief Member overloaded constructor
      * \param name
@@ -26,9 +20,58 @@ public:
      * \param expiration
      * \param receipt
      */
-    Member(const QString& name, const int& id, const Date& expiration, const float& receipt) : name(name), id(id), expiration(expiration), receipt(receipt) {
+    Member(const QString&, const int&, const Date&);
 
-    }
+    /*!
+     * \brief return member name
+     * \return name: QString
+     */
+    QString name() const;
+
+    /*!
+     * \brief return member id
+     * \return id: int
+     */
+    int id() const;
+
+    /*!
+     * \brief returns emmber expiration
+     * \return expiration: Date
+     */
+    Date expiration() const;
+
+    /*!
+     * \brief returns member receipt
+     * \return receipt: std::vector<Item>
+     */
+    std::vector<Item> receipt() const;
+
+    /*!
+     * \brief set member name
+     * \param name: QString
+     */
+    void setName(const QString&);
+
+    /*!
+     * \brief sets member id
+     * \param id: int
+     */
+    void setID(const int&);
+
+    /*!
+     * \brief sets member expiration date
+     * \param expiration: Date
+     */
+    void setExpiration(const Date&);
+
+    /*!
+     * \brief adds receipt item
+     * \param itemName: Item
+     * \param itemPrice: float
+     * \return true if item was successfully added
+     */
+    bool addReceiptItem(const QString&, const float&, const int&);
+
 };
 
 #endif // MEMBER_H
