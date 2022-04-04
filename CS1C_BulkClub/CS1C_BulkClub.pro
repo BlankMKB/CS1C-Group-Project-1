@@ -9,23 +9,29 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    administratorwindow.cpp \
     inventory.cpp \
     item.cpp \
     main.cpp \
     mainwindow.cpp \
     manager.cpp \
-    member.cpp
+    member.cpp \
+    storemanagerwindow.cpp
 
 HEADERS += \
+    administratorwindow.h \
     date.h \
     inventory.h \
     item.h \
     mainwindow.h \
     manager.h \
-    member.h
+    member.h \
+    storemanagerwindow.h
 
 FORMS += \
-    mainwindow.ui
+    administratorwindow.ui \
+    mainwindow.ui \
+    storemanagerwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

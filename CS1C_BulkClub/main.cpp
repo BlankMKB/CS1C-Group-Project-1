@@ -1,7 +1,9 @@
 #include "mainwindow.h"
-
 #include <QApplication>
 
+/*************************************************************
+ * Main Method
+ *************************************************************/
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

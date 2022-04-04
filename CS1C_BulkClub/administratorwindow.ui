@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AdministratorWindow</class>
+ <widget class="QDialog" name="AdministratorWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Administrator Window</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog#AdministratorWindow{
+	background: #5a6166
+}</string>
+  </property>
+  <widget class="QLabel" name="header_label">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>801</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel#header_label {
+	font-size: 34px;
+	font-weight: bold;
+	text-decoration: overline underline;
+	color: #3d1a1a;
+}</string>
+   </property>
+   <property name="text">
+    <string>Administrator Access has been Granted!</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="logout_button">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>550</y>
+     <width>781</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#logout_button{
+	background: gray;
+	color: black;
+	font-size: 16px;
+	border:2px solid #000000;
+	border-radius: 5px;
+}
+
+QPushButton#logout_button:hover{
+	background: #b2b9bf;
+}</string>
+   </property>
+   <property name="text">
+    <string>Logout Now</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
