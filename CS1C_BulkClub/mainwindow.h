@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "administratorwindow.h"
 #include "storemanagerwindow.h"
+#include "admin.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -32,15 +33,11 @@ public:
     ~MainWindow();
 
 private slots:
-    /*******************************************
-     * Login button prototype for when a user
-     * click's the login button.
-     ******************************************/
-    void on_login_button_clicked();
+
+
+    void on_adminButton_clicked();
 
 private:
     Ui::MainWindow *ui;                // Pointer to the instance of the MainWindow class object.
-    AdministratorWindow *adminWindow;  // Pointer to an instance of an AdmininstratorWindow class object.
-    StoreManagerWindow *managerWindow; // Pointer to an instance of an StoreManagerWindow class object.
 };
 #endif // MAINWINDOW_H

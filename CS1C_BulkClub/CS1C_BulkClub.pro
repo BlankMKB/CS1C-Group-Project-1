@@ -9,6 +9,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    admin.cpp \
     administratorwindow.cpp \
     inventory.cpp \
     item.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
     storemanagerwindow.cpp
 
 HEADERS += \
+    admin.h \
     administratorwindow.h \
     date.h \
     inventory.h \
@@ -29,6 +31,7 @@ HEADERS += \
     storemanagerwindow.h
 
 FORMS += \
+    admin.ui \
     administratorwindow.ui \
     mainwindow.ui \
     storemanagerwindow.ui
