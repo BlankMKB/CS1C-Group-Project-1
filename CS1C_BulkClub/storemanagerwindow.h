@@ -7,30 +7,15 @@ namespace Ui {
 class StoreManagerWindow;
 }
 
-/*******************************************
- * StoreManagerWindow Class
- ******************************************/
 class StoreManagerWindow : public QDialog
 {
     Q_OBJECT
 
 public:
-    /*******************************************
-     * StoreManagerWindow Constructor
-     ******************************************/
     explicit StoreManagerWindow(QWidget *parent = nullptr);
-
-    /*******************************************
-     * StoreManagerWindow Destructor
-     ******************************************/
     ~StoreManagerWindow();
 
 private slots:
-    /*******************************************
-     * Logout button prototype for when a user
-     * click's the logout button in the
-     * StoreManagerWindow Class.
-     ******************************************/
     void on_logout_button_clicked();
 
 private:
