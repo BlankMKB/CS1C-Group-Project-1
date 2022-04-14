@@ -19,17 +19,30 @@
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="adminButton">
+   <widget class="QPushButton" name="loginButton">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>360</y>
+      <x>240</x>
+      <y>240</y>
       <width>141</width>
       <height>101</height>
      </rect>
     </property>
     <property name="text">
-     <string>Admin</string>
+     <string>Login</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="registerButton">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>240</y>
+      <width>141</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Register</string>
     </property>
    </widget>
   </widget>
@@ -40,7 +53,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>37</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

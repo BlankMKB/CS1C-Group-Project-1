@@ -34,6 +34,6 @@ AdministratorWindow::~AdministratorWindow()
 void AdministratorWindow::on_logout_button_clicked()
 {
    this->hide();
-   this->parent->show();
+   //this->parent->show();
 }
 

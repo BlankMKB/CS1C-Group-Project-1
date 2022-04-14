@@ -33,6 +33,6 @@ StoreManagerWindow::~StoreManagerWindow()
 void StoreManagerWindow::on_logout_button_clicked()
 {
     this->hide();
-    this->parent->show();
+    //this->parent->show();
 }
 

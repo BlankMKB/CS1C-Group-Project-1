@@ -23,14 +23,25 @@ MainWindow::~MainWindow()
 /*************************************************************
  * LOGIN BUTTON (On-Click Event) for the Main Window class.
  * This function will be called when the button has been
- * pressed and required information passes checks. This
- * function is of type void and does not return anything.
+ * pressed.
  *************************************************************/
+void MainWindow::on_loginButton_clicked() {
+    LoginWindow* loginWindow = new LoginWindow;
+    loginWindow->setAttribute(Qt::WA_DeleteOnClose);
+    loginWindow->setWindowTitle("Login");
+    loginWindow->show();
+}
 
-void MainWindow::on_adminButton_clicked() {
-    Admin* adminWindow = new Admin;
-    adminWindow->setAttribute(Qt::WA_DeleteOnClose);
-    adminWindow->setWindowTitle("admin login");
-    adminWindow->show();
+
+/*************************************************************
+ * REGISTER BUTTON (On-Click Event) for the Main Window class.
+ * This function will be called when the button has been
+ * pressed.
+ *************************************************************/
+void MainWindow::on_registerButton_clicked() {
+    RegisterWindow* registerWindow = new RegisterWindow;
+    registerWindow->setAttribute(Qt::WA_DeleteOnClose);
+    registerWindow->setWindowTitle("Registration");
+    registerWindow->show();
 }
 
