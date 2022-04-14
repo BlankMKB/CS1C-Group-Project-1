@@ -13,7 +13,7 @@ dbManager::dbManager(const QString& path) {
 }
 
 dbManager::~dbManager() {
-    db.close();
+    database.close();
     qDebug() << "database connection closed\n";
 }
 
@@ -33,7 +33,7 @@ bool dbManager::addMember(const Member& member) {
     query.bindValue(":NAME", name);
     query.bindValue(":ID", id);
     query.bindValue(":TYPE", type);
-    query.bindValue(":EXPIRATION", expiration);
+    //query.bindValue(":EXPIRATION", expiration);
 
 
 }
