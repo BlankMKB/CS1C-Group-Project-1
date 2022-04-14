@@ -8,6 +8,7 @@
 class Member {
 private:
     QString _name; /*!< \var member name */
+    bool _type; /*!< \var member type: regular: false, executive: true */
     int _id; /*!< \var member id */
     Date _expiration; /*!< \var expiration date */
     std::vector<Item> _receipt; /*!< \var running total of all member fees that are due */
@@ -35,6 +36,12 @@ public:
     int id() const;
 
     /*!
+     * \brief return member type. regular: false, executive: true
+     * \return type: bool
+     */
+    bool type() const;
+
+    /*!
      * \brief returns emmber expiration
      * \return expiration: Date
      */
@@ -57,6 +64,12 @@ public:
      * \param id: int
      */
     void setID(const int&);
+
+    /*!
+     * \brief sets member type
+     * \param type: bool
+     */
+    void setType(const bool&);
 
     /*!
      * \brief sets member expiration date

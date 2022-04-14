@@ -1,3 +1,4 @@
+QT       += sql
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -11,6 +12,7 @@ CONFIG += c++11
 SOURCES += \
     admin.cpp \
     administratorwindow.cpp \
+    dbmanager.cpp \
     inventory.cpp \
     item.cpp \
     main.cpp \
@@ -23,6 +25,7 @@ HEADERS += \
     admin.h \
     administratorwindow.h \
     date.h \
+    dbmanager.h \
     inventory.h \
     item.h \
     mainwindow.h \

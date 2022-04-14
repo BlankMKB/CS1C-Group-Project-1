@@ -12,6 +12,10 @@ int Member::id() const {
     return this->_id;
 }
 
+bool Member::type() const {
+    return this->_type;
+}
+
 Date Member::expiration() const {
     return this->_expiration;
 }
@@ -26,6 +30,10 @@ void Member::setName(const QString& name) {
 
 void Member::setID(const int& id) {
     this->_id = id;
+}
+
+void Member::setType(const bool& type) {
+    this->_type = type;
 }
 
 void Member::setExpiration(const Date& expiration) {
