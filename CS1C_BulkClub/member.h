@@ -1,27 +1,30 @@
 #ifndef MEMBER_H
 #define MEMBER_H
+
 #include <QString>
 #include <QDebug>
 #include "date.h"
 #include "item.h"
+#include "receipt.h"
 
 class Member {
-private:
-    QString _name; /*!< \var member name */
-    bool _type; /*!< \var member type: regular: false, executive: true */
-    int _id; /*!< \var member id */
-    Date _expiration; /*!< \var expiration date */
-    std::vector<Item> _receipt; /*!< \var running total of all member fees that are due */
+protected:
+    QString m_Name; /*!< \var member name */
+    int m_Number; /*!< \var member id */
+    bool m_Type; /*!< \var member type: regular: false, executive: true */
+    Date m_ExpirationDate; /*!< \var expiration date */
+    float m_RunningTotal; /*!< \var running total of all member fees */
+    Receipt m_Receipt; /*!< \var receipt of member purchases */
 
 public:
     /*!
      * \brief Member overloaded constructor
      * \param name
      * \param id
+     * \param type
      * \param expiration
-     * \param receipt
      */
-    Member(const QString&, const int&, const Date&);
+    Member(const QString&, const int&, const bool&, const Date&);
 
     /*!
      * \brief return member name
@@ -48,10 +51,16 @@ public:
     Date expiration() const;
 
     /*!
-     * \brief returns member receipt
-     * \return receipt: std::vector<Item>
+     * \brief return member's running total
+     * \return runningTotal: float
      */
-    std::vector<Item> receipt() const;
+    float runningTotal() const;
+
+    /*!
+     * \brief returns member receipt
+     * \return receipt: Receipt
+     */
+    Receipt receipt() const;
 
     /*!
      * \brief set member name
@@ -78,13 +87,18 @@ public:
     void setExpiration(const Date&);
 
     /*!
-     * \brief adds receipt item
-     * \param itemName: Item
-     * \param itemPrice: float
-     * \return true if item was successfully added
+     * \brief sets running total
+     * \param total: float
      */
-    bool addReceiptItem(const QString&, const float&, const int&);
+     void setRunningTotal(const float&);
 
+     /*!
+      * \brief purchases item and adds it to member's receipt
+      * \param item: Item*
+      * \param quantity: int
+      * \param date: Date
+      */
+     void purchase(Item*, const int&, const Date&);
 };
 
 #endif // MEMBER_H

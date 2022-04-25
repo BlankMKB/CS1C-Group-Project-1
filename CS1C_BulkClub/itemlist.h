@@ -5,20 +5,20 @@
 #include <vector>
 
 class ItemList {
-private:
+protected:
     std::vector<Item*> m_ItemList;
 
-private:
+protected:
     bool compare(const Item&, const Item&);
 
 public:
     ItemList();
+    ItemList(const std::vector<Item*>&);
     ~ItemList();
-    bool insert(const QString&, const float&, const int&);
+    bool insert(Item*, const int&);
     bool remove(const QString&, const int&);
-    Item at(const QString&) const;
-    int size() const;
     Item* find(const QString&);
+    int size() const;
     std::vector<Item*> itemList() const;
 };
 

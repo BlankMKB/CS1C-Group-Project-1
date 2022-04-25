@@ -15,6 +15,8 @@ private:
     QSqlDatabase database;
     //parser fileParser;
 
+
+
 public:
     dbManager(const QString&);
 

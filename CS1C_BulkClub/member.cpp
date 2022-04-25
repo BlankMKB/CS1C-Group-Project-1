@@ -1,7 +1,7 @@
 #include "member.h"
 
 Member::Member(const QString& name, const int& id, const bool& type, const Date& date) : m_Name(name), m_Number(id), m_Type(type), m_ExpirationDate(date) {
-    this->m_RunningTotal = 0;
+    this->m_RunningTotal = 65;
 }
 
 QString Member::name() const {

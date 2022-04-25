@@ -8,52 +8,43 @@ ItemList::~ItemList() {
     this->m_ItemList.clear();
 }
 
-bool ItemList::insert(const QString& name, const float& price, const int& quantity) {
-    //search for item in list
-    for(auto& x : this->m_ItemList) {
-        if(x->name() == name) {
-            //if item already exists, add to quantity
-            x->addQuantity(quantity);
-            //return false (no new item added)
-            return false;
-        }
+ItemList::ItemList(const std::vector<Item*>& itemList) {
+    this->m_ItemList = itemList;
+}
+
+bool ItemList::insert(Item* item, const int& quantity) {
+    Item* temp = this->find(item->name());
+
+    if(temp != nullptr) {
+        temp->addQuantity(quantity);
+        return false;
     }
+    else {
+        item->setQuantity(quantity);
+        //if item doesn't exist, create a new item pointer and add it to the item list
+        this->m_ItemList.push_back(item);
 
-    //if item doesn't exist, create a new item pointer and add it to the item list
-    Item* item = new Item(name, price, quantity);
-    this->m_ItemList.push_back(item);
-
-    //return true (item added)
-    return true;
+        //return true (item added)
+        return true;
+    }
 }
 
 bool ItemList::remove(const QString& name, const int& quantity) {
-    //search for item in list
-    for(auto& x : this->m_ItemList) {
-        if(x->name() == name) {
-            //if item exists
-            if(x->quantity() <= quantity) {
-                //if item exists but the quantity to be removed > item quantity, return false (quantity not removed)
-                return false;
-            }
-            else {
-                //remove quantity
-                int tempQuant = x->quantity();
-                tempQuant -= quantity;
-                x->setQuantity(tempQuant);
+    Item* temp = this->find(name);
 
-                //return true (quantity removed)
-                return true;
-            }
-        }
+    if(temp == nullptr || temp->quantity() <= quantity) {
+        //if item doesn't exist in item list
+        //if item exists but the quantity to be removed > item quantity, return false (quantity not removed)
+        return false;
     }
-    //if item does not exist, return false (quantity not removed)
-    return false;
-}
+    else {
+        //remove quantity
+        int tempQuant = temp->quantity();
+        tempQuant -= quantity;
+        temp->setQuantity(tempQuant);
 
-Item ItemList::at(const QString& name) {
-    if(this->find(name) != nullptr) {
-        return *(this->find(name));
+        //return true (quantity removed)
+        return true;
     }
 }
 
@@ -65,4 +56,12 @@ Item* ItemList::find(const QString& name) {
     }
 
     return nullptr;
+}
+
+int ItemList::size() const {
+    return this->m_ItemList.size();
+}
+
+std::vector<Item*> ItemList::itemList() const {
+    return this->m_ItemList;
 }

@@ -3,15 +3,15 @@
 
 class Date {
 public:
-    int _day; /*!< \var day */
-    int _month; /*!< \var month*/
-    int _year; /*!< \var year*/
+    int m_Day; /*!< \var day */
+    int m_Month; /*!< \var month*/
+    int m_Year; /*!< \var year*/
 
 public:
     /*!
      * \brief Date default constructor
      */
-    Date() : _day(0), _month(0), _year(0) {
+    Date() : m_Day(0), m_Month(0), m_Year(0) {
 
     }
 
@@ -21,7 +21,7 @@ public:
      * \param month
      * \param year
      */
-    Date(const int& day, const int& month, const int& year) : _day(day), _month(month), _year(year) {
+    Date(const int& day, const int& month, const int& year) : m_Day(day), m_Month(month), m_Year(year) {
 
     }
 
@@ -30,7 +30,7 @@ public:
      * \return day
      */
     int day() const {
-        return this->_day;
+        return this->m_Day;
     }
 
     /*!
@@ -38,7 +38,7 @@ public:
      * \return month
      */
     int month() const {
-        return this->_month;
+        return this->m_Month;
     }
 
     /*!
@@ -46,7 +46,7 @@ public:
      * \return year
      */
     int year() const {
-        return this->_year;
+        return this->m_Year;
     }
 };
 

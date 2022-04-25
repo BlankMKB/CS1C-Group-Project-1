@@ -57,6 +57,12 @@ public:
      * \param quantity: int
      */
     void setQuantity(const int&);
+
+    /*!
+     * \brief adds item quantity
+     * \param quantity: int
+     */
+    void addQuantity(const int&);
 };
 
 #endif // ITEM_H
