@@ -2,7 +2,8 @@
 #define LOGINWINDOW_H
 
 #include <QWidget>
-#include <QMainWindow>
+#include <QDialog>
+#include <QMessageBox>
 #include "administratorwindow.h"
 #include "storemanagerwindow.h"
 
@@ -10,7 +11,7 @@ namespace Ui {
 class LoginWindow;
 }
 
-class LoginWindow : public QWidget
+class LoginWindow : public QDialog
 {
     Q_OBJECT
 

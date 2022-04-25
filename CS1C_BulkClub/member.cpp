@@ -1,57 +1,53 @@
 #include "member.h"
 
-Member::Member(const QString& name, const int& id, const Date& expiration) : _name(name), _id(id), _expiration(expiration) {
-    this->_receipt.clear();
+Member::Member(const QString& name, const int& id, const bool& type, const Date& date) : m_Name(name), m_Number(id), m_Type(type), m_ExpirationDate(date) {
+    this->m_RunningTotal = 0;
 }
 
 QString Member::name() const {
-    return this->_name;
+    return this->m_Name;
 }
 
 int Member::id() const {
-    return this->_id;
+    return this->m_Number;
 }
 
 bool Member::type() const {
-    return this->_type;
+    return this->m_Type;
 }
 
 Date Member::expiration() const {
-    return this->_expiration;
+    return this->m_ExpirationDate;
 }
 
-std::vector<Item> Member::receipt() const {
-    return this->_receipt;
+float Member::runningTotal() const {
+    return this->m_RunningTotal;
+}
+
+Receipt Member::receipt() const {
+    return this->m_Receipt;
 }
 
 void Member::setName(const QString& name) {
-    this->_name = name;
+    this->m_Name = name;
 }
 
 void Member::setID(const int& id) {
-    this->_id = id;
+    this->m_Number = id;
 }
 
 void Member::setType(const bool& type) {
-    this->_type = type;
+    this->m_Type = type;
 }
 
-void Member::setExpiration(const Date& expiration) {
-    this->_expiration = expiration;
+void Member::setExpiration(const Date& date) {
+    this->m_ExpirationDate = date;
 }
 
-bool Member::addReceiptItem(const QString& itemName, const float& itemPrice, const int& itemQuantity) {
-    if(this->_receipt.size() == 10) {
-        qDebug() << '\n';
-        qDebug() << "*********************************************************";
-        qDebug() << "Maximum menu items already reached!";
-        qDebug() << '(' << itemName << ", $" << itemPrice << ", " << itemQuantity << ')';
-        qDebug() << "*********************************************************";
-        qDebug() << '\n';
-
-        return false;
-    }
-    this->_receipt.push_back(Item(itemName, itemPrice, itemQuantity));
-    return true;
+void Member::setRunningTotal(const float& total) {
+    this->m_RunningTotal = total;
 }
 
+void purchase(Item* item, const int& quantity, const Date& day) {
+
+}

@@ -1,3 +1,4 @@
+QT       += widgets
 QT       += sql
 QT       += core gui
 
@@ -12,27 +13,35 @@ CONFIG += c++11
 SOURCES += \
     administratorwindow.cpp \
     dbmanager.cpp \
-    inventory.cpp \
+    executivemember.cpp \
     item.cpp \
+    itemlist.cpp \
     loginwindow.cpp \
     main.cpp \
     mainwindow.cpp \
     manager.cpp \
     member.cpp \
+    parser.cpp \
+    receipt.cpp \
     registerwindow.cpp \
+    salesreport.cpp \
     storemanagerwindow.cpp
 
 HEADERS += \
     administratorwindow.h \
     date.h \
     dbmanager.h \
-    inventory.h \
+    executivemember.h \
     item.h \
+    itemlist.h \
     loginwindow.h \
     mainwindow.h \
     manager.h \
     member.h \
+    parser.h \
+    receipt.h \
     registerwindow.h \
+    salesreport.h \
     storemanagerwindow.h
 
 FORMS += \
