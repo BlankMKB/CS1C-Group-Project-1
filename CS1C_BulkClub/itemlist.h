@@ -14,14 +14,16 @@ protected:
 
 public:
     ItemList();
+    ItemList(const ItemList&);
     ItemList(const std::vector<std::pair<Item*, int>>&);
     ~ItemList();
     bool insert(Item*, const int&);
     //bool remove(const QString&, const int&);
     Item* find(const QString&);
-    int size() const;
+    size_t size() const;
     std::vector<std::pair<Item*, int>> itemList() const;
     bool removeItem(const QString&);
+    QString itemListString() const;
 };
 
 #endif // ITEMLIST_H

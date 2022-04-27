@@ -4,6 +4,11 @@ Item::Item() : m_Name(""), m_Price(0) {
 
 }
 
+Item::Item(const Item& other) {
+    this->m_Name = other.name();
+    this->m_Price = other.price();
+}
+
 Item::Item(const QString& name, const float& price) : m_Name(name), m_Price(price) {
 
 }

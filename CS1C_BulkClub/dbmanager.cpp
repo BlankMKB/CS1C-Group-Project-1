@@ -23,8 +23,8 @@ bool dbManager::addMember(const Member& member) {
     int id = member.id();
     bool type = member.type();
     QString expirationDate = member.expiration().dateString();
-    float total = member.runningTotal();
-    QString receipt = "";
+    double total = floor(member.runningTotal() * 100) / 100;
+    QString receipt = member.receipt().receiptString();
 
     //logic for sales will be added later
 
@@ -59,7 +59,6 @@ bool dbManager::updateMember(const Member& member) {
     //create an insert query with the perameters to load the table
     QSqlQuery query;
     query.prepare("UPDATE MEMBERS SET NAME = :NAME, ID = :ID, TYPE = :TYPE, EXPIRATION = :EXPIRATION WHERE NAME = :NAME");
-
     //bind member information to their respective columns
     query.bindValue(":NAME", name);
     query.bindValue(":ID", id);

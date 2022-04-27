@@ -8,6 +8,10 @@ ItemList::~ItemList() {
     this->m_ItemList.clear();
 }
 
+ItemList::ItemList(const ItemList& other) {
+    this->m_ItemList = other.itemList();
+}
+
 ItemList::ItemList(const std::vector<std::pair<Item*, int>>& itemList) {
     for(size_t i = 0; i < itemList.size(); i++) {
         *(this->m_ItemList[i].first) = *(itemList[i].first);
@@ -74,7 +78,7 @@ Item* ItemList::find(const QString& name) {
     return nullptr;
 }
 
-int ItemList::size() const {
+size_t ItemList::size() const {
     return this->m_ItemList.size();
 }
 
@@ -89,4 +93,30 @@ int ItemList::indexOf(const QString& name) {
         }
     }
     return -1;
+}
+
+QString ItemList::itemListString() const {
+    if(this->m_ItemList.empty()) {
+        return "";
+    }
+
+    QString str = "";
+    QString name, price, quantity;
+    for(size_t i = 0; i < this->m_ItemList.size(); i++) {
+        Item* temp = (this->m_ItemList[i].first);
+        name = temp->name();
+        price = QString::number(temp->price());
+        quantity = QString::number(this->m_ItemList[i].second);
+
+        if(i + 1 == this->m_ItemList.size()) {
+            str += name + ", " + price + ", " + quantity;
+            break;
+        }
+        str += name + ", " + price + ", " + quantity + ", ";
+
+        name = "";
+        price = "";
+        quantity = "";
+    }
+    return str;
 }

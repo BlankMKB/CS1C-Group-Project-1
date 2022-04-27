@@ -49,10 +49,16 @@ void Member::setExpiration(const Date& date) {
     this->m_ExpirationDate = date;
 }
 
-void Member::setRunningTotal(const float& total) {
-    this->m_RunningTotal = total;
+void Member::addRunningTotal(const float& total) {
+    this->m_RunningTotal += total;
 }
 
 void Member::purchase(Item* item, const int& quantity, const Date& day) {
+    float total = item->price() * quantity;
+    this->m_RunningTotal += total;
     this->m_Receipt.add(day, item, quantity);
+}
+
+void Member::setReceipt(const Receipt& receipt) {
+    this->m_Receipt = receipt;
 }

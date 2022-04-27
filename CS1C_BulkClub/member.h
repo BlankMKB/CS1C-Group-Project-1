@@ -92,15 +92,17 @@ public:
      * \brief sets running total
      * \param total: float
      */
-     void setRunningTotal(const float&);
+     void addRunningTotal(const float&);
 
      /*!
       * \brief purchases item and adds it to member's receipt
-      * \param item: Item*
+      * \param item: Item*`
       * \param quantity: int
       * \param date: Date
       */
      void purchase(Item*, const int&, const Date&);
+
+     void setReceipt(const Receipt&);
 };
 
 namespace std {

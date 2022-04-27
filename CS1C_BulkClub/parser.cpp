@@ -44,11 +44,11 @@ bool Parser::read(std::vector<Member>& memberList) {
 }
 
 bool Parser::addToReceipt(const QString& itemName, const float& itemPrice, const int& itemQuantity, const Date& purchaseDate, const int& id, std::vector<Member>& memberList) {
-    Item item(itemName, itemPrice);
+    Item* item = new Item(itemName, itemPrice);
 
     for(auto& member : memberList) {
         if(member.id() == id) {
-            member.purchase(&item, itemQuantity, purchaseDate);
+            member.purchase(item, itemQuantity, purchaseDate);
             return true;
         }
     }
@@ -110,7 +110,8 @@ bool Parser::readItems(std::vector<Member>& memberList) {
         count++;
         line = "";
     }
-    debug(memberList);
+    //debug(memberList);
+
     return true;
 
 }

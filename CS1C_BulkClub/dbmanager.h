@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QString>
 #include <unordered_map>
+#include <cmath>
 #include "member.h"
 #include "parser.h"
 #define NUM_COLUMNS 6
@@ -16,8 +17,6 @@ private:
     QSqlDatabase m_Database;
     Parser m_FileParser;
 
-    QString dateString(const Date&) const;
-    QString getReceipts(const std::vector<std::pair<Date, ItemList>>&) const;
     Member memberFromRecord(const QSqlRecord&) const;
 
 public:
@@ -38,6 +37,8 @@ public:
     Member memberById(const int&) const;
 
     std::vector<Member> allMembers() const;
+
+    std::vector<std::pair<Member, Receipt>> allReceipts() const;
 
     void print() const;
 

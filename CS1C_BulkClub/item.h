@@ -21,6 +21,8 @@ public:
      */
     Item(const QString&, const float&);
 
+    Item(const Item&);
+
     /*!
      * \brief returns name
      * \return name: QString
