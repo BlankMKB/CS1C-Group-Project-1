@@ -41,6 +41,8 @@ bool Parser::read(std::vector<Member>& memberList) {
     readMembers(memberList);
     readItems(memberList);
 
+    debug(memberList);
+
 }
 
 bool Parser::addToReceipt(const QString& itemName, const float& itemPrice, const int& itemQuantity, const Date& purchaseDate, const int& id, std::vector<Member>& memberList) {
@@ -175,7 +177,6 @@ bool Parser::readMembers(std::vector<Member>& memberList) {
         count++;
         line = "";
     }
-    debug(memberList);
 
     return true;
 }

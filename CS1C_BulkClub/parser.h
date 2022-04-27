@@ -22,7 +22,7 @@
 
 
 #if __APPLE__ && TARGET_OS_MAC
-    #define SALES_PATH "../../../../CS1C_BulkClub/day1.txt"
+    #define SALES_PATH "../../../../CS1C_BulkClub/sales.txt"
 #elif __linux__
     #define SALES_PATH "../CS1C_BulkClub/day1.txt"
 #else

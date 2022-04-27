@@ -20,19 +20,19 @@ ItemList::ItemList(const std::vector<std::pair<Item*, int>>& itemList) {
 }
 
 bool ItemList::insert(Item* item, const int& quantity) {
-    Item* temp = this->find(item->name());
+    //Item* temp = this->find(item->name());
 
-    if(temp != nullptr) {
+    /*if(temp != nullptr) {
         this->m_ItemList[indexOf(temp->name())].second += quantity;
         return false;
     }
-    else { 
+    else { */
         //if item doesn't exist, create a new item pointer and add it to the item list
         this->m_ItemList.push_back(std::make_pair(item, quantity));
 
         //return true (item added)
         return true;
-    }
+    //}
 }
 
 /*

@@ -25,7 +25,7 @@ ItemList Receipt::receiptByDay(const Date& key) {
 
 bool Receipt::add(const Date& day, Item* item, const int& quantity) {
     for(auto& x : this->m_Receipt) {
-        if(x.first.dateString() == day.dateString()) {
+        if(x.first == day) {
             return x.second.insert(item, quantity);
         }
     }
@@ -51,11 +51,11 @@ QString Receipt::receiptString() const {
     QString str = "";
     QString date, list;
     for(size_t i = 0; i < this->m_Receipt.size(); i ++) {
-        date = this->m_Receipt[i].first.dateString();
+        date = "#" + this->m_Receipt[i].first.dateString();
         list = this->m_Receipt[i].second.itemListString();
 
         if(i + 1 == this->m_Receipt.size()) {
-            str += date + ", " + list;
+            str += date + ", " + list + " ";
             break;
         }
         str += date + ", " + list + ", ";
@@ -64,5 +64,5 @@ QString Receipt::receiptString() const {
         list = "";
     }
 
-    return "#" + str + " ";
+    return str;
 }
