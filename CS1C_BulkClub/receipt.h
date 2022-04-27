@@ -7,7 +7,7 @@
 
 class Receipt {
 private:
-    std::unordered_map<Date, ItemList> m_Receipt;
+    std::vector<std::pair<Date, ItemList>> m_Receipt;
 
 public:
     Receipt();
@@ -16,7 +16,9 @@ public:
 
     ItemList receiptByDay(const Date&);
 
-    bool add(const Date&, Item&, const int&);
+    bool add(const Date&, Item*, const int&);
+
+    size_t size() const;
 };
 
 #endif // RECEIPT_H

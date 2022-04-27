@@ -12,6 +12,7 @@ CONFIG += c++11
 
 SOURCES += \
     administratorwindow.cpp \
+    date.cpp \
     dbmanager.cpp \
     executivemember.cpp \
     item.cpp \

@@ -1,6 +1,11 @@
 #include "member.h"
 
-Member::Member(const QString& name, const int& id, const bool& type, const Date& date) : m_Name(name), m_Number(id), m_Type(type), m_ExpirationDate(date) {
+Member::Member() {
+
+}
+
+Member::Member(const QString& name, const int& id, const bool& type, const Date& date) : m_Name(name), m_Number(id), m_Type(type) {
+    this->m_ExpirationDate = date;
     this->m_RunningTotal = 65;
 }
 
@@ -48,6 +53,6 @@ void Member::setRunningTotal(const float& total) {
     this->m_RunningTotal = total;
 }
 
-void purchase(Item* item, const int& quantity, const Date& day) {
-
+void Member::purchase(Item* item, const int& quantity, const Date& day) {
+    this->m_Receipt.add(day, item, quantity);
 }

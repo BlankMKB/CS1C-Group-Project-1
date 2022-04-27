@@ -1,19 +1,22 @@
 #ifndef DATE_H
 #define DATE_H
 
+#include <QDebug>
+
 class Date {
-public:
+private:
     int m_Day; /*!< \var day */
     int m_Month; /*!< \var month*/
     int m_Year; /*!< \var year*/
+    QString m_DateString;
 
 public:
     /*!
      * \brief Date default constructor
      */
-    Date() : m_Day(0), m_Month(0), m_Year(0) {
+    Date();
 
-    }
+    Date(const Date&);
 
     /*!
      * \brief Date overloaded constructor
@@ -21,33 +24,50 @@ public:
      * \param month
      * \param year
      */
-    Date(const int& day, const int& month, const int& year) : m_Day(day), m_Month(month), m_Year(year) {
-
-    }
+    Date(const int&, const int&, const int&);
 
     /*!
      * \brief returns the day
-     * \return day
+     * \return day: int
      */
-    int day() const {
-        return this->m_Day;
-    }
+    int day() const;
 
     /*!
      * \brief returns the month
-     * \return month
+     * \return month: int
      */
-    int month() const {
-        return this->m_Month;
-    }
+    int month() const;
 
     /*!
      * \brief returns the year
-     * \return year
+     * \return year: int
      */
-    int year() const {
-        return this->m_Year;
-    }
+    int year() const;
+
+    /*!
+     * \brief returns date string
+     * \return dateString: std::string
+     */
+    QString dateString() const;
+
+    /*!
+     * \brief debugs date
+     */
+    void print();
+
+    /*!
+     * \brief overload equality operator
+     * \return this dateString = other dateString
+     */
+    bool operator ==(const Date&);
 };
 
+namespace std {
+    template<>
+    struct hash<Date> {
+        size_t operator()(const Date& key) {
+            return hash<QString>()(key.dateString());
+        }
+    };
+}
 #endif // DATE_H

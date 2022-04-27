@@ -17,6 +17,8 @@ protected:
     Receipt m_Receipt; /*!< \var receipt of member purchases */
 
 public:
+    Member();
+
     /*!
      * \brief Member overloaded constructor
      * \param name
@@ -100,5 +102,14 @@ public:
       */
      void purchase(Item*, const int&, const Date&);
 };
+
+namespace std {
+    template<>
+    struct hash<Member> {
+        size_t operator()(const Member& key) {
+            return hash<std::string>()(key.name().toStdString());
+        }
+    };
+}
 
 #endif // MEMBER_H

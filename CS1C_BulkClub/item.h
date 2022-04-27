@@ -6,7 +6,6 @@ class Item {
 private:
     QString m_Name; /*!< \var item name */
     float m_Price; /*!< \var item price */
-    int m_Quantity; /*!< \var item quantity */
 
 public:
     /*!
@@ -20,7 +19,7 @@ public:
      * \param price: float
      * \param quantity: int
      */
-    Item(const QString&, const float&, const int&);
+    Item(const QString&, const float&);
 
     /*!
      * \brief returns name
@@ -35,12 +34,6 @@ public:
     float price() const;
 
     /*!
-     * \brief returns quantity
-     * \return quantity: int
-     */
-    int quantity() const;
-
-    /*!
      * \brief sets item name
      * \param name: QString
      */
@@ -51,18 +44,6 @@ public:
      * \param price: float
      */
     void setPrice(const float&);
-
-    /*!
-     * \brief sets item quantity
-     * \param quantity: int
-     */
-    void setQuantity(const int&);
-
-    /*!
-     * \brief adds item quantity
-     * \param quantity: int
-     */
-    void addQuantity(const int&);
 };
 
 #endif // ITEM_H

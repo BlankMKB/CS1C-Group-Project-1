@@ -8,14 +8,17 @@
 #include <QString>
 #include <unordered_map>
 #include "member.h"
-//#include "parser.h"
+#include "parser.h"
+#define NUM_COLUMNS 6
 
 class dbManager {
 private:
-    QSqlDatabase database;
-    //parser fileParser;
+    QSqlDatabase m_Database;
+    Parser m_FileParser;
 
-
+    QString dateString(const Date&) const;
+    QString getReceipts(const std::vector<std::pair<Date, ItemList>>&) const;
+    Member memberFromRecord(const QSqlRecord&) const;
 
 public:
     dbManager(const QString&);
@@ -24,17 +27,23 @@ public:
 
     bool addMember(const Member&);
 
+    bool deleteMemberById(const int&);
+
+    bool updateMember(const Member&);
+
     void deleteAllMembers();
 
-    int getMemberCount() const;
+    unsigned memberCount() const;
 
-    Member getMemberByName(const QString&) const;
+    Member memberById(const int&) const;
 
-    Member getMemberFromRecord(const QSqlRecord&) const;
+    std::vector<Member> allMembers() const;
 
-    bool updateMember(const Member& college);
+    void print() const;
 
-    void resetWithFile();
+    void initialize();
+
+    //void print(const int&) const;
 };
 
 #endif // DBMANAGER_H
