@@ -17,8 +17,10 @@ private:
     QSqlDatabase m_Database;
     Parser m_FileParser;
 
+private:
     Receipt parseReceipt(QString&) const;
     Date parseDate(QString&) const;
+
     Member memberFromRecord(const QSqlRecord&) const;
     Receipt receiptFromRecord(const QSqlRecord&) const;
 
@@ -27,15 +29,7 @@ public:
 
     ~dbManager();
 
-    bool addMember(const Member&);
-
-    bool deleteMemberById(const int&);
-
-    bool updateMember(const Member&);
-
-    void deleteAllMembers();
-
-    unsigned memberCount() const;
+    bool initialize();
 
     Member memberById(const int&) const;
 
@@ -43,11 +37,17 @@ public:
 
     std::vector<std::pair<Member, Receipt>> allReceipts() const;
 
+    unsigned memberCount() const;
+
+    bool addMember(const Member&);
+
+    bool updateMember(const Member&);
+
+    bool deleteMemberById(const int&);
+
+    void deleteAllMembers();
+
     void print() const;
-
-    void initialize();
-
-    //void print(const int&) const;
 };
 
 #endif // DBMANAGER_H
