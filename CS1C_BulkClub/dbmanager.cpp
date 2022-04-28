@@ -129,13 +129,8 @@ Member dbManager::memberById(const int& id) const {
     return member;
 }
 
-Member dbManager::memberFromRecord(const QSqlRecord& record) const {
-    QString name = record.value("NAME").toString();
-    int id = record.value("ID").toInt();
-    bool type = record.value("TYPE").toBool();
-    QString dateString = record.value("EXPIRATION").toString();
-
-    auto dates = dateString.split("/");
+Date dbManager::parseDate(QString& line) const {
+    auto dates = line.split("/");
 
     int day, month, year;
     for(size_t i = 0; i < 3; i++) {
@@ -154,9 +149,75 @@ Member dbManager::memberFromRecord(const QSqlRecord& record) const {
         }
     }
     Date date(day, month, year);
+
+    return date;
+}
+
+Member dbManager::memberFromRecord(const QSqlRecord& record) const {
+    QString name = record.value("NAME").toString();
+    int id = record.value("ID").toInt();
+    bool type = record.value("TYPE").toBool();
+    QString dateString = record.value("EXPIRATION").toString();
+    QString receiptString = record.value("RECEIPT").toString();
+
+    Date date = parseDate(dateString);
+    Receipt receipt = parseReceipt(receiptString);
+
     Member member(name, id, type, date);
+    member.setReceipt(receipt);
 
     return member;
+}
+
+Receipt dbManager::receiptFromRecord(const QSqlRecord& record) const {
+    QString receiptString = record.value("RECEIPT").toString();
+    Receipt receipt = parseReceipt(receiptString);
+
+    return receipt;
+}
+
+Receipt dbManager::parseReceipt(QString& line) const {
+    Receipt receipt;
+    if(line == "") {
+        return receipt;
+    }
+
+    auto temp = line.split("#");
+    for(auto& x : temp) {
+        Item* item;
+        QString itemName;
+        float itemPrice;
+        int itemQuantity;
+
+        auto items = x.split(", ");
+        if(items[0] == "") {
+            continue;
+        }
+        Date date(parseDate(items[0]));
+        for(qsizetype i = 1; i < items.size(); i++) {
+            switch(i % 5) {
+            //item name
+            case 1:
+                itemName = items[i];
+                break;
+                //item price
+            case 2:
+                itemPrice = items[i].toFloat();
+                break;
+                //item quantity
+            case 3:
+                itemQuantity = items[i].toInt();
+                break;
+            case 4:
+                item = new Item(itemName, itemPrice);
+                receipt.add(date, item, itemQuantity);
+                break;
+            default:
+                break;
+            }
+        }
+    }
+    return receipt;
 }
 
 void dbManager::print() const {
@@ -178,4 +239,16 @@ void dbManager::initialize() {
     for(const auto& member : members) {
         addMember(member);
     }
+}
+
+std::vector<std::pair<Member, Receipt>> dbManager::allReceipts() const {
+    std::vector<std::pair<Member, Receipt>> receipts;
+    std::vector<Member> memberList;
+    QSqlQuery query("SELECT * FROM MEMBERS");
+
+    while(query.next()) {
+        memberList.push_back(memberFromRecord(query.record()));
+    }
+
+    //return memberList;
 }

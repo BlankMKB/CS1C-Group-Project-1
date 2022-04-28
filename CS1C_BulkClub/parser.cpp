@@ -82,31 +82,31 @@ bool Parser::readItems(std::vector<Member>& memberList) {
         }
 
         switch(count % 6) {
-            //purchase date
-            case 0:
-                purchaseDate = readDate(line);
-                break;
-            case 1:
+        //purchase date
+        case 0:
+            purchaseDate = readDate(line);
+            break;
+        case 1:
             //member id
-                id = (temp[0]).toInt();
-                break;
+            id = (temp[0]).toInt();
+            break;
             //item name
-            case 2:
-                itemName = temp[0];
-                break;
+        case 2:
+            itemName = temp[0];
+            break;
             //item price
-            case 3:
-                itemPrice = (temp[0]).toFloat();
-                break;
+        case 3:
+            itemPrice = (temp[0]).toFloat();
+            break;
             //item quantity
-            case 4:
-                itemQuantity = (temp[0]).toInt();
-                break;
-            case 5:
-                addToReceipt(itemName, itemPrice, itemQuantity, purchaseDate, id, memberList);
-                break;
-            default:
-                break;
+        case 4:
+            itemQuantity = (temp[0]).toInt();
+            break;
+        case 5:
+            addToReceipt(itemName, itemPrice, itemQuantity, purchaseDate, id, memberList);
+            break;
+        default:
+            break;
         }
 
         count++;
@@ -135,15 +135,12 @@ bool Parser::readMembers(std::vector<Member>& memberList) {
     QString line;
     QStringList temp;
 
-    while (!inFile.atEnd())
-    {
-        if (count % 5 != 4)
-        {
+    while (!inFile.atEnd()) {
+        if (count % 5 != 4) {
             line = inFile.readLine();
             temp = line.split("\n");
         }
-        switch (count % 5)
-        {
+        switch (count % 5) {
 
         // name
         case 0:

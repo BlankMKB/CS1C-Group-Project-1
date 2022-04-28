@@ -24,5 +24,7 @@ int main(int argc, char *argv[])
 
     db.initialize();
 
+    //db.allReceipts();
+
     return a.exec();
 }

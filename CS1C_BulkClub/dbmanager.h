@@ -17,7 +17,10 @@ private:
     QSqlDatabase m_Database;
     Parser m_FileParser;
 
+    Receipt parseReceipt(QString&) const;
+    Date parseDate(QString&) const;
     Member memberFromRecord(const QSqlRecord&) const;
+    Receipt receiptFromRecord(const QSqlRecord&) const;
 
 public:
     dbManager(const QString&);
