@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     dbManager db(path);
 
     db.initialize();
-
+    db.print();
 
     return a.exec();
 }

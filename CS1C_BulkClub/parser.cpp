@@ -1,127 +1,18 @@
 #include "parser.h"
 
+//default constructor
 Parser::Parser() {
 
 }
 
-Date Parser::readDate(QString& line) {
-    QStringList temp;
-    int day, month, year;
+//==========================================PRIVATE MEMBER FUNCTIONS==========================================
 
-    for(size_t i = 0; i < 3; i++) {
-        switch (i) {
-        // day
-        case 0:
-            temp = line.split("/");
-            day = (temp[0]).toInt();
-            break;
-        // month
-        case 1:
-            temp = line.split("/");
-            month = (temp[1]).toInt();
-            break;
-            // year
-        case 2:
-            temp = line.split("/");
-            year = (temp[2]).toInt();
-            break;
-
-        case 3:
-            break;
-        }
-    }
-
-    Date date(day, month, year);
-
-    return date;
-}
-
-bool Parser::read(std::vector<Member>& memberList) {
-
-    readMembers(memberList);
-    readItems(memberList);
-
-    debug(memberList);
-
-}
-
-bool Parser::addToReceipt(const QString& itemName, const float& itemPrice, const int& itemQuantity, const Date& purchaseDate, const int& id, std::vector<Member>& memberList) {
-    Item* item = new Item(itemName, itemPrice);
-
-    for(auto& member : memberList) {
-        if(member.id() == id) {
-            member.purchase(item, itemQuantity, purchaseDate);
-            return true;
-        }
-    }
-    return false;
-}
-
-bool Parser::readItems(std::vector<Member>& memberList) {
-    QFile inFile(SALES_PATH);
-
-    if (!inFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << "error reading file\n";
-        return false;
-    }
-
-    int count = 0;
-    Date purchaseDate;
-    int id;
-    QString itemName;
-    float itemPrice;
-    int itemQuantity;
-
-    QString line;
-    QStringList temp;
-
-    while(!inFile.atEnd()) {
-        if(count % 6 != 5) {
-            line = inFile.readLine();
-            temp = line.split("\n");
-        }
-
-        switch(count % 6) {
-        //purchase date
-        case 0:
-            purchaseDate = readDate(line);
-            break;
-        case 1:
-            //member id
-            id = (temp[0]).toInt();
-            break;
-            //item name
-        case 2:
-            itemName = temp[0];
-            break;
-            //item price
-        case 3:
-            itemPrice = (temp[0]).toFloat();
-            break;
-            //item quantity
-        case 4:
-            itemQuantity = (temp[0]).toInt();
-            break;
-        case 5:
-            addToReceipt(itemName, itemPrice, itemQuantity, purchaseDate, id, memberList);
-            break;
-        default:
-            break;
-        }
-
-        count++;
-        line = "";
-    }
-    //debug(memberList);
-
-    return true;
-
-}
-
+//readMembers
 bool Parser::readMembers(std::vector<Member>& memberList) {
-
+    //read member file
     QFile inFile(MEMBER_PATH);
 
+    //check to see if file opens correctly
     if (!inFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "error reading file\n";
         return false;
@@ -135,13 +26,23 @@ bool Parser::readMembers(std::vector<Member>& memberList) {
     QString line;
     QStringList temp;
 
+    //while member.txt has data to be parsed
     while (!inFile.atEnd()) {
+
+        //only read line if case is between 0 - 3
         if (count % 5 != 4) {
             line = inFile.readLine();
             temp = line.split("\n");
         }
-        switch (count % 5) {
 
+        /* switch case format
+         * 0: name
+         * 1: id
+         * 2: type
+         * 3: date
+         * 4: create member object and add to vector
+         */
+        switch (count % 5) {
         // name
         case 0:
             name = temp[0];
@@ -161,9 +62,11 @@ bool Parser::readMembers(std::vector<Member>& memberList) {
                 type = false;
             }
             break;
+        // date
         case 3:
             tempDate = readDate(line);
             break;
+        // add member
         case 4:
             addMember(memberList, name, number, type, tempDate);
             break;
@@ -175,20 +78,173 @@ bool Parser::readMembers(std::vector<Member>& memberList) {
         line = "";
     }
 
+    //everything parsed correctly
     return true;
 }
 
+//readItems
+bool Parser::readItems(std::vector<Member>& memberList) {
+    //parse sales file
+    QFile inFile(SALES_PATH);
+
+    //check to see if file opened correctly
+    if (!inFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "error reading file\n";
+        return false;
+    }
+
+    int count = 0;
+    Date purchaseDate;
+    int id;
+    QString itemName;
+    float itemPrice;
+    int itemQuantity;
+
+    QString line;
+    QStringList temp;
+
+    //while sales.txt has data to be parsed
+    while(!inFile.atEnd()) {
+
+        //only read line if case is between 0 - 4
+        if(count % 6 != 5) {
+            line = inFile.readLine();
+            temp = line.split("\n");
+        }
+
+        /* switch case format
+         * 0: purchase date
+         * 1: id
+         * 2: item name
+         * 3: item price
+         * 4: item quantity
+         * 5: create receipt object and add to vector
+         */
+        switch(count % 6) {
+        // purchase date
+        case 0:
+            purchaseDate = readDate(line);
+            break;
+        // member id
+        case 1:
+            id = (temp[0]).toInt();
+            break;
+        // item name
+        case 2:
+            itemName = temp[0];
+            break;
+         // item price
+        case 3:
+            itemPrice = (temp[0]).toFloat();
+            break;
+        //item quantity
+        case 4:
+            itemQuantity = (temp[0]).toInt();
+            break;
+        //create receipt object and add it to the vector of members
+        case 5:
+            addToReceipt(itemName, itemPrice, itemQuantity, purchaseDate, id, memberList);
+            break;
+        default:
+            break;
+        }
+
+        count++;
+        line = "";
+    }
+
+    //everything parsed correctly
+    return true;
+
+}
+
+
+//readDate
+Date Parser::readDate(QString& line) {
+    QStringList temp;
+    int day, month, year;
+
+    for(size_t i = 0; i < 3; i++) {
+
+        /* switch case format
+         * 0: day
+         * 1: month
+         * 2: year
+         */
+        switch (i) {
+        // day
+        case 0:
+            temp = line.split("/");
+            day = (temp[0]).toInt();
+            break;
+        // month
+        case 1:
+            temp = line.split("/");
+            month = (temp[1]).toInt();
+            break;
+        // year
+        case 2:
+            temp = line.split("/");
+            year = (temp[2]).toInt();
+            break;
+        default:
+            break;
+        }
+    }
+
+    Date date(day, month, year);
+
+    return date;
+}
+
+//addMember
 void Parser::addMember(std::vector<Member>& memberList, const QString& name, const int& number, const bool& type, const Date& tempDate) {
+    //create member object based on member type:
+    //true = executive
+    //false = regular
     if(type) {
-        Member temp(name, number, type, tempDate);
+        ExecutiveMember temp(name, number, type, tempDate);
         memberList.push_back(temp);
     }
     else {
-        ExecutiveMember temp(name, number, type, tempDate);
+        Member temp(name, number, type, tempDate);
         memberList.push_back(temp);
     }
 }
 
+//addToReceipt
+bool Parser::addToReceipt(const QString& itemName, const float& itemPrice, const int& itemQuantity, const Date& purchaseDate, const int& id, std::vector<Member>& memberList) {
+    Item* item = new Item(itemName, itemPrice);
+
+    for(auto& member : memberList) {
+        if(member.id() == id) {
+            //purchase the item
+            member.purchase(item, itemQuantity, purchaseDate);
+            return true;
+        }
+    }
+
+    delete item;
+    return false;
+}
+
+//=============================================================================================================
+
+
+//===========================================PUBLIC MEMBER FUNCTIONS===========================================
+
+//read
+bool Parser::read(std::vector<Member>& memberList) {
+    bool members = readMembers(memberList);
+    bool items = readItems(memberList);
+
+    debug(memberList);
+
+    //everything parsed correctly
+    return members && items;
+}
+
+//debug
 void Parser::debug(const std::vector<Member>& memberList) {
     for(const auto& member : memberList) {
 
@@ -204,7 +260,8 @@ void Parser::debug(const std::vector<Member>& memberList) {
         dbg << "type: " << type << "\n";
         dbg << "expiration date: " << member.expiration().dateString() << "\n";
         dbg << "running total: " << member.runningTotal() << "\n";
-        dbg << "receipt: " << member.receipt().size() << "\n\n";
-
+        dbg << "receipt: " << member.receipt().receiptString() << "\n\n";
     }
 }
+
+//=============================================================================================================

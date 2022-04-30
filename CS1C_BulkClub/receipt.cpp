@@ -1,20 +1,26 @@
 #include "receipt.h"
 
+//default constructor
 Receipt::Receipt() {
 
 }
-/*
-Receipt::Receipt(const Receipt& other) {
-    for(size_t i = 0; i < other.size(); i++) {
-        this->m_Receipt[i].first = other.receipt()[i].first;
-        this->m_Receipt[i].second = other.receipt()[i].second;
-    }
-}*/
 
+//destructor
 Receipt::~Receipt() {
 
 }
 
+//receipt
+std::vector<std::pair<Date, ItemList>> Receipt::receipt() const {
+    return this->m_Receipt;
+}
+
+//size
+size_t Receipt::size() const {
+    return this->m_Receipt.size();
+}
+
+//receipt by date
 ItemList Receipt::receiptByDay(const Date& key) {
     for(auto& x : this->m_Receipt) {
         if(x.first.dateString() == key.dateString()) {
@@ -23,26 +29,22 @@ ItemList Receipt::receiptByDay(const Date& key) {
     }
 }
 
-bool Receipt::add(const Date& day, Item* item, const int& quantity) {
+//add item
+void Receipt::add(const Date& day, Item* item, const int& quantity) {
+    //for each element in receip
     for(auto& x : this->m_Receipt) {
+        //add to date
         if(x.first == day) {
-            return x.second.insert(item, quantity);
+            x.second.insert(item, quantity);
         }
     }
+    //else make a new item list with a new date and push it back to receipt
     ItemList temp;
     temp.insert(item, quantity);
     this->m_Receipt.push_back(std::make_pair(day, temp));
-    return false;
 }
 
-size_t Receipt::size() const {
-    return this->m_Receipt.size();
-}
-
-std::vector<std::pair<Date, ItemList>> Receipt::receipt() const {
-    return this->m_Receipt;
-}
-
+//receipt string
 QString Receipt::receiptString() const {
     if(this->m_Receipt.empty()) {
         return "";

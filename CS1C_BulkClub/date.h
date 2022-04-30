@@ -12,17 +12,21 @@ private:
 
 public:
     /*!
-     * \brief Date default constructor
+     * \brief default constructor
      */
     Date();
 
+    /*!
+     * \brief copy constructor
+     * \param otherDate: Date
+     */
     Date(const Date&);
 
     /*!
      * \brief Date overloaded constructor
-     * \param day
-     * \param month
-     * \param year
+     * \param day: int
+     * \param month: int
+     * \param year: int
      */
     Date(const int&, const int&, const int&);
 
@@ -45,29 +49,26 @@ public:
     int year() const;
 
     /*!
-     * \brief returns date string
-     * \return dateString: std::string
-     */
-    QString dateString() const;
-
-    /*!
-     * \brief debugs date
+     * \brief for debug purposes: prints date string
      */
     void print();
+
+    /*!
+     * \brief returns date string
+     * \return dateString: QString
+     */
+    QString dateString() const;
 
     /*!
      * \brief overload equality operator
      * \return this dateString = other dateString
      */
     bool operator ==(const Date&);
-};
 
-namespace std {
-    template<>
-    struct hash<Date> {
-        size_t operator()(const Date& key) {
-            return hash<QString>()(key.dateString());
-        }
-    };
-}
+    /*!
+     * \brief overload < operator
+     * \return this date < other date
+     */
+    bool operator<(const Date&);
+};
 #endif // DATE_H

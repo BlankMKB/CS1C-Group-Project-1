@@ -9,18 +9,22 @@ private:
 
 public:
     /*!
-     * \brief Item default constructor/
+     * \brief default constructor/
      */
     Item();
 
     /*!
-     * \brief Item overloaded constructor
+     * \brief overloaded constructor
      * \param name: QString
      * \param price: float
      * \param quantity: int
      */
     Item(const QString&, const float&);
 
+    /*!
+     * \brief copy constructor
+     * \param otherItem: Item
+     */
     Item(const Item&);
 
     /*!

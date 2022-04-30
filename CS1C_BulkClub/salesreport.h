@@ -7,7 +7,7 @@
 
 class SalesReport {
 private:
-    std::unordered_map<Member, Receipt> m_Sales;
+     std::vector<std::pair<Member, Receipt>> m_Sales;
 
 public:
     SalesReport();

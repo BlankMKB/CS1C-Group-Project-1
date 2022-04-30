@@ -17,10 +17,13 @@ protected:
     Receipt m_Receipt; /*!< \var receipt of member purchases */
 
 public:
+    /*!
+     * \brief default constructor
+     */
     Member();
 
     /*!
-     * \brief Member overloaded constructor
+     * \brief overloaded constructor
      * \param name
      * \param id
      * \param type
@@ -88,6 +91,12 @@ public:
      */
     void setExpiration(const Date&);
 
+     /*!
+      * \brief set receipt
+      * \param otherReceipt: Receipt
+      */
+     void setReceipt(const Receipt&);
+
     /*!
      * \brief sets running total
      * \param total: float
@@ -101,17 +110,6 @@ public:
       * \param date: Date
       */
      void purchase(Item*, const int&, const Date&);
-
-     void setReceipt(const Receipt&);
 };
-
-namespace std {
-    template<>
-    struct hash<Member> {
-        size_t operator()(const Member& key) {
-            return hash<std::string>()(key.name().toStdString());
-        }
-    };
-}
 
 #endif // MEMBER_H
