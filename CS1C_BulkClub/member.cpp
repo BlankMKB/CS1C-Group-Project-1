@@ -71,8 +71,8 @@ void Member::addRunningTotal(const float& total) {
 }
 
 //purchase an item
-void Member::purchase(Item* item, const int& quantity, const Date& day) {
-    float total = item->price() * quantity;
+void Member::purchase(Item* item, const Date& day) {
+    float total = item->price() * item->quantity();
     this->m_RunningTotal += total;
-    this->m_Receipt.add(day, item, quantity);
+    this->m_Receipt.add(day, item);
 }

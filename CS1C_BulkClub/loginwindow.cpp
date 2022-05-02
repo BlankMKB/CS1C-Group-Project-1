@@ -16,7 +16,7 @@ LoginWindow::~LoginWindow()
 void LoginWindow::on_login_button_clicked()
 {
     // Check for a username & password match in the database
-    if(ui->username_textbox->text() == "admin" && ui->password_textbox->text() == "guest")
+    if(ui->username_textbox->text() == "" && ui->password_textbox->text() == "")
     {
         // Depending on ComboBox option selected continue... (Temporary Solution)
         if(ui->user_type_combo->currentText() == "Administrator"){

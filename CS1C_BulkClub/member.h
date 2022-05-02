@@ -109,7 +109,7 @@ public:
       * \param quantity: int
       * \param date: Date
       */
-     void purchase(Item*, const int&, const Date&);
+     void purchase(Item*, const Date&);
 };
 
 #endif // MEMBER_H

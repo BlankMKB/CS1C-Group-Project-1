@@ -100,9 +100,9 @@ Receipt dbManager::parseReceipt(const QString& line) const {
             // create item and add to receipt
             case 4:
                 //create item
-                item = new Item(itemName, itemPrice);
+                item = new Item(itemName, itemPrice, itemQuantity);
                 //add to receipt
-                receipt.add(date, item, itemQuantity);
+                receipt.add(date, item);
                 break;
             default:
                 itemName = "";

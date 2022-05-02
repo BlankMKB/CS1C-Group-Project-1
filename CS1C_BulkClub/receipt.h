@@ -45,7 +45,7 @@ public:
      * \param quantity: int
      * \return true if a new date is added, false otherwise
      */
-    bool add(const Date&, Item*, const int&);
+    bool add(const Date&, Item*);
 
     /*!
      * \brief returns the receipt in string format: for database use

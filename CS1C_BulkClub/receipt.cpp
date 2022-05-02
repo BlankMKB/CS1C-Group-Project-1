@@ -22,27 +22,29 @@ size_t Receipt::size() const {
 
 //receipt by date
 ItemList Receipt::receiptByDay(const Date& key) {
+    ItemList empty;
     for(auto& x : this->m_Receipt) {
-        if(x.first.dateString() == key.dateString()) {
+        if(x.first == key) {
             return x.second;
         }
     }
+    return empty;
 }
 
 //add item
-bool Receipt::add(const Date& day, Item* item, const int& quantity) {
+bool Receipt::add(const Date& day, Item* item) {
     //for each element in receip
     for(auto& x : this->m_Receipt) {
         //add to date
         if(x.first == day) {
-            x.second.insert(item, quantity);
+            x.second.insert(item);
             //not a new day
             return false;
         }
     }
     //else make a new item list with a new date and push it back to receipt
     ItemList temp;
-    temp.insert(item, quantity);
+    temp.insert(item);
     this->m_Receipt.push_back(std::make_pair(day, temp));
 
     return true;

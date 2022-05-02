@@ -17,9 +17,7 @@ private:
     Parser m_FileParser; /*!< \var parser object */
 
 private:
-    //Item parseItem(const QString&) const;
-
-    Item itemFromRecord(const QSqlRecord&, int&) const;
+    Item itemFromRecord(const QSqlRecord&) const;
 
     /*!
      * \brief checks if database is empty
@@ -67,13 +65,13 @@ public:
      * \brief adds item into database
      * \return true if added correctly, false otherwise
      */
-    bool addItem(const Item&, const int&);
+    bool addItem(const Item*);
 
     /*!
      * \brief updates Item in database
      * \return true if updated correctly, false otherwise
      */
-    bool updateItem(const Item&, const int&);
+    bool updateItem(const Item&);
     /*!
      * \brief deletes member by id from database
      * \return true if deleted correctly, false otherwise

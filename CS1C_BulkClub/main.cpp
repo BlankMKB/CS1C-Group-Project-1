@@ -12,37 +12,34 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    QString path, Ipath;
+    QString memberPath, inventoryPath;
 
 #if __APPLE__ && TARGET_OS_MAC
-    path = "../../../../CS1C_BulkClub/members.db";
+    memberPath = "../../../../CS1C_BulkClub/members.db";
 #elif __linux__
-    path = "../CS1C_BulkClub/members.db";
+    memberPath = "../CS1C_BulkClub/members.db";
 #else
-    path = "..\\CS1D_FastFood\\members.db";
+    memberPath = "..\\CS1C_BulkClub\\members.db";
 #endif
 
 #if __APPLE__ && TARGET_OS_MAC
-    Ipath = "../../../../CS1C_BulkClub/inventory.db";
+    inventoryPath = "../../../../CS1C_BulkClub/inventory.db";
 #elif __linux__
-    path = "../CS1C_BulkClub/members.db";
+    inventoryPath = "../CS1C_BulkClub/inventory.db";
 #else
-    path = "..\\CS1D_FastFood\\members.db";
+    inventoryPath = "..\\CS1C_BulkClub\\inventory.db";
 #endif
 
     std::vector<Member> members;
     Parser parser;
-
     parser.read(members);
-    dbManager* db = new dbManager(path);
-
-
+    dbManager* db = new dbManager(memberPath);
     db->initialize();
-    db->print();
+    db->~dbManager();
 
-    InventoryManager* idb = new InventoryManager(Ipath);
+    InventoryManager* idb = new InventoryManager(inventoryPath);
     idb->initialize();
-
+    idb->~InventoryManager();
 
     return a.exec();
 }

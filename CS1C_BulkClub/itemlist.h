@@ -6,7 +6,7 @@
 
 class ItemList {
 private:
-    std::vector<std::pair<Item*, int>> m_ItemList; /*!< \var list of items in the format: std::vector<std::pair<Item*, int>> */
+    std::vector<Item*> m_ItemList; /*!< \var list of items in the format: std::vector<std::pair<Item*, int>> */
 
 private:
     /*!
@@ -14,8 +14,6 @@ private:
      * \return index: int
      */
     int indexOf(const QString&);
-
-
 
 public:
     /*!
@@ -33,7 +31,7 @@ public:
      * \brief overloaded constructor using
      * \param otherItemList: std::vector<std::pair<Item*, int>>
      */
-    ItemList(const std::vector<std::pair<Item*, int>>&);
+    ItemList(const std::vector<Item*>&);
 
     /*!
      * destructor
@@ -44,7 +42,7 @@ public:
      * \brief returns the item list
      * \return itemList: std::vector<std::pair<Item*, int>>
      */
-    std::vector<std::pair<Item*, int>> itemList() const;
+    std::vector<Item*> itemList() const;
 
     /*!
      * \brief returns the size of the item list
@@ -55,12 +53,12 @@ public:
     /*!
      * \brief inserts item into item list
      */
-    void insert(Item*, const int&);
+    void insert(Item*);
 
     /*!
      * \brief inserts item into inventory
      */
-    void insertInventory(Item*, const int&);
+    void insertInventory(Item*);
 
     /*!
      * \brief removes item
@@ -75,15 +73,12 @@ public:
     Item* find(const QString&);
 
     /*!
-     * \brief sorts item list by item
-     */
-    void sort();
-
-    /*!
      * \brief returns the item list in string format: for database use
      * \return itemListString: QString
      */
     QString itemListString() const;
+
+
 };
 
 #endif // ITEMLIST_H

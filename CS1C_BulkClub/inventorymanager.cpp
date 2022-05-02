@@ -2,22 +2,22 @@
 
 //==========================================PRIVATE MEMBER FUNCTIONS==========================================
 
+Item InventoryManager::itemFromRecord(const QSqlRecord& record) const {
+    //assign item information from SQL
+    const QString name = record.value("NAME").toString();
+    const int price = record.value("PRICE").toFloat();
+    const int quantity = record.value("QUANTITY").toInt();
+
+    Item item(name, price, quantity);
+
+    return item;
+}
 
 //empty
 bool InventoryManager::empty() const {
     return this->itemCount() == 0;
 }
 
-Item InventoryManager::itemFromRecord(const QSqlRecord& record, int& quantity) const {
-    //assign item information from SQL
-    const QString name = record.value("NAME").toString();
-    const int price = record.value("PRICE").toFloat();
-    quantity = record.value("QUANTITY").toInt();
-
-    Item item(name, price);
-
-    return item;
-}
 
 //=============================================================================================================
 
@@ -54,7 +54,7 @@ bool InventoryManager::initialize() {
         m_FileParser.read(x);
         ItemList inventory = m_FileParser.inventory();
         for(const auto& item : inventory.itemList()) {
-            addItem(*item.first, item.second);
+            addItem(item);
         }
     }
     //everything initialized correctly
@@ -73,7 +73,7 @@ Item InventoryManager::itemByName(const QString& name) const {
     query.next();
     auto record = query.record();
 
-    item = itemFromRecord(record, quantity);
+    item = itemFromRecord(record);
 
     return item;
 }
@@ -85,9 +85,8 @@ ItemList InventoryManager::allItems() const {
     QSqlQuery query("SELECT * FROM INVENTORY");
 
     while(query.next()) {
-        int quantity;
-        Item* temp = new Item(itemFromRecord(query.record(), quantity));
-        inventory.insert(temp, quantity);
+        Item* temp = new Item(itemFromRecord(query.record()));
+        inventory.insert(temp);
     }
 
     return inventory;
@@ -107,10 +106,11 @@ unsigned InventoryManager::itemCount() const {
 }
 
 //add item to database
-bool InventoryManager::addItem(const Item& item, const int& quantity) {
+bool InventoryManager::addItem(const Item* item) {
     //parse item object
-    const QString name = item.name();
-    const float price = item.price();
+    const QString name = item->name();
+    const float price = item->price();
+    const int quantity = item->quantity();
 
     //create an insert query with the perameters to load the table
     QSqlQuery query;
@@ -132,10 +132,11 @@ bool InventoryManager::addItem(const Item& item, const int& quantity) {
 }
 
 //update item in database
-bool InventoryManager::updateItem(const Item& item, const int& quantity) {
+bool InventoryManager::updateItem(const Item& item) {
     //parse item object
     const QString name = item.name();
     const float price = item.price();
+    const int quantity = item.quantity();
 
     //create an insert query with the perameters to load the table
     QSqlQuery query;

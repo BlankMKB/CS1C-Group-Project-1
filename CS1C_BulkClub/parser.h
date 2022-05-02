@@ -16,7 +16,7 @@
 #elif __linux__
     #define MEMBER_PATH "../CS1C_BulkClub/warehouse_shoppers.txt"
 #else
-    #define MEMBER_PATH = "..\\CS1C_BulkClub\\warehouse_shoppers.txt"
+    #define MEMBER_PATH "..\\CS1C_BulkClub\\warehouse_shoppers.txt"
 #endif
 
 //define sales path for different OS
@@ -25,7 +25,7 @@
 #elif __linux__
     #define SALES_PATH "../CS1C_BulkClub/sales.txt"
 #else
-    #define SALES_PATH = "..\\CS1C_BulkClub\\sales.txt"
+    #define SALES_PATH "..\\CS1C_BulkClub\\sales.txt"
 #endif
 
 class Parser {

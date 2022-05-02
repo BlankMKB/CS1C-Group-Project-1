@@ -214,14 +214,14 @@ void Parser::addMember(std::vector<Member>& memberList, const QString& name, con
 
 //addToReceipt
 bool Parser::addToReceipt(const QString& itemName, const float& itemPrice, const int& itemQuantity, const Date& purchaseDate, const int& id, std::vector<Member>& memberList) {
-    Item* item = new Item(itemName, itemPrice);
+    Item* item = new Item(itemName, itemPrice, itemQuantity);
 
 
     for(auto& member : memberList) {
         if(member.id() == id) {
             //purchase the item
-            member.purchase(item, itemQuantity, purchaseDate);
-            this->m_Inventory.insertInventory(item, itemQuantity);
+            member.purchase(item, purchaseDate);
+            this->m_Inventory.insertInventory(item);
             return true;
         }
     }
