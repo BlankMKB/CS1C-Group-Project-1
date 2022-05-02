@@ -4,7 +4,7 @@
 
 //parse date string into date object
 Date dbManager::parseDate(const QString& line) const {
-    //split date format: [day]/[month]/[year]
+    //split date format: [month]/[day]/[year]
     auto dates = line.split("/");
 
     //temp int day month year
@@ -13,18 +13,18 @@ Date dbManager::parseDate(const QString& line) const {
     //iterate through 3 times (dd/mm/yyyy)
     for(size_t i = 0; i < 3; i++) {
         /* switch case format
-         * 0: day
-         * 1: month
+         * 0: month
+         * 1: day
          * 2: year
          */
         switch(i) {
         // day
         case 0:
-            day = (dates[0]).toInt();
+            month = (dates[0]).toInt();
             break;
         // month
         case 1:
-            month = (dates[1]).toInt();
+            day = (dates[1]).toInt();
             break;
         // year
         case 2:
@@ -36,7 +36,7 @@ Date dbManager::parseDate(const QString& line) const {
     }
 
     //create date object
-    Date date(day, month, year);
+    Date date(month, day, year);
 
     return date;
 }

@@ -1,21 +1,21 @@
 #include "date.h"
 
 //default constructor
-Date::Date() : m_Day(0), m_Month(0), m_Year(0) {
+Date::Date() : m_Month(0), m_Day(0), m_Year(0) {
 
 }
 
 //copy constructor
 Date::Date(const Date& other) {
-    this->m_Day = other.m_Day;
     this->m_Month = other.m_Month;
+    this->m_Day = other.m_Day;
     this->m_Year = other.m_Year;
     this->m_DateString = other.m_DateString;
 }
 
 //overloaded constructor
-Date::Date(const int& day, const int& month, const int& year) : m_Day(day), m_Month(month), m_Year(year) {
-    this->m_DateString = QString::number(this->m_Day) + "/" + QString::number(this->m_Month) + "/" + QString::number(this->m_Year);
+Date::Date(const int& month, const int& day, const int& year) : m_Month(month), m_Day(day), m_Year(year) {
+    this->m_DateString = QString::number(this->m_Month) + "/" + QString::number(this->m_Day) + "/" + QString::number(this->m_Year);
 }
 
 //day

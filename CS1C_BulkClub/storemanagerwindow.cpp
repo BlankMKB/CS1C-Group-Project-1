@@ -112,17 +112,16 @@ void StoreManagerWindow::on_dateCB_currentIndexChanged(int index) {
 
     QString text = this->ui->dateCB->itemText(index);
     auto temp = text.split("/");
-    int day = temp[0].toInt();
-    int month = temp[1].toInt();
+    int month = temp[0].toInt();
+    int day = temp[1].toInt();
     int year = temp[2].toInt();
-    Date date(day, month, year);
+    Date date(month, day, year);
     std::vector<ItemList> salesList = this->salesListByDate(date);
     ItemList allItems;
 
     for(const auto& itemlist : salesList) {
-        std::vector<Item*> items = itemlist.itemList();
-        for(size_t i = 0; i < items.size(); i++) {
-            allItems.insertInventory(items[i]);
+        for(size_t i = 0; i < itemlist.size(); i++) {
+            allItems.insertInventory(itemlist[i]);
         }
     }
 
@@ -154,8 +153,10 @@ void StoreManagerWindow::on_dateCB_currentIndexChanged(int index) {
             col++;
         }
     }
-}
+    QHeaderView* header = this->ui->salesByDayTW->horizontalHeader();
 
+    header->setSectionResizeMode(QHeaderView::ResizeToContents);
+}
 
 void StoreManagerWindow::on_typeCB_currentIndexChanged(int index) {
     clearTable(this->ui->memberTypeTW);
@@ -267,6 +268,10 @@ void StoreManagerWindow::on_typeCB_currentIndexChanged(int index) {
         }
         break;
     }
+
+    QHeaderView* header = this->ui->memberTypeTW->horizontalHeader();
+
+    header->setSectionResizeMode(QHeaderView::ResizeToContents);
 }
 
 void StoreManagerWindow::on_memberCB_currentIndexChanged(int index)

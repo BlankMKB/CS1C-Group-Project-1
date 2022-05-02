@@ -110,7 +110,7 @@ QPushButton#logout_button:hover{
        <rect>
         <x>20</x>
         <y>30</y>
-        <width>271</width>
+        <width>281</width>
         <height>271</height>
        </rect>
       </property>
@@ -138,31 +138,6 @@ QPushButton#logout_button:hover{
         <font>
          <bold>true</bold>
         </font>
-       </property>
-      </column>
-     </widget>
-     <widget class="QTableWidget" name="memberTypeTW">
-      <property name="geometry">
-       <rect>
-        <x>460</x>
-        <y>30</y>
-        <width>271</width>
-        <height>271</height>
-       </rect>
-      </property>
-      <column>
-       <property name="text">
-        <string>Members</string>
-       </property>
-       <property name="font">
-        <font>
-         <bold>true</bold>
-        </font>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Member ID</string>
        </property>
       </column>
      </widget>
@@ -210,39 +185,6 @@ QPushButton#logout_button:hover{
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>40</y>
-        <width>253</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-     </widget>
-     <widget class="QLabel" name="typeLabel">
-      <property name="geometry">
-       <rect>
-        <x>470</x>
-        <y>10</y>
-        <width>251</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Sort by type: </string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="typeCB">
-      <property name="geometry">
-       <rect>
-        <x>470</x>
         <y>40</y>
         <width>253</width>
         <height>23</height>
@@ -639,6 +581,113 @@ QPushButton#logout_button:hover{
        <font>
         <pointsize>12</pointsize>
        </font>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab">
+    <attribute name="title">
+     <string>Member List</string>
+    </attribute>
+    <widget class="QFrame" name="frame_9">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>110</y>
+       <width>751</width>
+       <height>331</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="lineWidth">
+      <number>2</number>
+     </property>
+     <property name="midLineWidth">
+      <number>3</number>
+     </property>
+     <widget class="QTableWidget" name="memberTypeTW">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>271</width>
+        <height>271</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>Members</string>
+       </property>
+       <property name="font">
+        <font>
+         <bold>true</bold>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Member ID</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="frame_10">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>751</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="lineWidth">
+      <number>2</number>
+     </property>
+     <property name="midLineWidth">
+      <number>3</number>
+     </property>
+     <widget class="QComboBox" name="typeCB">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>253</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="typeLabel">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>251</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Sort by type: </string>
       </property>
      </widget>
     </widget>

@@ -38,6 +38,15 @@ public:
      */
     ~ItemList();
 
+    // vector wrapper functions
+    std::vector<Item*>::const_iterator begin() const;
+
+    std::vector<Item*>::const_iterator end() const;
+
+    Item* at(const int&) const;
+
+    Item*& operator[](const int&) const;
+
     /*!
      * \brief returns the item list
      * \return itemList: std::vector<std::pair<Item*, int>>
@@ -77,7 +86,6 @@ public:
      * \return itemListString: QString
      */
     QString itemListString() const;
-
 
 };
 

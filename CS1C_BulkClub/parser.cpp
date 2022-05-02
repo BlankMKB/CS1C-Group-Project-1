@@ -167,20 +167,20 @@ Date Parser::readDate(QString& line) {
     for(size_t i = 0; i < 3; i++) {
 
         /* switch case format
-         * 0: day
-         * 1: month
+         * 0: month
+         * 1: day
          * 2: year
          */
         switch (i) {
         // day
         case 0:
             temp = line.split("/");
-            day = (temp[0]).toInt();
+            month = (temp[0]).toInt();
             break;
         // month
         case 1:
             temp = line.split("/");
-            month = (temp[1]).toInt();
+            day = (temp[1]).toInt();
             break;
         // year
         case 2:
@@ -192,7 +192,7 @@ Date Parser::readDate(QString& line) {
         }
     }
 
-    Date date(day, month, year);
+    Date date(month, day, year);
 
     return date;
 }

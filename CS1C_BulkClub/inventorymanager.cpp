@@ -64,7 +64,6 @@ bool InventoryManager::initialize() {
 //get item by name
 Item InventoryManager::itemByName(const QString& name) const {
     Item item;
-    int quantity;
 
     QSqlQuery query;
     query.prepare("SELECT * FROM INVENTORY WHERE NAME = ?");

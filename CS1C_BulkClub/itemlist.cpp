@@ -43,6 +43,26 @@ ItemList::~ItemList() {
     this->m_ItemList.clear();
 }
 
+// vector functoins
+
+
+std::vector<Item*>::const_iterator ItemList::begin() const {
+    return this->m_ItemList.begin();
+}
+
+std::vector<Item*>::const_iterator ItemList::end() const {
+    return this->m_ItemList.begin();
+}
+
+Item* ItemList::at(const int& index) const {
+    return this->m_ItemList[index];
+}
+
+Item*& ItemList::operator[](const int& index) const {
+    Item* item = this->m_ItemList[index];
+    return item;
+}
+
 //itemList
 std::vector<Item*> ItemList::itemList() const {
     return this->m_ItemList;
@@ -120,7 +140,7 @@ QString ItemList::itemListString() const {
 
         //add to string
         if(i + 1 == this->m_ItemList.size()) {
-            str += name + ", " + price + ", " + quantity;
+            str += name + ", " + price + ", " + quantity + ", ";
             break;
         }
         else {

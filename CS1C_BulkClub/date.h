@@ -5,8 +5,8 @@
 
 class Date {
 private:
-    int m_Day; /*!< \var day */
     int m_Month; /*!< \var month*/
+    int m_Day; /*!< \var day */
     int m_Year; /*!< \var year*/
     QString m_DateString;
 
@@ -31,16 +31,16 @@ public:
     Date(const int&, const int&, const int&);
 
     /*!
-     * \brief returns the day
-     * \return day: int
-     */
-    int day() const;
-
-    /*!
      * \brief returns the month
      * \return month: int
      */
     int month() const;
+
+    /*!
+     * \brief returns the day
+     * \return day: int
+     */
+    int day() const;
 
     /*!
      * \brief returns the year
