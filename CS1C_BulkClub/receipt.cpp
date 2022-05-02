@@ -30,18 +30,22 @@ ItemList Receipt::receiptByDay(const Date& key) {
 }
 
 //add item
-void Receipt::add(const Date& day, Item* item, const int& quantity) {
+bool Receipt::add(const Date& day, Item* item, const int& quantity) {
     //for each element in receip
     for(auto& x : this->m_Receipt) {
         //add to date
         if(x.first == day) {
             x.second.insert(item, quantity);
+            //not a new day
+            return false;
         }
     }
     //else make a new item list with a new date and push it back to receipt
     ItemList temp;
     temp.insert(item, quantity);
     this->m_Receipt.push_back(std::make_pair(day, temp));
+
+    return true;
 }
 
 //receipt string

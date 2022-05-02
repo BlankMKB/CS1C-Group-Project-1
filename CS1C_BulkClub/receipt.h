@@ -43,8 +43,9 @@ public:
      * \param purchaseDate: Date
      * \param pItem :Item*
      * \param quantity: int
+     * \return true if a new date is added, false otherwise
      */
-    void add(const Date&, Item*, const int&);
+    bool add(const Date&, Item*, const int&);
 
     /*!
      * \brief returns the receipt in string format: for database use

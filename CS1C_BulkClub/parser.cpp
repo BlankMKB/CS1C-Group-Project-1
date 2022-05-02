@@ -216,16 +216,23 @@ void Parser::addMember(std::vector<Member>& memberList, const QString& name, con
 bool Parser::addToReceipt(const QString& itemName, const float& itemPrice, const int& itemQuantity, const Date& purchaseDate, const int& id, std::vector<Member>& memberList) {
     Item* item = new Item(itemName, itemPrice);
 
+
     for(auto& member : memberList) {
         if(member.id() == id) {
             //purchase the item
             member.purchase(item, itemQuantity, purchaseDate);
+            this->m_Inventory.insertInventory(item, itemQuantity);
             return true;
         }
     }
 
     delete item;
     return false;
+}
+
+//round
+void Parser::round(float& number) const {
+
 }
 
 //=============================================================================================================
@@ -242,6 +249,10 @@ bool Parser::read(std::vector<Member>& memberList) {
 
     //everything parsed correctly
     return members && items;
+}
+
+ItemList Parser::inventory() const {
+    return this->m_Inventory;
 }
 
 //debug

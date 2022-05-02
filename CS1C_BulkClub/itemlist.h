@@ -58,6 +58,11 @@ public:
     void insert(Item*, const int&);
 
     /*!
+     * \brief inserts item into inventory
+     */
+    void insertInventory(Item*, const int&);
+
+    /*!
      * \brief removes item
      * \return true if removed successfully, false otherwise
      */

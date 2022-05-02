@@ -41,6 +41,12 @@ private:
      */
     Receipt receiptFromRecord(const QSqlRecord&) const;
 
+    /*!
+     * \brief checks if database is empty
+     * \return true if empty, false otherwise
+     */
+    bool empty() const;
+
 public:
     /*!
      * \brief overloaded constructor

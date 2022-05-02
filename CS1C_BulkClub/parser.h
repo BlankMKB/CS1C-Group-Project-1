@@ -16,7 +16,7 @@
 #elif __linux__
     #define MEMBER_PATH "../CS1C_BulkClub/warehouse_shoppers.txt"
 #else
-    #define MEMBER_PATH = "..\\CS1D_FastFood\\warehouse_shoppers.txt"
+    #define MEMBER_PATH = "..\\CS1C_BulkClub\\warehouse_shoppers.txt"
 #endif
 
 //define sales path for different OS
@@ -25,11 +25,13 @@
 #elif __linux__
     #define SALES_PATH "../CS1C_BulkClub/sales.txt"
 #else
-    #define SALES_PATH = "..\\CS1D_FastFood\\sales.txt"
+    #define SALES_PATH = "..\\CS1C_BulkClub\\sales.txt"
 #endif
 
-class Parser
-{
+class Parser {
+private:
+    ItemList m_Inventory; /*!< \var inventory itemlist */
+
 private:
     /*!
      * \brief helper function that reads all the members and stores it into a vector of members
@@ -60,6 +62,12 @@ private:
      */
     bool addToReceipt(const QString&, const float&, const int&, const Date&, const int&, std::vector<Member>&);
 
+    /*!
+     * \brief rounds decimal to 2 places
+     * \param number: float
+     */
+    void round(float&) const;
+
 public:
     /*!
      * \brief default constructor
@@ -71,6 +79,12 @@ public:
      * \return true if everything parsed correctly, false otherwise
      */
     bool read(std::vector<Member>&);
+
+    /*!
+     * \brief returns an inventory of items
+     * \return inventory: std::vector<Item*>
+     */
+    ItemList inventory() const;
 
     /*!
      * \brief for debugging purposes: prints member information

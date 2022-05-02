@@ -59,6 +59,16 @@ void ItemList::insert(Item* item, const int& quantity) {
     this->m_ItemList.push_back(std::make_pair(item, quantity));
 }
 
+void ItemList::insertInventory(Item* item, const int& quantity) {
+    for(auto& tempItem : this->m_ItemList) {
+        if(tempItem.first->name() == item->name()) {
+            tempItem.second += quantity;
+            return;
+        }
+    }
+    insert(item, quantity);
+}
+
 //removeItem
 bool ItemList::removeItem(const QString& name) {
     //find item

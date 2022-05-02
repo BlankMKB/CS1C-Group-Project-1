@@ -15,6 +15,7 @@ SOURCES += \
     date.cpp \
     dbmanager.cpp \
     executivemember.cpp \
+    inventorymanager.cpp \
     item.cpp \
     itemlist.cpp \
     loginwindow.cpp \
@@ -33,6 +34,7 @@ HEADERS += \
     date.h \
     dbmanager.h \
     executivemember.h \
+    inventorymanager.h \
     item.h \
     itemlist.h \
     loginwindow.h \

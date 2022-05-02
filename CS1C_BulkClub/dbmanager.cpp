@@ -143,6 +143,11 @@ Receipt dbManager::receiptFromRecord(const QSqlRecord& record) const {
     return receipt;
 }
 
+//empty
+bool dbManager::empty() const {
+    return this->memberCount() == 0;
+}
+
 //=============================================================================================================
 
 
@@ -167,21 +172,22 @@ dbManager::dbManager(const QString& path) {
 //destructor
 dbManager::~dbManager() {
     //close database
-    deleteAllMembers();
+    //deleteAllMembers();
     m_Database.close();
     qDebug() << "database connection closed\n";
 }
 
 //initializes database with text file
 bool dbManager::initialize() {
-    std::vector<Member> members;
-    m_FileParser.read(members);
-    for(const auto& member : members) {
-        if(!addMember(member)) {
-            return false;
+    if(this->empty()) {
+        std::vector<Member> members;
+        m_FileParser.read(members);
+        for(const auto& member : members) {
+            if(!addMember(member)) {
+                return false;
+            }
         }
     }
-
     //everything initialized correctly
     return true;
 }
@@ -286,7 +292,7 @@ bool dbManager::updateMember(const Member& member) {
 
     //create an insert query with the perameters to load the table
     QSqlQuery query;
-    query.prepare("UPDATE MEMBERS SET NAME = :NAME, ID = :ID, TYPE = :TYPE, EXPIRATION = :EXPIRATION, TOTAL = :TOTAL, RECEIPT = :RECEIPT, WHERE NAME = :NAME");
+    query.prepare("UPDATE MEMBERS SET NAME = :NAME, ID = :ID, TYPE = :TYPE, EXPIRATION = :EXPIRATION, TOTAL = :TOTAL, RECEIPT = :RECEIPT WHERE NAME = :NAME");
     //bind member information to their respective columns
     query.bindValue(":NAME", name);
     query.bindValue(":ID", id);
