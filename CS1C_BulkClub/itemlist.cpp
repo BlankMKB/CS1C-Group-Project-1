@@ -156,6 +156,7 @@ QString ItemList::itemListString() const {
 
 QString ItemList::itemListString2(int i)
 {
+    //return the string of item name, price, and quantity base on index
     if(this->m_ItemList.empty())
     {
         return "";
@@ -172,8 +173,10 @@ QString ItemList::itemListString2(int i)
     return str;
 }
 
+
 QString ItemList::ItemNameListString(int i)
 {
+    //return the string of item name base on index
     if(this->m_ItemList.empty())
     {
         return "";

@@ -147,10 +147,11 @@ void AdministratorWindow::on_Delete_Item_Button_clicked()
 void AdministratorWindow::on_tabWidget_3_currentChanged(int index)
 {
 
-
+    //refresh the the list and CB
     ui->itemlist->clear();
     ui->Item_Name_CB->clear();
 
+    //update list and CB base on CurrInventory.
     for(int i=0;i<CurrInventory.size();i++)
     {
         ui->itemlist->addItem(CurrInventory.itemListString2(i));
