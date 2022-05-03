@@ -16,6 +16,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QVBoxLayout>
@@ -53,6 +54,7 @@ public:
     QPushButton *Delete_Item_Button;
     QWidget *tab_3;
     QWidget *tab_4;
+    QListWidget *itemlist;
     QWidget *MembershipsTab;
     QTabWidget *tabWidget_2;
     QWidget *Add_Member;
@@ -121,7 +123,7 @@ public:
         InventoryTab->setObjectName(QString::fromUtf8("InventoryTab"));
         tabWidget_3 = new QTabWidget(InventoryTab);
         tabWidget_3->setObjectName(QString::fromUtf8("tabWidget_3"));
-        tabWidget_3->setGeometry(QRect(60, 40, 381, 241));
+        tabWidget_3->setGeometry(QRect(30, 20, 411, 271));
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
         widget = new QWidget(tab);
@@ -215,6 +217,9 @@ public:
         tabWidget_3->addTab(tab_3, QString());
         tab_4 = new QWidget();
         tab_4->setObjectName(QString::fromUtf8("tab_4"));
+        itemlist = new QListWidget(tab_4);
+        itemlist->setObjectName(QString::fromUtf8("itemlist"));
+        itemlist->setGeometry(QRect(50, 10, 291, 192));
         tabWidget_3->addTab(tab_4, QString());
         tabWidget->addTab(InventoryTab, QString());
         MembershipsTab = new QWidget();
@@ -393,7 +398,7 @@ public:
         retranslateUi(AdministratorWindow);
 
         tabWidget->setCurrentIndex(0);
-        tabWidget_3->setCurrentIndex(0);
+        tabWidget_3->setCurrentIndex(3);
         tabWidget_2->setCurrentIndex(1);
 
 

@@ -72,6 +72,12 @@ void AdministratorWindow::on_Add_Button_clicked()
     {
         QMessageBox::warning(this,"Not Added","Add Not Successful");
     }
+    ui->name_text->clear();
+    ui->id_text->clear();
+    ui->type_cb->clear();
+    ui->day_cb->clear();
+    ui->month_cb->clear();
+    ui->year_cb->clear();
 }
 
 
@@ -95,6 +101,7 @@ void AdministratorWindow::on_Delete_Button_clicked()
      {
          QMessageBox::warning(this,"Not Deleted","Delete Not Successful");
      }
+     ui->delete_id_text->clear();
 }
 
 
@@ -111,6 +118,7 @@ void AdministratorWindow::on_Add_Item_Button_clicked()
 
     CurrInventory.insertInventory(tempitem);
     QMessageBox::information(this,"Added", "Add Successful");
+
     ui->itemname_text->clear();
     ui->itemquantity_text->clear();
     ui->itemprice_text->clear();
@@ -123,11 +131,23 @@ void AdministratorWindow::on_Delete_Item_Button_clicked()
     if(CurrInventory.removeItem(name))
     {
         QMessageBox::information(this,"Deleted","Delete Successful");
-
     }
     else
     {
         QMessageBox::information(this,"Not Deleted","Delete Not Successful");
     }
+    ui->delete_item_text->clear();
+
+
+}
+
+
+
+
+void AdministratorWindow::on_tabWidget_3_currentChanged(int index)
+{
+    ui->itemlist->clear();
+    ui->itemlist->addItem(CurrInventory.itemListString());
+
 }
 
