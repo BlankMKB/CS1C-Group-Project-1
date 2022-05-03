@@ -30,13 +30,23 @@ public:
     QPushButton *logout_button;
     QTabWidget *tabWidget;
     QWidget *InventoryTab;
-    QWidget *layoutWidget;
+    QTabWidget *tabWidget_3;
+    QWidget *tab;
+    QWidget *widget;
     QVBoxLayout *verticalLayout;
-    QPushButton *ItemAddButton;
-    QPushButton *ItemDeleteButton;
-    QPushButton *ItemEditButton;
-    QPushButton *ItemFindButton;
-    QPushButton *ItemsAllButton;
+    QHBoxLayout *horizontalLayout_6;
+    QLabel *label_8;
+    QLineEdit *itemname_text;
+    QHBoxLayout *horizontalLayout_7;
+    QLabel *label_9;
+    QLineEdit *itemquantity_text;
+    QHBoxLayout *horizontalLayout_8;
+    QLabel *label_10;
+    QLineEdit *itemprice_text;
+    QPushButton *Add_Item_Button;
+    QWidget *tab_2;
+    QWidget *tab_3;
+    QWidget *tab_4;
     QWidget *MembershipsTab;
     QTabWidget *tabWidget_2;
     QWidget *Add_Member;
@@ -59,7 +69,7 @@ public:
     QComboBox *year_cb;
     QPushButton *Add_Button;
     QWidget *Delete_Member;
-    QWidget *widget;
+    QWidget *widget1;
     QVBoxLayout *verticalLayout_3;
     QHBoxLayout *horizontalLayout_5;
     QLabel *label_7;
@@ -103,37 +113,77 @@ public:
         tabWidget->setGeometry(QRect(10, 80, 601, 451));
         InventoryTab = new QWidget();
         InventoryTab->setObjectName(QString::fromUtf8("InventoryTab"));
-        layoutWidget = new QWidget(InventoryTab);
-        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(20, 30, 201, 301));
-        verticalLayout = new QVBoxLayout(layoutWidget);
+        tabWidget_3 = new QTabWidget(InventoryTab);
+        tabWidget_3->setObjectName(QString::fromUtf8("tabWidget_3"));
+        tabWidget_3->setGeometry(QRect(60, 40, 381, 241));
+        tab = new QWidget();
+        tab->setObjectName(QString::fromUtf8("tab"));
+        widget = new QWidget(tab);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(20, 20, 341, 181));
+        verticalLayout = new QVBoxLayout(widget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        ItemAddButton = new QPushButton(layoutWidget);
-        ItemAddButton->setObjectName(QString::fromUtf8("ItemAddButton"));
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
+        label_8 = new QLabel(widget);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
 
-        verticalLayout->addWidget(ItemAddButton);
+        horizontalLayout_6->addWidget(label_8);
 
-        ItemDeleteButton = new QPushButton(layoutWidget);
-        ItemDeleteButton->setObjectName(QString::fromUtf8("ItemDeleteButton"));
+        itemname_text = new QLineEdit(widget);
+        itemname_text->setObjectName(QString::fromUtf8("itemname_text"));
 
-        verticalLayout->addWidget(ItemDeleteButton);
+        horizontalLayout_6->addWidget(itemname_text);
 
-        ItemEditButton = new QPushButton(layoutWidget);
-        ItemEditButton->setObjectName(QString::fromUtf8("ItemEditButton"));
 
-        verticalLayout->addWidget(ItemEditButton);
+        verticalLayout->addLayout(horizontalLayout_6);
 
-        ItemFindButton = new QPushButton(layoutWidget);
-        ItemFindButton->setObjectName(QString::fromUtf8("ItemFindButton"));
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
+        label_9 = new QLabel(widget);
+        label_9->setObjectName(QString::fromUtf8("label_9"));
 
-        verticalLayout->addWidget(ItemFindButton);
+        horizontalLayout_7->addWidget(label_9);
 
-        ItemsAllButton = new QPushButton(layoutWidget);
-        ItemsAllButton->setObjectName(QString::fromUtf8("ItemsAllButton"));
+        itemquantity_text = new QLineEdit(widget);
+        itemquantity_text->setObjectName(QString::fromUtf8("itemquantity_text"));
 
-        verticalLayout->addWidget(ItemsAllButton);
+        horizontalLayout_7->addWidget(itemquantity_text);
 
+
+        verticalLayout->addLayout(horizontalLayout_7);
+
+        horizontalLayout_8 = new QHBoxLayout();
+        horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
+        label_10 = new QLabel(widget);
+        label_10->setObjectName(QString::fromUtf8("label_10"));
+
+        horizontalLayout_8->addWidget(label_10);
+
+        itemprice_text = new QLineEdit(widget);
+        itemprice_text->setObjectName(QString::fromUtf8("itemprice_text"));
+
+        horizontalLayout_8->addWidget(itemprice_text);
+
+
+        verticalLayout->addLayout(horizontalLayout_8);
+
+        Add_Item_Button = new QPushButton(widget);
+        Add_Item_Button->setObjectName(QString::fromUtf8("Add_Item_Button"));
+
+        verticalLayout->addWidget(Add_Item_Button);
+
+        tabWidget_3->addTab(tab, QString());
+        tab_2 = new QWidget();
+        tab_2->setObjectName(QString::fromUtf8("tab_2"));
+        tabWidget_3->addTab(tab_2, QString());
+        tab_3 = new QWidget();
+        tab_3->setObjectName(QString::fromUtf8("tab_3"));
+        tabWidget_3->addTab(tab_3, QString());
+        tab_4 = new QWidget();
+        tab_4->setObjectName(QString::fromUtf8("tab_4"));
+        tabWidget_3->addTab(tab_4, QString());
         tabWidget->addTab(InventoryTab, QString());
         MembershipsTab = new QWidget();
         MembershipsTab->setObjectName(QString::fromUtf8("MembershipsTab"));
@@ -279,20 +329,20 @@ public:
         tabWidget_2->addTab(Add_Member, QString());
         Delete_Member = new QWidget();
         Delete_Member->setObjectName(QString::fromUtf8("Delete_Member"));
-        widget = new QWidget(Delete_Member);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(10, 40, 371, 121));
-        verticalLayout_3 = new QVBoxLayout(widget);
+        widget1 = new QWidget(Delete_Member);
+        widget1->setObjectName(QString::fromUtf8("widget1"));
+        widget1->setGeometry(QRect(10, 40, 371, 121));
+        verticalLayout_3 = new QVBoxLayout(widget1);
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
-        label_7 = new QLabel(widget);
+        label_7 = new QLabel(widget1);
         label_7->setObjectName(QString::fromUtf8("label_7"));
 
         horizontalLayout_5->addWidget(label_7);
 
-        delete_id_text = new QLineEdit(widget);
+        delete_id_text = new QLineEdit(widget1);
         delete_id_text->setObjectName(QString::fromUtf8("delete_id_text"));
 
         horizontalLayout_5->addWidget(delete_id_text);
@@ -300,7 +350,7 @@ public:
 
         verticalLayout_3->addLayout(horizontalLayout_5);
 
-        Delete_Button = new QPushButton(widget);
+        Delete_Button = new QPushButton(widget1);
         Delete_Button->setObjectName(QString::fromUtf8("Delete_Button"));
 
         verticalLayout_3->addWidget(Delete_Button);
@@ -310,8 +360,9 @@ public:
 
         retranslateUi(AdministratorWindow);
 
-        tabWidget->setCurrentIndex(1);
-        tabWidget_2->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
+        tabWidget_3->setCurrentIndex(0);
+        tabWidget_2->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(AdministratorWindow);
@@ -322,11 +373,14 @@ public:
         AdministratorWindow->setWindowTitle(QCoreApplication::translate("AdministratorWindow", "Administrator Window", nullptr));
         header_label->setText(QCoreApplication::translate("AdministratorWindow", "Administrator Access has been Granted!", nullptr));
         logout_button->setText(QCoreApplication::translate("AdministratorWindow", "Logout Now", nullptr));
-        ItemAddButton->setText(QCoreApplication::translate("AdministratorWindow", "Add Item", nullptr));
-        ItemDeleteButton->setText(QCoreApplication::translate("AdministratorWindow", "Delete Item", nullptr));
-        ItemEditButton->setText(QCoreApplication::translate("AdministratorWindow", "Edit Item", nullptr));
-        ItemFindButton->setText(QCoreApplication::translate("AdministratorWindow", "Lookup Item", nullptr));
-        ItemsAllButton->setText(QCoreApplication::translate("AdministratorWindow", "All Items", nullptr));
+        label_8->setText(QCoreApplication::translate("AdministratorWindow", "Item Name", nullptr));
+        label_9->setText(QCoreApplication::translate("AdministratorWindow", "Item Quantity", nullptr));
+        label_10->setText(QCoreApplication::translate("AdministratorWindow", "Item Price", nullptr));
+        Add_Item_Button->setText(QCoreApplication::translate("AdministratorWindow", "ADD ITEM", nullptr));
+        tabWidget_3->setTabText(tabWidget_3->indexOf(tab), QCoreApplication::translate("AdministratorWindow", "Add Item", nullptr));
+        tabWidget_3->setTabText(tabWidget_3->indexOf(tab_2), QCoreApplication::translate("AdministratorWindow", "Delete Item", nullptr));
+        tabWidget_3->setTabText(tabWidget_3->indexOf(tab_3), QCoreApplication::translate("AdministratorWindow", "Edit Item", nullptr));
+        tabWidget_3->setTabText(tabWidget_3->indexOf(tab_4), QCoreApplication::translate("AdministratorWindow", "Look Item", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(InventoryTab), QCoreApplication::translate("AdministratorWindow", "Edit Inventory", nullptr));
         label->setText(QCoreApplication::translate("AdministratorWindow", "Member Name", nullptr));
         label_2->setText(QCoreApplication::translate("AdministratorWindow", "Member ID", nullptr));

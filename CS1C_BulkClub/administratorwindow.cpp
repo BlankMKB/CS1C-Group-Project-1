@@ -97,3 +97,13 @@ void AdministratorWindow::on_Delete_Button_clicked()
      }
 }
 
+
+void AdministratorWindow::on_Add_Item_Button_clicked()
+{
+    QString name=ui->itemname_text->text();
+    int quantity=ui->itemquantity_text->text().toInt();
+    float price=ui->itemprice_text->text().toFloat();
+
+
+}
+
