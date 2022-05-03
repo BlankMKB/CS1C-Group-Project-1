@@ -154,4 +154,34 @@ QString ItemList::itemListString() const {
     return str;
 }
 
+QString ItemList::itemListString2(int i)
+{
+    if(this->m_ItemList.empty())
+    {
+        return "";
+    }
+    QString str="";
+    QString name, price, quantity;
+
+    Item* temp = this->m_ItemList[i];
+    name = temp->name();
+    price = QString::number(temp->price());
+    quantity = QString::number(temp->quantity());
+
+    str=name +"  "+ price +"  "+quantity;
+    return str;
+}
+
+QString ItemList::ItemNameListString(int i)
+{
+    if(this->m_ItemList.empty())
+    {
+        return "";
+    }
+    Item* temp = this->m_ItemList[i];
+    QString name;
+    name = temp->name();
+    return name;
+
+}
 //=============================================================================================================

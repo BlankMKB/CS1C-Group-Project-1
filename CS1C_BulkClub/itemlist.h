@@ -87,6 +87,10 @@ public:
      */
     QString itemListString() const;
 
+    QString itemListString2(int);
+
+    QString ItemNameListString(int);
+
 };
 
 #endif // ITEMLIST_H

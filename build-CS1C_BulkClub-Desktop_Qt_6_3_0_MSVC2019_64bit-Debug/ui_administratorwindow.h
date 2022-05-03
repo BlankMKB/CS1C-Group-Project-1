@@ -53,6 +53,10 @@ public:
     QLineEdit *delete_item_text;
     QPushButton *Delete_Item_Button;
     QWidget *tab_3;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout_10;
+    QLabel *label_12;
+    QComboBox *Item_Name_CB;
     QWidget *tab_4;
     QListWidget *itemlist;
     QWidget *MembershipsTab;
@@ -123,7 +127,7 @@ public:
         InventoryTab->setObjectName(QString::fromUtf8("InventoryTab"));
         tabWidget_3 = new QTabWidget(InventoryTab);
         tabWidget_3->setObjectName(QString::fromUtf8("tabWidget_3"));
-        tabWidget_3->setGeometry(QRect(30, 20, 411, 271));
+        tabWidget_3->setGeometry(QRect(40, 20, 411, 271));
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
         layoutWidget = new QWidget(tab);
@@ -214,6 +218,22 @@ public:
         tabWidget_3->addTab(tab_2, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QString::fromUtf8("tab_3"));
+        widget = new QWidget(tab_3);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(100, 30, 221, 24));
+        horizontalLayout_10 = new QHBoxLayout(widget);
+        horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
+        horizontalLayout_10->setContentsMargins(0, 0, 0, 0);
+        label_12 = new QLabel(widget);
+        label_12->setObjectName(QString::fromUtf8("label_12"));
+
+        horizontalLayout_10->addWidget(label_12);
+
+        Item_Name_CB = new QComboBox(widget);
+        Item_Name_CB->setObjectName(QString::fromUtf8("Item_Name_CB"));
+
+        horizontalLayout_10->addWidget(Item_Name_CB);
+
         tabWidget_3->addTab(tab_3, QString());
         tab_4 = new QWidget();
         tab_4->setObjectName(QString::fromUtf8("tab_4"));
@@ -398,8 +418,8 @@ public:
         retranslateUi(AdministratorWindow);
 
         tabWidget->setCurrentIndex(0);
-        tabWidget_3->setCurrentIndex(0);
-        tabWidget_2->setCurrentIndex(1);
+        tabWidget_3->setCurrentIndex(2);
+        tabWidget_2->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(AdministratorWindow);
@@ -418,6 +438,7 @@ public:
         label_11->setText(QCoreApplication::translate("AdministratorWindow", "Item Name", nullptr));
         Delete_Item_Button->setText(QCoreApplication::translate("AdministratorWindow", "DELETE ITEM", nullptr));
         tabWidget_3->setTabText(tabWidget_3->indexOf(tab_2), QCoreApplication::translate("AdministratorWindow", "Delete Item", nullptr));
+        label_12->setText(QCoreApplication::translate("AdministratorWindow", "Item Name", nullptr));
         tabWidget_3->setTabText(tabWidget_3->indexOf(tab_3), QCoreApplication::translate("AdministratorWindow", "Edit Item", nullptr));
         tabWidget_3->setTabText(tabWidget_3->indexOf(tab_4), QCoreApplication::translate("AdministratorWindow", "Look Item", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(InventoryTab), QCoreApplication::translate("AdministratorWindow", "Edit Inventory", nullptr));

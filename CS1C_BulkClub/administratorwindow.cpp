@@ -146,8 +146,20 @@ void AdministratorWindow::on_Delete_Item_Button_clicked()
 
 void AdministratorWindow::on_tabWidget_3_currentChanged(int index)
 {
+
+
     ui->itemlist->clear();
-    ui->itemlist->addItem(CurrInventory.itemListString());
+    ui->Item_Name_CB->clear();
+
+    for(int i=0;i<CurrInventory.size();i++)
+    {
+        ui->itemlist->addItem(CurrInventory.itemListString2(i));
+    }
+
+    for(int i=0;i<CurrInventory.size();i++)
+    {
+        ui->Item_Name_CB->addItem(CurrInventory.ItemNameListString(i));
+    }
 
 }
 
