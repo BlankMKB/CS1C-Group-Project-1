@@ -94,13 +94,13 @@ QPushButton#logout_button:hover{
       </rect>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
        <string>Add Item</string>
       </attribute>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -166,7 +166,7 @@ QPushButton#logout_button:hover{
       <attribute name="title">
        <string>Delete Item</string>
       </attribute>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -212,10 +212,10 @@ QPushButton#logout_button:hover{
       <widget class="QListWidget" name="itemlist">
        <property name="geometry">
         <rect>
-         <x>50</x>
+         <x>20</x>
          <y>10</y>
-         <width>291</width>
-         <height>192</height>
+         <width>371</width>
+         <height>221</height>
         </rect>
        </property>
       </widget>
@@ -571,7 +571,7 @@ QPushButton#logout_button:hover{
       <attribute name="title">
        <string>Delete Member</string>
       </attribute>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
