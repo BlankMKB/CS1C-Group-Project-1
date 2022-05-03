@@ -166,6 +166,39 @@ QPushButton#logout_button:hover{
       <attribute name="title">
        <string>Delete Item</string>
       </attribute>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>341</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>Item Name</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="delete_item_text"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="Delete_Item_Button">
+          <property name="text">
+           <string>DELETE ITEM</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -193,7 +226,7 @@ QPushButton#logout_button:hover{
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="Add_Member">
       <attribute name="title">

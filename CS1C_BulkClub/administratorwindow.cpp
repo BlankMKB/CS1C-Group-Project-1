@@ -104,6 +104,30 @@ void AdministratorWindow::on_Add_Item_Button_clicked()
     int quantity=ui->itemquantity_text->text().toInt();
     float price=ui->itemprice_text->text().toFloat();
 
+    Item*tempitem = new Item;
+    tempitem->setName(name);
+    tempitem->setQuantity(quantity);
+    tempitem->setPrice(price);
 
+    CurrInventory.insertInventory(tempitem);
+    QMessageBox::information(this,"Added", "Add Successful");
+    ui->itemname_text->clear();
+    ui->itemquantity_text->clear();
+    ui->itemprice_text->clear();
+}
+
+
+void AdministratorWindow::on_Delete_Item_Button_clicked()
+{
+    QString name=ui->delete_item_text->text();
+    if(CurrInventory.removeItem(name))
+    {
+        QMessageBox::information(this,"Deleted","Delete Successful");
+
+    }
+    else
+    {
+        QMessageBox::information(this,"Not Deleted","Delete Not Successful");
+    }
 }
 
