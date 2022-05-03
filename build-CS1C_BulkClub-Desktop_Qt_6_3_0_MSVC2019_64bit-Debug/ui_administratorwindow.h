@@ -418,7 +418,7 @@ public:
         retranslateUi(AdministratorWindow);
 
         tabWidget->setCurrentIndex(0);
-        tabWidget_3->setCurrentIndex(2);
+        tabWidget_3->setCurrentIndex(3);
         tabWidget_2->setCurrentIndex(0);
 
 
