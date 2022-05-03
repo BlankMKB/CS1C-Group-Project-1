@@ -47,6 +47,10 @@ public:
 
     Item*& operator[](const int&) const;
 
+    void sort();
+
+    bool empty() const;
+
     /*!
      * \brief returns the item list
      * \return itemList: std::vector<std::pair<Item*, int>>

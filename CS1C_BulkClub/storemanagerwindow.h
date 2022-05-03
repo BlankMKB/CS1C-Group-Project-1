@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QTableWidget>
+#include "QtWidgets/qlabel.h"
 #include "member.h"
 #include "executivemember.h"
 #include "dbmanager.h"
@@ -23,27 +24,47 @@ public:
 private slots:
     void on_logout_button_clicked();
 
-    void on_memberCB_currentIndexChanged(int index);
+    //sales report by date
+    void on_dateByDayCB_currentIndexChanged(int index);
 
-    void on_expirationMonthCB_currentIndexChanged(int index);
+    void on_dateTypeByDayCB_currentIndexChanged(int index);
 
-    void on_dateCB_currentIndexChanged(int index);
+    //sales report by member type
+    void on_typeByMemberCB_currentIndexChanged(int index);
 
-    void on_typeCB_currentIndexChanged(int index);
+    void on_dateByMemberCB_currentIndexChanged(int index);
 
-    void on_memberSearchButton_clicked();
-
-    void on_itemSearchButton_clicked();
+    //member information
+    void on_memberTypeCB_currentIndexChanged(int index);
 
 private:
-    void setDropDownMenus();
-    void setTypeCB();
+   Date parseDate(const QString&);
+
+private:
+    void setTypesCB();
     void setDateCB();
     void setMemberCB();
     void setExpirationMonthCB();
-    void clearTable(QTableWidget*);
-    std::vector<ItemList> salesListByDate(const Date&);
+    void setDropDownMenus();
 
+private:
+    void noEdits(QTableWidget*);
+    void clearTable(QTableWidget*);
+
+private:
+    void setMembersTW(QTableWidget*, const int&, const std::vector<Member>&);
+    void setMemberTotalsTW();
+
+private:
+    void setItemsTW(QTableWidget*, const ItemList&, QLabel*);
+
+private:
+    std::vector<Member> membersShoppedByDate(const Date&);
+    std::vector<ItemList> salesListByDate(const Date&);
+    ItemList allItemsByType(const int&, const Date&);
+
+
+private:
     Ui::StoreManagerWindow *ui;  // Pointer to the instance of the StoreManagerWindow class object. (SELF)
     QWidget *parent;             // Pointer to the instance of parent window, MainWindow class object.
     dbManager* m_pDb;
@@ -52,6 +73,9 @@ private:
     std::vector<Member> m_MemberList;
     std::vector<std::pair<Member, Receipt>> m_Sales;
     ItemList m_Inventory;
+
+
+
 
 };
 

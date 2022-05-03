@@ -32,6 +32,11 @@ public:
     size_t size() const;
 
     /*!
+     * \brief empty
+     */
+    bool empty() const;
+
+    /*!
      * \brief returns receipt on a given date
      * \param date: Date
      * \return receipt: ItemList

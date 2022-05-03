@@ -42,7 +42,7 @@ Date dbManager::parseDate(const QString& line) const {
 }
 
 //parse receipt string into date object
-Receipt dbManager::parseReceipt(const QString& line) const {
+Receipt dbManager::parseReceipt(Member& member, const QString& line) const {
     //receipt object
     Receipt receipt;
 
@@ -102,6 +102,7 @@ Receipt dbManager::parseReceipt(const QString& line) const {
                 //create item
                 item = new Item(itemName, itemPrice, itemQuantity);
                 //add to receipt
+                member.purchase(item, date);
                 receipt.add(date, item);
                 break;
             default:
@@ -126,19 +127,29 @@ Member dbManager::memberFromRecord(const QSqlRecord& record) const {
     const QString receiptString = record.value("RECEIPT").toString();
 
     const Date date = parseDate(dateString);
-    const Receipt receipt = parseReceipt(receiptString);
 
-    Member member(name, id, type, date);
-    member.setReceipt(receipt);
+    if(type) {
+        ExecutiveMember member(name, id, type, date);
 
-    return member;
+        this->parseReceipt(member, receiptString);
+
+        return member;
+    }
+    else {
+        Member member(name, id, type, date);
+
+        this->parseReceipt(member, receiptString);
+
+        return member;
+    }
+
 }
 
 //get receipt from record into receipt object
 Receipt dbManager::receiptFromRecord(const QSqlRecord& record) const {
     const QString receiptString = record.value("RECEIPT").toString();
-
-    Receipt receipt = parseReceipt(receiptString);
+    Member member;
+    Receipt receipt = parseReceipt(member, receiptString);
 
     return receipt;
 }

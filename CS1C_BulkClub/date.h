@@ -70,5 +70,6 @@ public:
      * \return this date < other date
      */
     bool operator<(const Date&);
+
 };
 #endif // DATE_H

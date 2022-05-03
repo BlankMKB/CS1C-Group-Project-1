@@ -20,6 +20,11 @@ size_t Receipt::size() const {
     return this->m_Receipt.size();
 }
 
+//empty
+bool Receipt::empty() const {
+    return this->m_Receipt.size() == 0;
+}
+
 //receipt by date
 ItemList Receipt::receiptByDay(const Date& key) {
     ItemList empty;

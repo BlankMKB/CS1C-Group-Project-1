@@ -21,7 +21,7 @@ private:
      * \brief helper function that parses receipt from receipt string
      * \return receipt: Receipt
      */
-    Receipt parseReceipt(const QString&) const;
+    Receipt parseReceipt(Member&, const QString&) const;
 
     /*!
      * \brief helper function that parses date from date string

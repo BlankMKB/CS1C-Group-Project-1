@@ -88,6 +88,10 @@ void ItemList::insertInventory(Item* item) {
     insert(item);
 }
 
+bool ItemList::empty() const {
+    return this->m_ItemList.size() == 0;
+}
+
 //removeItem
 bool ItemList::removeItem(const QString& name) {
     //find item
@@ -154,4 +158,7 @@ QString ItemList::itemListString() const {
     return str;
 }
 
+void ItemList::sort() {
+    std::sort(this->m_ItemList.begin(), this->m_ItemList.end(), std::less<Item*>());
+}
 //=============================================================================================================

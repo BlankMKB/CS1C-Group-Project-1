@@ -1,6 +1,8 @@
 #ifndef MEMBER_H
 #define MEMBER_H
 
+#define SALES_TAX 0.0775
+
 #include <QString>
 #include <QDebug>
 #include "date.h"
@@ -112,4 +114,12 @@ public:
      void purchase(Item*, const Date&);
 };
 
+namespace std {
+template<>
+struct less<Member> {
+    bool operator()(const Member& one, const Member& two) const {
+        return one.id() < two.id();
+    }
+};
+}
 #endif // MEMBER_H
