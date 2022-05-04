@@ -319,6 +319,7 @@ void StoreManagerWindow::setMemberTotalsTW() {
     //grand total with tax
     float total = 0;
 
+    //local variable for m_MemberList to sort by id number
     std::vector<Member> allMembers = this->m_MemberList;
 
 
