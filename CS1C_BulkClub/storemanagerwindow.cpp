@@ -321,7 +321,7 @@ void StoreManagerWindow::setMemberTotalsTW() {
 
     std::vector<Member> allMembers = this->m_MemberList;
 
-    //sort by member id
+
     std::sort(allMembers.begin(), allMembers.end(), std::less<Member>());
 
     for(size_t i = 0; i < allMembers.size(); i++) {
