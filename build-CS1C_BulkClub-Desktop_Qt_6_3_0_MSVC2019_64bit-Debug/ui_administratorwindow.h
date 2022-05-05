@@ -53,7 +53,7 @@ public:
     QLineEdit *delete_item_text;
     QPushButton *Delete_Item_Button;
     QWidget *tab_3;
-    QWidget *widget;
+    QWidget *layoutWidget2;
     QHBoxLayout *horizontalLayout_10;
     QLabel *label_12;
     QComboBox *Item_Name_CB;
@@ -81,7 +81,7 @@ public:
     QComboBox *year_cb;
     QPushButton *Add_Button;
     QWidget *Delete_Member;
-    QWidget *layoutWidget2;
+    QWidget *layoutWidget3;
     QVBoxLayout *verticalLayout_3;
     QHBoxLayout *horizontalLayout_5;
     QLabel *label_7;
@@ -218,18 +218,18 @@ public:
         tabWidget_3->addTab(tab_2, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QString::fromUtf8("tab_3"));
-        widget = new QWidget(tab_3);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(100, 30, 221, 24));
-        horizontalLayout_10 = new QHBoxLayout(widget);
+        layoutWidget2 = new QWidget(tab_3);
+        layoutWidget2->setObjectName(QString::fromUtf8("layoutWidget2"));
+        layoutWidget2->setGeometry(QRect(100, 30, 221, 24));
+        horizontalLayout_10 = new QHBoxLayout(layoutWidget2);
         horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
         horizontalLayout_10->setContentsMargins(0, 0, 0, 0);
-        label_12 = new QLabel(widget);
+        label_12 = new QLabel(layoutWidget2);
         label_12->setObjectName(QString::fromUtf8("label_12"));
 
         horizontalLayout_10->addWidget(label_12);
 
-        Item_Name_CB = new QComboBox(widget);
+        Item_Name_CB = new QComboBox(layoutWidget2);
         Item_Name_CB->setObjectName(QString::fromUtf8("Item_Name_CB"));
 
         horizontalLayout_10->addWidget(Item_Name_CB);
@@ -386,20 +386,20 @@ public:
         tabWidget_2->addTab(Add_Member, QString());
         Delete_Member = new QWidget();
         Delete_Member->setObjectName(QString::fromUtf8("Delete_Member"));
-        layoutWidget2 = new QWidget(Delete_Member);
-        layoutWidget2->setObjectName(QString::fromUtf8("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(10, 40, 371, 121));
-        verticalLayout_3 = new QVBoxLayout(layoutWidget2);
+        layoutWidget3 = new QWidget(Delete_Member);
+        layoutWidget3->setObjectName(QString::fromUtf8("layoutWidget3"));
+        layoutWidget3->setGeometry(QRect(10, 40, 371, 121));
+        verticalLayout_3 = new QVBoxLayout(layoutWidget3);
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
-        label_7 = new QLabel(layoutWidget2);
+        label_7 = new QLabel(layoutWidget3);
         label_7->setObjectName(QString::fromUtf8("label_7"));
 
         horizontalLayout_5->addWidget(label_7);
 
-        delete_id_text = new QLineEdit(layoutWidget2);
+        delete_id_text = new QLineEdit(layoutWidget3);
         delete_id_text->setObjectName(QString::fromUtf8("delete_id_text"));
 
         horizontalLayout_5->addWidget(delete_id_text);
@@ -407,7 +407,7 @@ public:
 
         verticalLayout_3->addLayout(horizontalLayout_5);
 
-        Delete_Button = new QPushButton(layoutWidget2);
+        Delete_Button = new QPushButton(layoutWidget3);
         Delete_Button->setObjectName(QString::fromUtf8("Delete_Button"));
 
         verticalLayout_3->addWidget(Delete_Button);
@@ -418,7 +418,7 @@ public:
         retranslateUi(AdministratorWindow);
 
         tabWidget->setCurrentIndex(0);
-        tabWidget_3->setCurrentIndex(3);
+        tabWidget_3->setCurrentIndex(0);
         tabWidget_2->setCurrentIndex(0);
 
 
