@@ -41,5 +41,7 @@ int main(int argc, char *argv[])
     idb->initialize();
     idb->~InventoryManager();
 
+    ItemList CurrInventory;
+
     return a.exec();
 }

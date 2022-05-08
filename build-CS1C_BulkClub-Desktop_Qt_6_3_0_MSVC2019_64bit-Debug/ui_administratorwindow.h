@@ -57,6 +57,9 @@ public:
     QHBoxLayout *horizontalLayout_10;
     QLabel *label_12;
     QComboBox *Item_Name_CB;
+    QLabel *label_13;
+    QLineEdit *lineEdit;
+    QLabel *label_14;
     QWidget *tab_4;
     QListWidget *itemlist;
     QWidget *MembershipsTab;
@@ -234,6 +237,15 @@ public:
 
         horizontalLayout_10->addWidget(Item_Name_CB);
 
+        label_13 = new QLabel(tab_3);
+        label_13->setObjectName(QString::fromUtf8("label_13"));
+        label_13->setGeometry(QRect(10, 110, 37, 12));
+        lineEdit = new QLineEdit(tab_3);
+        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+        lineEdit->setGeometry(QRect(50, 110, 113, 20));
+        label_14 = new QLabel(tab_3);
+        label_14->setObjectName(QString::fromUtf8("label_14"));
+        label_14->setGeometry(QRect(10, 140, 37, 12));
         tabWidget_3->addTab(tab_3, QString());
         tab_4 = new QWidget();
         tab_4->setObjectName(QString::fromUtf8("tab_4"));
@@ -418,7 +430,7 @@ public:
         retranslateUi(AdministratorWindow);
 
         tabWidget->setCurrentIndex(0);
-        tabWidget_3->setCurrentIndex(0);
+        tabWidget_3->setCurrentIndex(2);
         tabWidget_2->setCurrentIndex(0);
 
 
@@ -439,6 +451,8 @@ public:
         Delete_Item_Button->setText(QCoreApplication::translate("AdministratorWindow", "DELETE ITEM", nullptr));
         tabWidget_3->setTabText(tabWidget_3->indexOf(tab_2), QCoreApplication::translate("AdministratorWindow", "Delete Item", nullptr));
         label_12->setText(QCoreApplication::translate("AdministratorWindow", "Item Name", nullptr));
+        label_13->setText(QCoreApplication::translate("AdministratorWindow", "TextLabel", nullptr));
+        label_14->setText(QCoreApplication::translate("AdministratorWindow", "TextLabel", nullptr));
         tabWidget_3->setTabText(tabWidget_3->indexOf(tab_3), QCoreApplication::translate("AdministratorWindow", "Edit Item", nullptr));
         tabWidget_3->setTabText(tabWidget_3->indexOf(tab_4), QCoreApplication::translate("AdministratorWindow", "Look Item", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(InventoryTab), QCoreApplication::translate("AdministratorWindow", "Edit Inventory", nullptr));
