@@ -149,7 +149,7 @@ void AdministratorWindow::on_tabWidget_3_currentChanged(int index)
 
     //refresh the the list and CB
     ui->itemlist->clear();
-    ui->Item_Name_CB->clear();
+    ui->Item_Select_CB->clear();
 
     //update list and CB base on CurrInventory.
     for(int i=0;i<CurrInventory.size();i++)
@@ -159,8 +159,24 @@ void AdministratorWindow::on_tabWidget_3_currentChanged(int index)
 
     for(int i=0;i<CurrInventory.size();i++)
     {
-        ui->Item_Name_CB->addItem(CurrInventory.ItemNameListString(i));
+        ui->Item_Select_CB->addItem(CurrInventory.ItemNameListString(i));
     }
+
+}
+
+
+void AdministratorWindow::on_Item_Edit_Button_clicked()
+{
+    QString target=ui->Item_Select_CB->currentText();
+    QString name=ui->Edit_Itemname_text->text();
+    int quantity=ui->Edit_Itemquantity_text->text().toInt();
+    float price=ui->Edit_Itemprice_text->text().toFloat();
+
+    CurrInventory.ItemEdit(target,name,quantity,price);
+    QMessageBox::information(this,"Edited","Edit Successful");
+    ui->Edit_Itemname_text->clear();
+    ui->Edit_Itemquantity_text->clear();
+    ui->Edit_Itemprice_text->clear();
 
 }
 

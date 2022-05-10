@@ -31,6 +31,8 @@ private slots:
 
     void on_tabWidget_3_currentChanged(int index);
 
+    void on_Item_Edit_Button_clicked();
+
 private:
     Ui::AdministratorWindow *ui;  // Pointer to the instance of the AdministratorWindow class object. (SELF)
     QWidget *parent;  // Pointer to the instance of parent window, MainWindow class object.

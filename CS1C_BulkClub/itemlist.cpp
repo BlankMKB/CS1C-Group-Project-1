@@ -187,4 +187,17 @@ QString ItemList::ItemNameListString(int i)
     return name;
 
 }
+
+void ItemList::ItemEdit(const QString& target,const QString& name,const int& quantity,const float& price)
+{
+    for(int i = 0; i < this->m_ItemList.size(); i++)
+    {
+        if(m_ItemList[i]->name()==target)
+        {
+            m_ItemList[i]->setName(name);
+            m_ItemList[i]->setQuantity(quantity);
+            m_ItemList[i]->setPrice(price);
+        }
+    }
+}
 //=============================================================================================================

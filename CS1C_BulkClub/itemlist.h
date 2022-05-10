@@ -91,6 +91,8 @@ public:
 
     QString ItemNameListString(int);
 
+    void ItemEdit(const QString&,const QString&,const int&,const float&);
+
 };
 
 #endif // ITEMLIST_H
