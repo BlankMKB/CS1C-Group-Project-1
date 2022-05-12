@@ -78,7 +78,7 @@ QPushButton#logout_button:hover{
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="saleByDay">
     <attribute name="title">
@@ -110,7 +110,7 @@ QPushButton#logout_button:hover{
        <rect>
         <x>20</x>
         <y>30</y>
-        <width>341</width>
+        <width>431</width>
         <height>271</height>
        </rect>
       </property>
@@ -132,6 +132,11 @@ QPushButton#logout_button:hover{
       </column>
       <column>
        <property name="text">
+        <string>Item Price</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
         <string>Item Quantity</string>
        </property>
        <property name="font">
@@ -149,7 +154,7 @@ QPushButton#logout_button:hover{
      <widget class="QTableWidget" name="membersByDayTW">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>470</x>
         <y>30</y>
         <width>251</width>
         <height>271</height>
@@ -212,71 +217,71 @@ QPushButton#logout_button:hover{
      <property name="midLineWidth">
       <number>3</number>
      </property>
-     <widget class="QLabel" name="dateByDayLabel">
+     <widget class="QWidget" name="verticalLayoutWidget_2">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>10</y>
-        <width>251</width>
-        <height>21</height>
+        <y>0</y>
+        <width>211</width>
+        <height>80</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Select Date: </string>
-      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QLabel" name="dateByDayLabel">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Select Date: </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="dateByDayCB">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
-     <widget class="QComboBox" name="dateByDayCB">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>40</y>
-        <width>253</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-     </widget>
-     <widget class="QLabel" name="membersByDayLabel">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>10</y>
-        <width>71</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Members</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="dateTypeByDayCB">
+     <widget class="QWidget" name="verticalLayoutWidget_3">
       <property name="geometry">
        <rect>
         <x>380</x>
-        <y>40</y>
-        <width>251</width>
-        <height>23</height>
+        <y>0</y>
+        <width>201</width>
+        <height>80</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QLabel" name="membersByDayLabel">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Members</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="dateTypeByDayCB">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>
@@ -412,112 +417,112 @@ QPushButton#logout_button:hover{
      <property name="midLineWidth">
       <number>3</number>
      </property>
-     <widget class="QLabel" name="memberIDLabel">
-      <property name="geometry">
-       <rect>
-        <x>550</x>
-        <y>20</y>
-        <width>111</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Member name/id:</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="memberSearchLE">
-      <property name="geometry">
-       <rect>
-        <x>550</x>
-        <y>50</y>
-        <width>111</width>
-        <height>21</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="memberSearchButton">
-      <property name="geometry">
-       <rect>
-        <x>670</x>
-        <y>50</y>
-        <width>61</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Search</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="dateByMemberLabel">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>10</y>
-        <width>231</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Select Date: </string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="dateByMemberCB">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>40</y>
-        <width>253</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="typeByMemberCB">
+     <widget class="QWidget" name="verticalLayoutWidget_4">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>40</y>
-        <width>191</width>
-        <height>23</height>
+        <y>0</y>
+        <width>201</width>
+        <height>80</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QLabel" name="memberByMemberLabel">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Members</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="typeByMemberCB">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
-     <widget class="QLabel" name="memberByMemberLabel">
+     <widget class="QWidget" name="verticalLayoutWidget_5">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>10</y>
-        <width>71</width>
-        <height>21</height>
+        <x>290</x>
+        <y>0</y>
+        <width>211</width>
+        <height>80</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QLabel" name="dateByMemberLabel">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Select Date: </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="dateByMemberCB">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>536</x>
+        <y>0</y>
+        <width>191</width>
+        <height>81</height>
+       </rect>
       </property>
-      <property name="text">
-       <string>Members</string>
-      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QLabel" name="memberIDLabel">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Member name/id:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="memberResetButton">
+         <property name="text">
+          <string>Reset</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLineEdit" name="memberSearchLE"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="memberSearchButton">
+         <property name="text">
+          <string>Search</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>
@@ -661,7 +666,7 @@ QPushButton#logout_button:hover{
        <rect>
         <x>20</x>
         <y>10</y>
-        <width>241</width>
+        <width>291</width>
         <height>251</height>
        </rect>
       </property>
@@ -690,6 +695,11 @@ QPushButton#logout_button:hover{
         <string>Running Total</string>
        </property>
       </row>
+      <row>
+       <property name="text">
+        <string/>
+       </property>
+      </row>
       <column>
        <property name="text">
         <string notr="true">Member Information</string>
@@ -701,42 +711,12 @@ QPushButton#logout_button:hover{
        </property>
       </column>
      </widget>
-     <widget class="QTableWidget" name="rebateInfoTW">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>10</y>
-        <width>221</width>
-        <height>251</height>
-       </rect>
-      </property>
-      <column>
-       <property name="text">
-        <string>Member</string>
-       </property>
-       <property name="font">
-        <font>
-         <bold>true</bold>
-        </font>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string notr="true">Rebate Amount</string>
-       </property>
-       <property name="font">
-        <font>
-         <bold>true</bold>
-        </font>
-       </property>
-      </column>
-     </widget>
      <widget class="QTableWidget" name="expirationInfoTW">
       <property name="geometry">
        <rect>
-        <x>500</x>
+        <x>330</x>
         <y>10</y>
-        <width>231</width>
+        <width>401</width>
         <height>251</height>
        </rect>
       </property>
@@ -758,6 +738,11 @@ QPushButton#logout_button:hover{
         <font>
          <bold>true</bold>
         </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Cost to Renew</string>
        </property>
       </column>
      </widget>
@@ -783,45 +768,196 @@ QPushButton#logout_button:hover{
      <property name="midLineWidth">
       <number>3</number>
      </property>
-     <widget class="QLabel" name="memberLabel">
+     <widget class="QWidget" name="verticalLayoutWidget_7">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>251</width>
-        <height>21</height>
+        <x>20</x>
+        <y>0</y>
+        <width>201</width>
+        <height>80</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Select Member: </string>
-      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_10">
+       <item>
+        <widget class="QLabel" name="memberLabel">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Select Member: </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="memberInfoCB">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
-     <widget class="QComboBox" name="memberCB">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>40</y>
-        <width>221</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rebateLabel">
+     <widget class="QWidget" name="verticalLayoutWidget_8">
       <property name="geometry">
        <rect>
         <x>330</x>
+        <y>0</y>
+        <width>211</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_12">
+       <item>
+        <widget class="QLabel" name="expirationMonthLabel">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Select Month: </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="expirationMonthCB">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="items">
+    <attribute name="title">
+     <string>Items</string>
+    </attribute>
+    <widget class="QFrame" name="frame_5">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>110</y>
+       <width>751</width>
+       <height>331</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="lineWidth">
+      <number>2</number>
+     </property>
+     <property name="midLineWidth">
+      <number>3</number>
+     </property>
+     <widget class="QTableWidget" name="itemTotalsTW">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>431</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOn</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <column>
+       <property name="text">
+        <string notr="true">Name</string>
+       </property>
+       <property name="font">
+        <font>
+         <bold>true</bold>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Price</string>
+       </property>
+       <property name="font">
+        <font>
+         <bold>true</bold>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Quantity Sold</string>
+       </property>
+       <property name="font">
+        <font>
+         <bold>true</bold>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Item Revenue</string>
+       </property>
+       <property name="font">
+        <font>
+         <bold>true</bold>
+        </font>
+       </property>
+      </column>
+     </widget>
+     <widget class="QLabel" name="itemTotRevLabel">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>290</y>
+        <width>281</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:700;&quot;&gt;Total Revenue: &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="frame_6">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>751</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="lineWidth">
+      <number>2</number>
+     </property>
+     <property name="midLineWidth">
+      <number>3</number>
+     </property>
+     <widget class="QLabel" name="itemLabel">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
         <y>30</y>
-        <width>61</width>
+        <width>81</width>
         <height>21</height>
        </rect>
       </property>
@@ -831,41 +967,55 @@ QPushButton#logout_button:hover{
        </font>
       </property>
       <property name="text">
-       <string>Rebates</string>
+       <string>Item Report</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::MarkdownText</enum>
       </property>
      </widget>
-     <widget class="QLabel" name="expirationMonthLabel">
+     <widget class="QWidget" name="gridLayoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>530</x>
-        <y>10</y>
-        <width>161</width>
-        <height>21</height>
+        <x>518</x>
+        <y>0</y>
+        <width>211</width>
+        <height>81</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Select Month: </string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="expirationMonthCB">
-      <property name="geometry">
-       <rect>
-        <x>530</x>
-        <y>40</y>
-        <width>181</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QLabel" name="itemSearchLabel">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Search by Item Name</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::MarkdownText</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="itemResetButton">
+         <property name="text">
+          <string>Reset</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLineEdit" name="itemSearchLE"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="itemSearchButton">
+         <property name="text">
+          <string>Search</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>
@@ -972,189 +1122,6 @@ QPushButton#logout_button:hover{
       </property>
       <property name="text">
        <string>Sort by type: </string>
-      </property>
-     </widget>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="items">
-    <attribute name="title">
-     <string>Items</string>
-    </attribute>
-    <widget class="QFrame" name="frame_5">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>110</y>
-       <width>751</width>
-       <height>331</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Plain</enum>
-     </property>
-     <property name="lineWidth">
-      <number>2</number>
-     </property>
-     <property name="midLineWidth">
-      <number>3</number>
-     </property>
-     <widget class="QTableWidget" name="itemInfoTW">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>20</y>
-        <width>371</width>
-        <height>301</height>
-       </rect>
-      </property>
-      <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOn</enum>
-      </property>
-      <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
-      </property>
-      <column>
-       <property name="text">
-        <string notr="true">Name</string>
-       </property>
-       <property name="font">
-        <font>
-         <bold>true</bold>
-        </font>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Price</string>
-       </property>
-       <property name="font">
-        <font>
-         <bold>true</bold>
-        </font>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Quantity Sold</string>
-       </property>
-       <property name="font">
-        <font>
-         <bold>true</bold>
-        </font>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Item Revenue</string>
-       </property>
-       <property name="font">
-        <font>
-         <bold>true</bold>
-        </font>
-       </property>
-      </column>
-     </widget>
-     <widget class="QLabel" name="totalRevenueLabel">
-      <property name="geometry">
-       <rect>
-        <x>560</x>
-        <y>280</y>
-        <width>171</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:700;&quot;&gt;Total Revenue: &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QFrame" name="frame_6">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>30</y>
-       <width>751</width>
-       <height>81</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <property name="lineWidth">
-      <number>2</number>
-     </property>
-     <property name="midLineWidth">
-      <number>3</number>
-     </property>
-     <widget class="QLabel" name="itemLabel">
-      <property name="geometry">
-       <rect>
-        <x>330</x>
-        <y>20</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Item Report</string>
-      </property>
-      <property name="textFormat">
-       <enum>Qt::MarkdownText</enum>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="searchLE">
-      <property name="geometry">
-       <rect>
-        <x>520</x>
-        <y>50</y>
-        <width>131</width>
-        <height>23</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="itemSearchLabel">
-      <property name="geometry">
-       <rect>
-        <x>520</x>
-        <y>20</y>
-        <width>141</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Search by Item Name</string>
-      </property>
-      <property name="textFormat">
-       <enum>Qt::MarkdownText</enum>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="itemSearchButton">
-      <property name="geometry">
-       <rect>
-        <x>660</x>
-        <y>50</y>
-        <width>80</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Search</string>
       </property>
      </widget>
     </widget>

@@ -10,6 +10,11 @@ private:
 
 public:
     /*!
+     * \brief constructor
+     */
+    ExecutiveMember();
+
+    /*!
      * \brief overloaded constructor
      * \param otherMember: Member
      */
@@ -28,7 +33,7 @@ public:
      * \brief returns rebate amount
      * \return rebateAmount: float
      */
-    float rebateAmount() const;
+    float rebateAmount() const override;
 
     /*!
      * \brief sets rebate amount

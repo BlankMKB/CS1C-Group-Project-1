@@ -103,7 +103,7 @@ public:
      * \brief sets running total
      * \param total: float
      */
-     void addRunningTotal(const float&);
+     void setRunningTotal(const float&);
 
      /*!
       * \brief purchases item and adds it to member's receipt
@@ -112,6 +112,12 @@ public:
       * \param date: Date
       */
      void purchase(Item*, const Date&);
+
+     /*!
+      * \brief virtual functionf for rebate amount
+      * \return rebateAmount: float
+      */
+     virtual float rebateAmount() const;
 };
 
 namespace std {

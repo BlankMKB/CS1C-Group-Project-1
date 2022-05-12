@@ -4,8 +4,8 @@
 
 //indexof
 int ItemList::indexOf(const QString& name) {
-    for(size_t i = 0; i < this->m_ItemList.size(); i++) {
-        if((this->m_ItemList[i])->name() == name) {
+    for(size_t i = 0; i < m_ItemList.size(); i++) {
+        if((m_ItemList[i])->name() == name) {
             return i;
         }
     }
@@ -26,60 +26,60 @@ ItemList::ItemList() {
 ItemList::ItemList(const ItemList& other) {
     for(const auto& x : other.itemList()) {
         Item* temp = new Item(*x);
-        this->m_ItemList.push_back(temp);
+        m_ItemList.push_back(temp);
     }
-    //this->m_ItemList = other.itemList();
+    //m_ItemList = other.itemList();
 }
 
 //overloaded constructor
 ItemList::ItemList(const std::vector<Item*>& itemList) {
     for(size_t i = 0; i < itemList.size(); i++) {
-        *(this->m_ItemList[i]) = *(itemList[i]);
+        *(m_ItemList[i]) = *(itemList[i]);
     }
 }
 
 //destructor
 ItemList::~ItemList() {
-    this->m_ItemList.clear();
+    m_ItemList.clear();
 }
 
 // vector functoins
 
 
 std::vector<Item*>::const_iterator ItemList::begin() const {
-    return this->m_ItemList.begin();
+    return m_ItemList.begin();
 }
 
 std::vector<Item*>::const_iterator ItemList::end() const {
-    return this->m_ItemList.begin();
+    return m_ItemList.begin();
 }
 
 Item* ItemList::at(const int& index) const {
-    return this->m_ItemList[index];
+    return m_ItemList[index];
 }
 
 Item*& ItemList::operator[](const int& index) const {
-    Item* item = this->m_ItemList[index];
+    Item* item = m_ItemList[index];
     return item;
 }
 
 //itemList
 std::vector<Item*> ItemList::itemList() const {
-    return this->m_ItemList;
+    return m_ItemList;
 }
 
 //size
 size_t ItemList::size() const {
-    return this->m_ItemList.size();
+    return m_ItemList.size();
 }
 
 //insert
 void ItemList::insert(Item* item) {
-    this->m_ItemList.push_back(item);
+    m_ItemList.push_back(item);
 }
 
 void ItemList::insertInventory(Item* item) {
-    for(auto& tempItem : this->m_ItemList) {
+    for(auto& tempItem : m_ItemList) {
         if(tempItem->name() == item->name()) {
             tempItem->addQuantity(item->quantity());
             return;
@@ -89,7 +89,7 @@ void ItemList::insertInventory(Item* item) {
 }
 
 bool ItemList::empty() const {
-    return this->m_ItemList.size() == 0;
+    return m_ItemList.size() == 0;
 }
 
 //removeItem
@@ -101,11 +101,11 @@ bool ItemList::removeItem(const QString& name) {
     }
 
     //for each item in the item list
-    for(auto& item : this->m_ItemList) {
+    for(auto& item : m_ItemList) {
         //if name matches
         if(item->name() == name) {
             //remove item
-            this->m_ItemList.erase(std::find(this->m_ItemList.begin(), this->m_ItemList.end(), item));
+            m_ItemList.erase(std::find(m_ItemList.begin(), m_ItemList.end(), item));
             return true;
         }
     }
@@ -116,7 +116,7 @@ bool ItemList::removeItem(const QString& name) {
 //find
 Item* ItemList::find(const QString& name) {
     //for each item in item list
-    for(auto& item : this->m_ItemList) {
+    for(auto& item : m_ItemList) {
         //if the item names match
         if(item->name() == name) {
             return item;
@@ -129,21 +129,21 @@ Item* ItemList::find(const QString& name) {
 
 //itemListString
 QString ItemList::itemListString() const {
-    if(this->m_ItemList.empty()) {
+    if(m_ItemList.empty()) {
         return "";
     }
 
     QString str = "";
     QString name, price, quantity;
-    for(size_t i = 0; i < this->m_ItemList.size(); i++) {
+    for(size_t i = 0; i < m_ItemList.size(); i++) {
         //parse temp item
-        Item* temp = this->m_ItemList[i];
+        Item* temp = m_ItemList[i];
         name = temp->name();
         price = QString::number(temp->price());
         quantity = QString::number(temp->quantity());
 
         //add to string
-        if(i + 1 == this->m_ItemList.size()) {
+        if(i + 1 == m_ItemList.size()) {
             str += name + ", " + price + ", " + quantity + ", ";
             break;
         }
@@ -159,6 +159,6 @@ QString ItemList::itemListString() const {
 }
 
 void ItemList::sort() {
-    std::sort(this->m_ItemList.begin(), this->m_ItemList.end(), std::less<Item*>());
+    std::sort(m_ItemList.begin(), m_ItemList.end(), std::less<Item*>());
 }
 //=============================================================================================================

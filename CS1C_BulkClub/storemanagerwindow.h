@@ -37,6 +37,18 @@ private slots:
     //member information
     void on_memberTypeCB_currentIndexChanged(int index);
 
+    void on_memberInfoCB_currentIndexChanged(int index);
+
+    void on_expirationMonthCB_currentIndexChanged(int index);
+
+    void on_itemSearchButton_clicked();
+
+    void on_itemResetButton_clicked();
+
+    void on_memberSearchButton_clicked();
+
+    void on_memberResetButton_clicked();
+
 private:
    Date parseDate(const QString&);
 
@@ -57,6 +69,7 @@ private:
 
 private:
     void setItemsTW(QTableWidget*, const ItemList&, QLabel*);
+    void setItemTotalsTW();
 
 private:
     std::vector<Member> membersShoppedByDate(const Date&);
