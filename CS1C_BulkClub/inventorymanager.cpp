@@ -5,7 +5,7 @@
 Item InventoryManager::itemFromRecord(const QSqlRecord& record) const {
     //assign item information from SQL
     const QString name = record.value("NAME").toString();
-    const int price = record.value("PRICE").toFloat();
+    const float price = record.value("PRICE").toFloat();
     const int quantity = record.value("QUANTITY").toInt();
 
     Item item(name, price, quantity);
@@ -15,7 +15,7 @@ Item InventoryManager::itemFromRecord(const QSqlRecord& record) const {
 
 //empty
 bool InventoryManager::empty() const {
-    return this->itemCount() == 0;
+    return itemCount() == 0;
 }
 
 
@@ -49,7 +49,7 @@ InventoryManager::~InventoryManager() {
 
 //initializes database with text file
 bool InventoryManager::initialize() {
-    if(this->empty()) {
+    if(empty()) {
         std::vector<Member> x;
         m_FileParser.read(x);
         ItemList inventory = m_FileParser.inventory();

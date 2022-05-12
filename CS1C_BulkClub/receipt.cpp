@@ -12,23 +12,23 @@ Receipt::~Receipt() {
 
 //receipt
 std::vector<std::pair<Date, ItemList>> Receipt::receipt() const {
-    return this->m_Receipt;
+    return m_Receipt;
 }
 
 //size
 size_t Receipt::size() const {
-    return this->m_Receipt.size();
+    return m_Receipt.size();
 }
 
 //empty
 bool Receipt::empty() const {
-    return this->m_Receipt.size() == 0;
+    return m_Receipt.size() == 0;
 }
 
 //receipt by date
 ItemList Receipt::receiptByDay(const Date& key) {
     ItemList empty;
-    for(auto& x : this->m_Receipt) {
+    for(auto& x : m_Receipt) {
         if(x.first == key) {
             return x.second;
         }
@@ -39,7 +39,7 @@ ItemList Receipt::receiptByDay(const Date& key) {
 //add item
 bool Receipt::add(const Date& day, Item* item) {
     //for each element in receip
-    for(auto& x : this->m_Receipt) {
+    for(auto& x : m_Receipt) {
         //add to date
         if(x.first == day) {
             x.second.insert(item);
@@ -50,24 +50,24 @@ bool Receipt::add(const Date& day, Item* item) {
     //else make a new item list with a new date and push it back to receipt
     ItemList temp;
     temp.insert(item);
-    this->m_Receipt.push_back(std::make_pair(day, temp));
+    m_Receipt.push_back(std::make_pair(day, temp));
 
     return true;
 }
 
 //receipt string
 QString Receipt::receiptString() const {
-    if(this->m_Receipt.empty()) {
+    if(m_Receipt.empty()) {
         return "";
     }
 
     QString str = "";
     QString date, list;
-    for(size_t i = 0; i < this->m_Receipt.size(); i ++) {
-        date = "#" + this->m_Receipt[i].first.dateString();
-        list = this->m_Receipt[i].second.itemListString();
+    for(size_t i = 0; i < m_Receipt.size(); i ++) {
+        date = "#" + m_Receipt[i].first.dateString();
+        list = m_Receipt[i].second.itemListString();
 
-        if(i + 1 == this->m_Receipt.size()) {
+        if(i + 1 == m_Receipt.size()) {
             str += date + ", " + list + " ";
             break;
         }

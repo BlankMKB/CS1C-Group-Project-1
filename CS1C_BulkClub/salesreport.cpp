@@ -11,7 +11,7 @@ SalesReport::~SalesReport() {
 
 std::vector<Receipt> SalesReport::salesListByType(const bool& type) {
     std::vector<Receipt> salesReport;
-    for(auto& x : this->m_Sales) {
+    for(auto& x : m_Sales) {
         if(x.first.type() == type) {
             salesReport.push_back(x.second);
         }

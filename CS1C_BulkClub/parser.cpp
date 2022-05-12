@@ -221,7 +221,7 @@ bool Parser::addToReceipt(const QString& itemName, const float& itemPrice, const
         if(member.id() == id) {
             //purchase the item
             member.purchase(item, purchaseDate);
-            this->m_Inventory.insertInventory(item);
+            m_Inventory.insertInventory(item);
             return true;
         }
     }
@@ -252,7 +252,7 @@ bool Parser::read(std::vector<Member>& memberList) {
 }
 
 ItemList Parser::inventory() const {
-    return this->m_Inventory;
+    return m_Inventory;
 }
 
 //debug

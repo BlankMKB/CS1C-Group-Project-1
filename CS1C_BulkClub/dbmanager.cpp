@@ -124,6 +124,7 @@ Member dbManager::memberFromRecord(const QSqlRecord& record) const {
     const int id = record.value("ID").toInt();
     const bool type = record.value("TYPE").toBool();
     const QString dateString = record.value("EXPIRATION").toString();
+    const float total = record.value("TOTAL").toFloat();
     const QString receiptString = record.value("RECEIPT").toString();
 
     const Date date = parseDate(dateString);
@@ -131,14 +132,16 @@ Member dbManager::memberFromRecord(const QSqlRecord& record) const {
     if(type) {
         ExecutiveMember member(name, id, type, date);
 
-        this->parseReceipt(member, receiptString);
+        parseReceipt(member, receiptString);
+        member.setRunningTotal(total);
 
         return member;
     }
     else {
         Member member(name, id, type, date);
 
-        this->parseReceipt(member, receiptString);
+        parseReceipt(member, receiptString);
+        member.setRunningTotal(total);
 
         return member;
     }
@@ -156,7 +159,7 @@ Receipt dbManager::receiptFromRecord(const QSqlRecord& record) const {
 
 //empty
 bool dbManager::empty() const {
-    return this->memberCount() == 0;
+    return memberCount() == 0;
 }
 
 //=============================================================================================================
@@ -190,7 +193,7 @@ dbManager::~dbManager() {
 
 //initializes database with text file
 bool dbManager::initialize() {
-    if(this->empty()) {
+    if(empty()) {
         std::vector<Member> members;
         m_FileParser.read(members);
         for(const auto& member : members) {
