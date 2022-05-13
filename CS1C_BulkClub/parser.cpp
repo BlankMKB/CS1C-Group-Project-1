@@ -8,7 +8,7 @@ Parser::Parser() {
 //==========================================PRIVATE MEMBER FUNCTIONS==========================================
 
 //readMembers
-bool Parser::readMembers(std::vector<Member>& memberList) {
+bool Parser::ReadMembers(std::vector<Member>& memberList) {
     //read member file
     QFile inFile(MEMBER_PATH);
 
@@ -64,11 +64,11 @@ bool Parser::readMembers(std::vector<Member>& memberList) {
             break;
         // date
         case 3:
-            tempDate = readDate(line);
+            tempDate = ReadDate(line);
             break;
         // add member
         case 4:
-            addMember(memberList, name, number, type, tempDate);
+            AddMember(memberList, name, number, type, tempDate);
             break;
         default:
             break;
@@ -83,7 +83,7 @@ bool Parser::readMembers(std::vector<Member>& memberList) {
 }
 
 //readItems
-bool Parser::readItems(std::vector<Member>& memberList) {
+bool Parser::ReadItems(std::vector<Member>& memberList) {
     //parse sales file
     QFile inFile(SALES_PATH);
 
@@ -123,7 +123,7 @@ bool Parser::readItems(std::vector<Member>& memberList) {
         switch(count % 6) {
         // purchase date
         case 0:
-            purchaseDate = readDate(line);
+            purchaseDate = ReadDate(line);
             break;
         // member id
         case 1:
@@ -143,7 +143,7 @@ bool Parser::readItems(std::vector<Member>& memberList) {
             break;
         //create receipt object and add it to the vector of members
         case 5:
-            addToReceipt(itemName, itemPrice, itemQuantity, purchaseDate, id, memberList);
+            AddToReceipt(itemName, itemPrice, itemQuantity, purchaseDate, id, memberList);
             break;
         default:
             break;
@@ -160,7 +160,7 @@ bool Parser::readItems(std::vector<Member>& memberList) {
 
 
 //readDate
-Date Parser::readDate(QString& line) {
+Date Parser::ReadDate(QString& line) {
     QStringList temp;
     int day, month, year;
 
@@ -198,7 +198,7 @@ Date Parser::readDate(QString& line) {
 }
 
 //addMember
-void Parser::addMember(std::vector<Member>& memberList, const QString& name, const int& number, const bool& type, const Date& tempDate) {
+void Parser::AddMember(std::vector<Member>& memberList, const QString& name, const int& number, const bool& type, const Date& tempDate) {
     //create member object based on member type:
     //true = executive
     //false = regular
@@ -213,15 +213,15 @@ void Parser::addMember(std::vector<Member>& memberList, const QString& name, con
 }
 
 //addToReceipt
-bool Parser::addToReceipt(const QString& itemName, const float& itemPrice, const int& itemQuantity, const Date& purchaseDate, const int& id, std::vector<Member>& memberList) {
+bool Parser::AddToReceipt(const QString& itemName, const float& itemPrice, const int& itemQuantity, const Date& purchaseDate, const int& id, std::vector<Member>& memberList) {
     Item* item = new Item(itemName, itemPrice, itemQuantity);
 
 
     for(auto& member : memberList) {
-        if(member.id() == id) {
+        if(member.Id() == id) {
             //purchase the item
-            member.purchase(item, purchaseDate);
-            m_Inventory.insertInventory(item);
+            member.Purchase(item, purchaseDate);
+            m_Inventory.InsertInventory(item);
             return true;
         }
     }
@@ -230,48 +230,43 @@ bool Parser::addToReceipt(const QString& itemName, const float& itemPrice, const
     return false;
 }
 
-//round
-void Parser::round(float& number) const {
-
-}
-
 //=============================================================================================================
 
 
 //===========================================PUBLIC MEMBER FUNCTIONS===========================================
 
 //read
-bool Parser::read(std::vector<Member>& memberList) {
-    bool members = readMembers(memberList);
-    bool items = readItems(memberList);
+bool Parser::Read(std::vector<Member>& memberList) {
+    bool members = ReadMembers(memberList);
+    bool items = ReadItems(memberList);
 
-    debug(memberList);
+    DebugParser(memberList);
 
     //everything parsed correctly
     return members && items;
 }
 
-ItemList Parser::inventory() const {
+ItemList Parser::Inventory() const {
     return m_Inventory;
 }
 
 //debug
-void Parser::debug(const std::vector<Member>& memberList) {
+void Parser::DebugParser(const std::vector<Member>& memberList) {
     for(const auto& member : memberList) {
 
         QString type = "Regular";
 
-        if(member.type()) {
+        if(member.Type()) {
             type = "Executive";
         }
 
         QDebug dbg = qDebug().noquote().nospace();
-        dbg << "name: " << member.name() << "\n";
-        dbg << "number: " << member.id() << "\n";
+        dbg << "name: " << member.Name() << "\n";
+        dbg << "number: " << member.Id() << "\n";
         dbg << "type: " << type << "\n";
-        dbg << "expiration date: " << member.expiration().dateString() << "\n";
-        dbg << "running total: " << member.runningTotal() << "\n";
-        dbg << "receipt: " << member.receipt().receiptString() << "\n\n";
+        dbg << "expiration date: " << member.Expiration().DateString() << "\n";
+        dbg << "running total: " << member.RunningTotal() << "\n";
+        dbg << "receipt: " << member.receipt().ReceiptString() << "\n\n";
     }
 }
 

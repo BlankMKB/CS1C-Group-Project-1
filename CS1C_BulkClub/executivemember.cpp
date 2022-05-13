@@ -8,12 +8,12 @@ ExecutiveMember::ExecutiveMember() : Member(), m_RebateAmount(0) {
 
 //overloaded constructor
 ExecutiveMember::ExecutiveMember(const Member& member) : m_RebateAmount(0.02) {
-    m_Name = member.name();
-    m_Number = member.id();
+    m_Name = member.Name();
+    m_Number = member.Id();
     m_Type = true;
-    m_ExpirationDate = member.expiration();
+    m_ExpirationDate = member.Expiration();
     m_Receipt = member.receipt();
-    m_RunningTotal = member.runningTotal();
+    m_RunningTotal = member.RunningTotal();
 }
 
 //overloaded constructor
@@ -22,11 +22,11 @@ ExecutiveMember::ExecutiveMember(const QString& name, const int& id, const bool&
 }
 
 //rebate amount
-float ExecutiveMember::rebateAmount() const {
+float ExecutiveMember::RebateAmount() const {
     return m_RebateAmount;
 }
 
 //set rebate amount
-void ExecutiveMember::setRebateAmount(const float& amt) {
+void ExecutiveMember::SetRebateAmount(const float& amt) {
     m_RebateAmount = amt;
 }

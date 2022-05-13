@@ -11,7 +11,7 @@
 #include "parser.h"
 #define NUM_COLUMNS 6
 
-class dbManager {
+class DbManager {
 private:
     QSqlDatabase m_Database; /*!< \var database object */
     Parser m_FileParser; /*!< \var parser object */
@@ -21,61 +21,61 @@ private:
      * \brief helper function that parses receipt from receipt string
      * \return receipt: Receipt
      */
-    Receipt parseReceipt(Member&, const QString&) const;
+    Receipt ParseReceipt(Member&, const QString&) const;
 
     /*!
      * \brief helper function that parses date from date string
      * \return date: Date
      */
-    Date parseDate(const QString&) const;
+    Date ParseDate(const QString&) const;
 
     /*!
      * \brief helper function that builds and returns member from the SQL database
      * \return member: Member
      */
-    Member memberFromRecord(const QSqlRecord&) const;
+    Member MemberFromRecord(const QSqlRecord&) const;
 
     /*!
      * \brief helper function that builds and returns receipt from the SQL database
      * \return receipt: Receipt
      */
-    Receipt receiptFromRecord(const QSqlRecord&) const;
+    Receipt ReceiptFromRecord(const QSqlRecord&) const;
 
     /*!
      * \brief checks if database is empty
      * \return true if empty, false otherwise
      */
-    bool empty() const;
+    bool Empty() const;
 
 public:
     /*!
      * \brief overloaded constructor
      * \param path: QString
      */
-    dbManager(const QString&);
+    DbManager(const QString&);
 
     /*!
      * \brief destructor
      */
-    ~dbManager();
+    ~DbManager();
 
     /*!
      * \brief initializes database
      * \return true if initialized correctly, false otherwise
      */
-    bool initialize();
+    bool InitializeMemberDB();
 
     /*!
      * \brief returns member by specified id
      * \return member: Member
      */
-    Member memberById(const int&) const;
+    Member MemberById(const int&) const;
 
     /*!
      * \brief returns a vector of members
      * \return memberList: std::vector<Member>
      */
-    std::vector<Member> allMembers() const;
+    std::vector<Member> AllMembers() const;
 
     /*!
      * \brief returns a vector of pairs of receipts
@@ -83,40 +83,40 @@ public:
      *            This function returns a pair mainly for ease of access to all of the receipts.
      * \return receipts: std::vector<std::pair<Member, Receipt>>
      */
-    std::vector<std::pair<Member, Receipt>> allReceipts() const;
+    std::vector<std::pair<Member, Receipt>> AllReceipts() const;
 
     /*!
      * \brief returns how many members are in the database
      * \return count: unsigned
      */
-    unsigned memberCount() const;
+    unsigned MemberCount() const;
 
     /*!
      * \brief adds member into database
      * \return true if added correctly, false otherwise
      */
-    bool addMember(const Member&);
+    bool AddMember(const Member&);
 
     /*!
      * \brief updates member in database
      * \return true if updated correctly, false otherwise
      */
-    bool updateMember(const Member&);
+    bool UpdateMember(const Member&);
     /*!
      * \brief deletes member by id from database
      * \return true if deleted correctly, false otherwise
      */
-    bool deleteMemberById(const int&);
+    bool DeleteMemberById(const int&);
 
     /*!
      * \brief deletes all members from the database
      */
-    void deleteAllMembers();
+    void DeleteAllMembers();
 
     /*!
      * \brief for debug purposes: prints all member data
      */
-    void print() const;
+    void PrintMemberDB() const;
 };
 
 #endif // DBMANAGER_H

@@ -7,9 +7,9 @@ Item::Item() : m_Name(""), m_Price(0), m_Quantity(0) {
 
 //copy constructor
 Item::Item(const Item& other) {
-    m_Name = other.name();
-    m_Price = other.price();
-    m_Quantity = other.quantity();
+    m_Name = other.Name();
+    m_Price = other.Price();
+    m_Quantity = other.Quantity();
 }
 
 //overloaded constructor
@@ -18,37 +18,37 @@ Item::Item(const QString& name, const float& price, const int& quantity) : m_Nam
 }
 
 //name
-QString Item::name() const {
+QString Item::Name() const {
     return m_Name;
 }
 
 //price
-float Item::price() const {
+float Item::Price() const {
     return m_Price;
 }
 
 //quantity
-int Item::quantity() const {
+int Item::Quantity() const {
     return m_Quantity;
 }
 
 //set name
-void Item::setName(const QString& name) {
+void Item::SetName(const QString& name) {
     m_Name = name;
 }
 
 //set price
-void Item::setPrice(const float& price) {
+void Item::SetPrice(const float& price) {
     m_Price = price;
 }
 
 //add quantity
-void Item::addQuantity(const int& quantity) {
+void Item::AddQuantity(const int& quantity) {
     m_Quantity += quantity;
 }
 
 //set quantity
-void Item::setQuantity(const int& quantity) {
+void Item::SetQuantity(const int& quantity) {
     m_Quantity = quantity;
 }
 

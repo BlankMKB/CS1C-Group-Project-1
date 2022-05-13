@@ -21,12 +21,10 @@ SOURCES += \
     loginwindow.cpp \
     main.cpp \
     mainwindow.cpp \
-    manager.cpp \
     member.cpp \
     parser.cpp \
     receipt.cpp \
     registerwindow.cpp \
-    salesreport.cpp \
     storemanagerwindow.cpp
 
 HEADERS += \
@@ -39,12 +37,10 @@ HEADERS += \
     itemlist.h \
     loginwindow.h \
     mainwindow.h \
-    manager.h \
     member.h \
     parser.h \
     receipt.h \
     registerwindow.h \
-    salesreport.h \
     storemanagerwindow.h
 
 FORMS += \

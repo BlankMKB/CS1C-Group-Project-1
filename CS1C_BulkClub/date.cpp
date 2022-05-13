@@ -19,27 +19,27 @@ Date::Date(const int& month, const int& day, const int& year) : m_Month(month), 
 }
 
 //day
-int Date::day() const {
+int Date::Day() const {
     return m_Day;
 }
 
 //month
-int Date::month() const {
+int Date::Month() const {
     return m_Month;
 }
 
 //year
-int Date::year() const {
+int Date::Year() const {
     return m_Year;
 }
 
 //print
-void Date::print() {
+void Date::PrintDate() {
     qDebug() << m_DateString;
 }
 
 //date string
-QString Date::dateString() const {
+QString Date::DateString() const {
     return m_DateString;
 }
 

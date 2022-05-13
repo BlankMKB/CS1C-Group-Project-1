@@ -34,14 +34,14 @@ public:
     /*!
      * \brief empty
      */
-    bool empty() const;
+    bool Empty() const;
 
     /*!
      * \brief returns receipt on a given date
      * \param date: Date
      * \return receipt: ItemList
      */
-    ItemList receiptByDay(const Date&);
+    ItemList ReceiptByDay(const Date&);
 
     /*!
      * \brief adds item to receipt on a given date
@@ -50,13 +50,13 @@ public:
      * \param quantity: int
      * \return true if a new date is added, false otherwise
      */
-    bool add(const Date&, Item*);
+    bool Add(const Date&, Item*);
 
     /*!
      * \brief returns the receipt in string format: for database use
      * \return receiptString: QString
      */
-    QString receiptString() const;
+    QString ReceiptString() const;
 };
 
 #endif // RECEIPT_H

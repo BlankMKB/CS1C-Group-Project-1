@@ -34,30 +34,30 @@ public:
      * \brief returns the month
      * \return month: int
      */
-    int month() const;
+    int Month() const;
 
     /*!
      * \brief returns the day
      * \return day: int
      */
-    int day() const;
+    int Day() const;
 
     /*!
      * \brief returns the year
      * \return year: int
      */
-    int year() const;
+    int Year() const;
 
     /*!
      * \brief for debug purposes: prints date string
      */
-    void print();
+    void PrintDate();
 
     /*!
      * \brief returns date string
      * \return dateString: QString
      */
-    QString dateString() const;
+    QString DateString() const;
 
     /*!
      * \brief overload equality operator

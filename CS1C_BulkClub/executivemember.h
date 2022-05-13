@@ -33,13 +33,13 @@ public:
      * \brief returns rebate amount
      * \return rebateAmount: float
      */
-    float rebateAmount() const override;
+    float RebateAmount() const override;
 
     /*!
      * \brief sets rebate amount
      * \param rebateAmount: float
      */
-    void setRebateAmount(const float&);
+    void SetRebateAmount(const float&);
 };
 
 #endif // EXECUTIVEMEMBER_H

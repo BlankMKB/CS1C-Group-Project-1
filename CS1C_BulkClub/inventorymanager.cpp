@@ -2,7 +2,7 @@
 
 //==========================================PRIVATE MEMBER FUNCTIONS==========================================
 
-Item InventoryManager::itemFromRecord(const QSqlRecord& record) const {
+Item InventoryManager::ItemFromRecord(const QSqlRecord& record) const {
     //assign item information from SQL
     const QString name = record.value("NAME").toString();
     const float price = record.value("PRICE").toFloat();
@@ -14,8 +14,8 @@ Item InventoryManager::itemFromRecord(const QSqlRecord& record) const {
 }
 
 //empty
-bool InventoryManager::empty() const {
-    return itemCount() == 0;
+bool InventoryManager::Empty() const {
+    return ItemCount() == 0;
 }
 
 
@@ -48,13 +48,13 @@ InventoryManager::~InventoryManager() {
 }
 
 //initializes database with text file
-bool InventoryManager::initialize() {
-    if(empty()) {
+bool InventoryManager::InitializeInventoryDB() {
+    if(Empty()) {
         std::vector<Member> x;
-        m_FileParser.read(x);
-        ItemList inventory = m_FileParser.inventory();
+        m_FileParser.Read(x);
+        ItemList inventory = m_FileParser.Inventory();
         for(const auto& item : inventory.itemList()) {
-            addItem(item);
+            AddItem(item);
         }
     }
     //everything initialized correctly
@@ -62,7 +62,7 @@ bool InventoryManager::initialize() {
 }
 
 //get item by name
-Item InventoryManager::itemByName(const QString& name) const {
+Item InventoryManager::ItemByName(const QString& name) const {
     Item item;
 
     QSqlQuery query;
@@ -72,27 +72,27 @@ Item InventoryManager::itemByName(const QString& name) const {
     query.next();
     auto record = query.record();
 
-    item = itemFromRecord(record);
+    item = ItemFromRecord(record);
 
     return item;
 }
 
 //get a vector of items
-ItemList InventoryManager::allItems() const {
+ItemList InventoryManager::AllItems() const {
     ItemList inventory;
 
     QSqlQuery query("SELECT * FROM INVENTORY");
 
     while(query.next()) {
-        Item* temp = new Item(itemFromRecord(query.record()));
-        inventory.insert(temp);
+        Item* temp = new Item(ItemFromRecord(query.record()));
+        inventory.Insert(temp);
     }
 
     return inventory;
 }
 
 //return item count
-unsigned InventoryManager::itemCount() const {
+unsigned InventoryManager::ItemCount() const {
     QSqlQuery query("SELECT * FROM INVENTORY");
 
     unsigned count = 0;
@@ -105,11 +105,11 @@ unsigned InventoryManager::itemCount() const {
 }
 
 //add item to database
-bool InventoryManager::addItem(const Item* item) {
+bool InventoryManager::AddItem(const Item* item) {
     //parse item object
-    const QString name = item->name();
-    const float price = item->price();
-    const int quantity = item->quantity();
+    const QString name = item->Name();
+    const float price = item->Price();
+    const int quantity = item->Quantity();
 
     //create an insert query with the perameters to load the table
     QSqlQuery query;
@@ -131,11 +131,11 @@ bool InventoryManager::addItem(const Item* item) {
 }
 
 //update item in database
-bool InventoryManager::updateItem(const Item& item) {
+bool InventoryManager::UpdateItem(const Item& item) {
     //parse item object
-    const QString name = item.name();
-    const float price = item.price();
-    const int quantity = item.quantity();
+    const QString name = item.Name();
+    const float price = item.Price();
+    const int quantity = item.Quantity();
 
     //create an insert query with the perameters to load the table
     QSqlQuery query;
@@ -155,7 +155,7 @@ bool InventoryManager::updateItem(const Item& item) {
 }
 
 //delete item by id
-bool InventoryManager::deleteItemByName(const QString& name) {
+bool InventoryManager::DeleteItemByName(const QString& name) {
     QSqlQuery query;
 
     query.prepare("DELETE FROM INVENTORY WHERE ID = ?");
@@ -169,12 +169,12 @@ bool InventoryManager::deleteItemByName(const QString& name) {
 }
 
 //delete all item
-void InventoryManager::deleteAllItems() {
+void InventoryManager::DeleteAllItems() {
     QSqlQuery query("DELETE FROM INVENTORY");
 }
 
 //for debug purposes
-void InventoryManager::print() const {
+void InventoryManager::PrintInventoryDB() const {
     QSqlQuery query("SELECT * FROM INVENTORY");
 
     while(query.next()) {

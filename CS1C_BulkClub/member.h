@@ -37,31 +37,31 @@ public:
      * \brief return member name
      * \return name: QString
      */
-    QString name() const;
+    QString Name() const;
 
     /*!
      * \brief return member id
      * \return id: int
      */
-    int id() const;
+    int Id() const;
 
     /*!
      * \brief return member type. regular: false, executive: true
      * \return type: bool
      */
-    bool type() const;
+    bool Type() const;
 
     /*!
      * \brief returns emmber expiration
      * \return expiration: Date
      */
-    Date expiration() const;
+    Date Expiration() const;
 
     /*!
      * \brief return member's running total
      * \return runningTotal: float
      */
-    float runningTotal() const;
+    float RunningTotal() const;
 
     /*!
      * \brief returns member receipt
@@ -73,37 +73,37 @@ public:
      * \brief set member name
      * \param name: QString
      */
-    void setName(const QString&);
+    void SetName(const QString&);
 
     /*!
      * \brief sets member id
      * \param id: int
      */
-    void setID(const int&);
+    void SetID(const int&);
 
     /*!
      * \brief sets member type
      * \param type: bool
      */
-    void setType(const bool&);
+    void SetType(const bool&);
 
     /*!
      * \brief sets member expiration date
      * \param expiration: Date
      */
-    void setExpiration(const Date&);
+    void SetExpiration(const Date&);
 
      /*!
       * \brief set receipt
       * \param otherReceipt: Receipt
       */
-     void setReceipt(const Receipt&);
+     void SetReceipt(const Receipt&);
 
     /*!
      * \brief sets running total
      * \param total: float
      */
-     void setRunningTotal(const float&);
+     void SetRunningTotal(const float&);
 
      /*!
       * \brief purchases item and adds it to member's receipt
@@ -111,20 +111,20 @@ public:
       * \param quantity: int
       * \param date: Date
       */
-     void purchase(Item*, const Date&);
+     void Purchase(Item*, const Date&);
 
      /*!
       * \brief virtual functionf for rebate amount
       * \return rebateAmount: float
       */
-     virtual float rebateAmount() const;
+     virtual float RebateAmount() const;
 };
 
 namespace std {
 template<>
 struct less<Member> {
     bool operator()(const Member& one, const Member& two) const {
-        return one.id() < two.id();
+        return one.Id() < two.Id();
     }
 };
 }

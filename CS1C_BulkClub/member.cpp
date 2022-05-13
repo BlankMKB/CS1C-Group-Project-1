@@ -11,27 +11,27 @@ Member::Member(const QString& name, const int& id, const bool& type, const Date&
 }
 
 //name
-QString Member::name() const {
+QString Member::Name() const {
     return m_Name;
 }
 
 //id
-int Member::id() const {
+int Member::Id() const {
     return m_Number;
 }
 
 //member type
-bool Member::type() const {
+bool Member::Type() const {
     return m_Type;
 }
 
 //expiration date
-Date Member::expiration() const {
+Date Member::Expiration() const {
     return m_ExpirationDate;
 }
 
 //running total
-float Member::runningTotal() const {
+float Member::RunningTotal() const {
     return m_RunningTotal;
 }
 
@@ -41,43 +41,43 @@ Receipt Member::receipt() const {
 }
 
 //set name
-void Member::setName(const QString& name) {
+void Member::SetName(const QString& name) {
     m_Name = name;
 }
 
 //set id
-void Member::setID(const int& id) {
+void Member::SetID(const int& id) {
     m_Number = id;
 }
 
 //set member type
-void Member::setType(const bool& type) {
+void Member::SetType(const bool& type) {
     m_Type = type;
 }
 
 //set expiration date
-void Member::setExpiration(const Date& date) {
+void Member::SetExpiration(const Date& date) {
     m_ExpirationDate = date;
 }
 
 //set receipt
-void Member::setReceipt(const Receipt& receipt) {
+void Member::SetReceipt(const Receipt& receipt) {
     m_Receipt = receipt;
 }
 
 //add to running total
-void Member::setRunningTotal(const float& total) {
+void Member::SetRunningTotal(const float& total) {
     m_RunningTotal = total;
 }
 
 //purchase an item
-void Member::purchase(Item* item, const Date& day) {
-    float total = item->price() * item->quantity();
+void Member::Purchase(Item* item, const Date& day) {
+    float total = item->Price() * item->Quantity();
     m_RunningTotal += total;
-    m_Receipt.add(day, item);
+    m_Receipt.Add(day, item);
 }
 
 //rebate amount
-float Member::rebateAmount() const {
+float Member::RebateAmount() const {
     return 0;
 }

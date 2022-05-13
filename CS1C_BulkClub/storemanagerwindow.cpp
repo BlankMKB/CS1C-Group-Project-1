@@ -28,13 +28,13 @@ StoreManagerWindow::StoreManagerWindow(QWidget *parent) : QDialog(parent), ui(ne
 #endif
 
 
-    m_pDb = new dbManager(memberPath);
-    m_MemberList = m_pDb->allMembers();
-    m_Sales = m_pDb->allReceipts();
-    m_pDb->~dbManager();
+    m_pDb = new DbManager(memberPath);
+    m_MemberList = m_pDb->AllMembers();
+    m_Sales = m_pDb->AllReceipts();
+    m_pDb->~DbManager();
 
     m_pIdb = new InventoryManager(inventoryPath);
-    m_Inventory = m_pIdb->allItems();
+    m_Inventory = m_pIdb->AllItems();
     m_pIdb->~InventoryManager();
 
     setDropDownMenus();
@@ -111,7 +111,7 @@ void StoreManagerWindow::setMemberCB() {
     this->ui->memberInfoCB->clear();
 
     for(const auto& member : m_MemberList) {
-        this->ui->memberInfoCB->addItem(member.name());
+        this->ui->memberInfoCB->addItem(member.Name());
     }
 }
 
@@ -188,13 +188,13 @@ void StoreManagerWindow::setMembersTW(QTableWidget* tableWidget, const int& type
                 switch(col) {
                 // member name
                 case 0:
-                    memberName = membersByDay[i].name();
+                    memberName = membersByDay[i].Name();
                     item->setText(memberName);
                     break;
 
                 //member id
                 case 1:
-                    memberID = QString::number(membersByDay[i].id());
+                    memberID = QString::number(membersByDay[i].Id());
                     item->setText(memberID);
                     break;
                 }
@@ -212,7 +212,7 @@ void StoreManagerWindow::setMembersTW(QTableWidget* tableWidget, const int& type
     case 1:
         for(size_t i = 0; i < membersByDay.size(); i++) {
             //only add executive members
-            if(!membersByDay[i].type()) {
+            if(!membersByDay[i].Type()) {
                 continue;
             }
 
@@ -232,13 +232,13 @@ void StoreManagerWindow::setMembersTW(QTableWidget* tableWidget, const int& type
                 switch(col) {
                 // member name
                 case 0:
-                    memberName = membersByDay[i].name();
+                    memberName = membersByDay[i].Name();
                     item->setText(memberName);
                     break;
 
                 //member id
                 case 1:
-                    memberID = QString::number(membersByDay[i].id());
+                    memberID = QString::number(membersByDay[i].Id());
                     item->setText(memberID);
                     break;
                 }
@@ -257,7 +257,7 @@ void StoreManagerWindow::setMembersTW(QTableWidget* tableWidget, const int& type
     case 2:
         for(size_t i = 0; i < membersByDay.size(); i++) {
             //only add regular members
-            if(membersByDay[i].type()) {
+            if(membersByDay[i].Type()) {
                 continue;
             }
 
@@ -277,13 +277,13 @@ void StoreManagerWindow::setMembersTW(QTableWidget* tableWidget, const int& type
                 switch(col) {
                 //member name
                 case 0:
-                    memberName = membersByDay[i].name();
+                    memberName = membersByDay[i].Name();
                     item->setText(memberName);
                     break;
 
                 //member id
                 case 1:
-                    memberID = QString::number(membersByDay[i].id());
+                    memberID = QString::number(membersByDay[i].Id());
                     item->setText(memberID);
                     break;
                 }
@@ -349,19 +349,19 @@ void StoreManagerWindow::setMemberTotalsTW() {
             switch(col) {
             // member name
             case 0:
-                memberName = allMembers[i].name();
+                memberName = allMembers[i].Name();
                 member->setText(memberName);
                 break;
 
             // member id
             case 1:
-                memberId = QString::number(allMembers[i].id());
+                memberId = QString::number(allMembers[i].Id());
                 member->setText(memberId);
                 break;
 
             // member total (with tax)
             case 2:
-                totalWTax = allMembers[i].runningTotal() + (allMembers[i].runningTotal() * SALES_TAX);
+                totalWTax = allMembers[i].RunningTotal() + (allMembers[i].RunningTotal() * SALES_TAX);
                 memberTotal = "$" + QString::number(totalWTax, 'f', 2);
                 member->setText(memberTotal);
                 total += totalWTax;
@@ -429,27 +429,27 @@ void StoreManagerWindow::setItemsTW(QTableWidget* tableWidget, const ItemList& a
             switch(col) {
             // item name
             case 0:
-                itemName = allItems[i]->name();
+                itemName = allItems[i]->Name();
                 item->setText(itemName);
                 break;
 
             // item price
             case 1:
-                itemPrice = QString::number(allItems[i]->price());
+                itemPrice = QString::number(allItems[i]->Price());
                 item->setText(itemPrice);
                 break;
 
             // item quantity
             case 2:
-                itemQuantity = QString::number(allItems[i]->quantity());
+                itemQuantity = QString::number(allItems[i]->Quantity());
                 item->setText(itemQuantity);
                 break;
 
             // item total
             case 3:
-                itemTotal = "$" + QString::number((allItems[i]->price() * allItems[i]->quantity()), 'f', 2);
+                itemTotal = "$" + QString::number((allItems[i]->Price() * allItems[i]->Quantity()), 'f', 2);
                 item->setText(itemTotal);
-                total += (allItems[i]->price() * allItems[i]->quantity());
+                total += (allItems[i]->Price() * allItems[i]->Quantity());
                 break;
             }
 
@@ -523,27 +523,27 @@ void StoreManagerWindow::setItemTotalsTW() {
             switch(col) {
             // item name
             case 0:
-                itemName = inventory[i]->name();
+                itemName = inventory[i]->Name();
                 item->setText(itemName);
                 break;
 
             // item price
             case 1:
-                itemPrice = "$" + QString::number(inventory[i]->price(), 'f', 2);
+                itemPrice = "$" + QString::number(inventory[i]->Price(), 'f', 2);
                 item->setText(itemPrice);
                 break;
 
             // item quantity
             case 2:
-                itemQuantity = QString::number(inventory[i]->quantity());
+                itemQuantity = QString::number(inventory[i]->Quantity());
                 item->setText(itemQuantity);
                 break;
 
             // item total
             case 3:
-                itemTotal = "$" + QString::number(inventory[i]->quantity() * inventory[i]->price(), 'f', 2);
+                itemTotal = "$" + QString::number(inventory[i]->Quantity() * inventory[i]->Price(), 'f', 2);
                 item->setText(itemTotal);
-                total += (inventory[i]->quantity() * inventory[i]->price());
+                total += (inventory[i]->Quantity() * inventory[i]->Price());
             }
 
             //align text
@@ -581,7 +581,7 @@ void StoreManagerWindow::on_dateByDayCB_currentIndexChanged(int index) {
     //consolidate all items into one item list
     for(const auto& itemlist : salesList) {
         for(size_t i = 0; i < itemlist.size(); i++) {
-            allItems.insertInventory(itemlist[i]);
+            allItems.InsertInventory(itemlist[i]);
         }
     }
 
@@ -744,7 +744,7 @@ std::vector<ItemList> StoreManagerWindow::salesListByDate(const Date& day) {
     for(auto& x : m_Sales) {
 
         //add all item lists by given day
-        salesReport.push_back(x.second.receiptByDay(day));
+        salesReport.push_back(x.second.ReceiptByDay(day));
     }
 
     return salesReport;
@@ -757,7 +757,7 @@ std::vector<Member> StoreManagerWindow::membersShoppedByDate(const Date& day) {
     for(auto& x : m_Sales) {
 
         //only add members that shopped that day
-        if(!x.first.receipt().receiptByDay(day).empty()) {
+        if(!x.first.receipt().ReceiptByDay(day).empty()) {
             membersByDay.push_back(x.first);
         }
     }
@@ -788,7 +788,7 @@ ItemList StoreManagerWindow::allItemsByType(const int& type, const Date& date) {
 
             //consolidate all items into one item list
             for(size_t i = 0; i < itemlist.size(); i++) {
-                allItems.insertInventory(itemlist[i]);
+                allItems.InsertInventory(itemlist[i]);
             }
         }
         break;
@@ -800,10 +800,10 @@ ItemList StoreManagerWindow::allItemsByType(const int& type, const Date& date) {
         for(const auto& member : membersByDay) {
 
             //only add executive member purchases
-            if(member.type()) {
-                ItemList receipt = member.receipt().receiptByDay(date);
+            if(member.Type()) {
+                ItemList receipt = member.receipt().ReceiptByDay(date);
                 for(size_t i = 0; i < receipt.size(); i++) {
-                    allItems.insertInventory(receipt[i]);
+                    allItems.InsertInventory(receipt[i]);
                 }
             }
         }
@@ -816,10 +816,10 @@ ItemList StoreManagerWindow::allItemsByType(const int& type, const Date& date) {
         for(const auto& member : membersByDay) {
 
             //only add regular member purchases
-            if(!member.type()) {
-                ItemList receipt = member.receipt().receiptByDay(date);
+            if(!member.Type()) {
+                ItemList receipt = member.receipt().ReceiptByDay(date);
                 for(size_t i = 0; i < receipt.size(); i++) {
-                    allItems.insertInventory(receipt[i]);
+                    allItems.InsertInventory(receipt[i]);
                 }
             }
         }
@@ -860,13 +860,13 @@ void StoreManagerWindow::on_memberInfoCB_currentIndexChanged(int index) {
     Member* memberInfo;
     ExecutiveMember* eMember;
     for(const auto& member : m_MemberList) {
-        if(member.name() == memberText) {
+        if(member.Name() == memberText) {
             memberInfo = new Member(member);
             break;
         }
     }
     Member* pMember = memberInfo;
-    if(memberInfo->type()) {
+    if(memberInfo->Type()) {
         eMember = new ExecutiveMember(*memberInfo);
         pMember = eMember;
     }
@@ -890,19 +890,19 @@ void StoreManagerWindow::on_memberInfoCB_currentIndexChanged(int index) {
         switch(i) {
         // member name
         case 0:
-            memberName = pMember->name();
+            memberName = pMember->Name();
             member->setText(memberName);
             break;
 
         // member id
         case 1:
-            memberID = QString::number(pMember->id());
+            memberID = QString::number(pMember->Id());
             member->setText(memberID);
             break;
 
         // member type
         case 2:
-            if(pMember->type()) {
+            if(pMember->Type()) {
                 member->setText("Executive");
             }
             else {
@@ -912,21 +912,21 @@ void StoreManagerWindow::on_memberInfoCB_currentIndexChanged(int index) {
 
         // member expiration
         case 3:
-            memberExpiration = pMember->expiration().dateString();
+            memberExpiration = pMember->Expiration().DateString();
             member->setText(memberExpiration);
             break;
 
         // member running total
         case 4:
-            memberTotal = "$" + QString::number(pMember->runningTotal(), 'f', 2);
+            memberTotal = "$" + QString::number(pMember->RunningTotal(), 'f', 2);
             member->setText(memberTotal);
             break;
 
         // member rebate amount (if executive member)
         case 5:
-            if(pMember->type()) {
+            if(pMember->Type()) {
                 this->ui->memberInfoTW->verticalHeaderItem(5)->setText("Rebate Amount");
-                member->setText("$" + QString::number((pMember->rebateAmount() * pMember->runningTotal()), 'f', 2));
+                member->setText("$" + QString::number((pMember->RebateAmount() * pMember->RunningTotal()), 'f', 2));
             }
             break;
         }
@@ -963,7 +963,7 @@ void StoreManagerWindow::on_expirationMonthCB_currentIndexChanged(int index) {
     std::vector<Member> expirationMembers;
 
     for(const auto& member : m_MemberList) {
-        if(member.expiration().month() == month) {
+        if(member.Expiration().Month() == month) {
             expirationMembers.push_back(member);
         }
     }
@@ -988,19 +988,19 @@ void StoreManagerWindow::on_expirationMonthCB_currentIndexChanged(int index) {
             switch(col) {
             // member name
             case 0:
-                memberName = expirationMembers[i].name();
+                memberName = expirationMembers[i].Name();
                 member->setText(memberName);
                 break;
 
             // member expiration date
             case 1:
-                memberExpiration = expirationMembers[i].expiration().dateString();
+                memberExpiration = expirationMembers[i].Expiration().DateString();
                 member->setText(memberExpiration);
                 break;
 
             // member renewal fee
             case 2:
-                if(expirationMembers[i].type()) {
+                if(expirationMembers[i].Type()) {
                     member->setText("$120");
                 }
                 else {
@@ -1047,7 +1047,7 @@ void StoreManagerWindow::on_itemSearchButton_clicked() {
     bool found = false;
 
     for(const auto& items : m_Inventory.itemList()) {
-        if(items->name().toUpper() == itemText.toUpper()) {
+        if(items->Name().toUpper() == itemText.toUpper()) {
             pItem = items;
             found = true;
             break;
@@ -1071,22 +1071,22 @@ void StoreManagerWindow::on_itemSearchButton_clicked() {
             switch(col) {
             // item name
             case 0:
-                item->setText(pItem->name());
+                item->setText(pItem->Name());
                 break;
 
             // item price
             case 1:
-                item->setText("$" + QString::number(pItem->price(), 'f', 2));
+                item->setText("$" + QString::number(pItem->Price(), 'f', 2));
                 break;
 
             // item quantity
             case 2:
-                item->setText(QString::number(pItem->quantity()));
+                item->setText(QString::number(pItem->Quantity()));
                 break;
 
             // item total
             case 3:
-                item->setText("$" + QString::number(pItem->quantity() * pItem->price(), 'f', 2));
+                item->setText("$" + QString::number(pItem->Quantity() * pItem->Price(), 'f', 2));
                 break;
             }
 
@@ -1104,7 +1104,7 @@ void StoreManagerWindow::on_itemSearchButton_clicked() {
     this->ui->itemTotRevLabel->clear();
 
     //set total revenue string
-    QString revenue = "Grand Total (without tax): $" + QString::number(pItem->quantity() * pItem->price(), 'f', 2);
+    QString revenue = "Grand Total (without tax): $" + QString::number(pItem->Quantity() * pItem->Price(), 'f', 2);
 
     //set revenue text to revenue label
     this->ui->itemTotRevLabel->setText(revenue);
@@ -1127,7 +1127,7 @@ void StoreManagerWindow::on_memberSearchButton_clicked() {
     bool found = false;
 
     for(auto& member : m_MemberList) {
-        if(member.name().toUpper() == memberText.toUpper() || QString::number(member.id()) == memberText) {
+        if(member.Name().toUpper() == memberText.toUpper() || QString::number(member.Id()) == memberText) {
             pMember = &member;
             found = true;
             break;
@@ -1165,7 +1165,7 @@ void StoreManagerWindow::on_memberSearchButton_clicked() {
     std::vector<Member> singleMember;
 
     for(auto& member : membersByDay) {
-        if(member.name() == pMember->name() || member.id() == pMember->id()) {
+        if(member.Name() == pMember->Name() || member.Id() == pMember->Id()) {
             singleMember.push_back(member);
         }
     }
@@ -1173,7 +1173,7 @@ void StoreManagerWindow::on_memberSearchButton_clicked() {
     setMembersTW(this->ui->byMemberTypeTW, type, singleMember);
 
     //consolidate items into one itemlist
-    ItemList allItems = pMember->receipt().receiptByDay(date);
+    ItemList allItems = pMember->receipt().ReceiptByDay(date);
 
     //sort items by name
     allItems.sort();

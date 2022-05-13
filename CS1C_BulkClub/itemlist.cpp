@@ -3,9 +3,9 @@
 //==========================================PRIVATE MEMBER FUNCTIONS==========================================
 
 //indexof
-int ItemList::indexOf(const QString& name) {
+int ItemList::IndexOf(const QString& name) {
     for(size_t i = 0; i < m_ItemList.size(); i++) {
-        if((m_ItemList[i])->name() == name) {
+        if((m_ItemList[i])->Name() == name) {
             return i;
         }
     }
@@ -74,18 +74,18 @@ size_t ItemList::size() const {
 }
 
 //insert
-void ItemList::insert(Item* item) {
+void ItemList::Insert(Item* item) {
     m_ItemList.push_back(item);
 }
 
-void ItemList::insertInventory(Item* item) {
+void ItemList::InsertInventory(Item* item) {
     for(auto& tempItem : m_ItemList) {
-        if(tempItem->name() == item->name()) {
-            tempItem->addQuantity(item->quantity());
+        if(tempItem->Name() == item->Name()) {
+            tempItem->AddQuantity(item->Quantity());
             return;
         }
     }
-    insert(item);
+    Insert(item);
 }
 
 bool ItemList::empty() const {
@@ -93,9 +93,9 @@ bool ItemList::empty() const {
 }
 
 //removeItem
-bool ItemList::removeItem(const QString& name) {
+bool ItemList::RemoveItem(const QString& name) {
     //find item
-    if(find(name) == nullptr) {
+    if(Find(name) == nullptr) {
         //item doesn't exist
         return false;
     }
@@ -103,7 +103,7 @@ bool ItemList::removeItem(const QString& name) {
     //for each item in the item list
     for(auto& item : m_ItemList) {
         //if name matches
-        if(item->name() == name) {
+        if(item->Name() == name) {
             //remove item
             m_ItemList.erase(std::find(m_ItemList.begin(), m_ItemList.end(), item));
             return true;
@@ -114,11 +114,11 @@ bool ItemList::removeItem(const QString& name) {
 }
 
 //find
-Item* ItemList::find(const QString& name) {
+Item* ItemList::Find(const QString& name) {
     //for each item in item list
     for(auto& item : m_ItemList) {
         //if the item names match
-        if(item->name() == name) {
+        if(item->Name() == name) {
             return item;
         }
     }
@@ -128,7 +128,7 @@ Item* ItemList::find(const QString& name) {
 }
 
 //itemListString
-QString ItemList::itemListString() const {
+QString ItemList::ItemListString() const {
     if(m_ItemList.empty()) {
         return "";
     }
@@ -138,9 +138,9 @@ QString ItemList::itemListString() const {
     for(size_t i = 0; i < m_ItemList.size(); i++) {
         //parse temp item
         Item* temp = m_ItemList[i];
-        name = temp->name();
-        price = QString::number(temp->price());
-        quantity = QString::number(temp->quantity());
+        name = temp->Name();
+        price = QString::number(temp->Price());
+        quantity = QString::number(temp->Quantity());
 
         //add to string
         if(i + 1 == m_ItemList.size()) {

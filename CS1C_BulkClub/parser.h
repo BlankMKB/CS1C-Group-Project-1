@@ -37,36 +37,30 @@ private:
      * \brief helper function that reads all the members and stores it into a vector of members
      * \return true if parsed correctly, false otherwise
      */
-    bool readMembers(std::vector<Member>&);
+    bool ReadMembers(std::vector<Member>&);
 
     /*!
      * \brief helper function that reads all the items and stores it into the vector of members
      * \return true if parsed correctly, false otherwise
      */
-    bool readItems(std::vector<Member>&);
+    bool ReadItems(std::vector<Member>&);
 
     /*!
      * \brief helper function that parses and stores date string into date object
      * \return date: Date
      */
-    Date readDate(QString&);
+    Date ReadDate(QString&);
 
     /*!
      * \brief helper function that constructs member object and adds it to the vector of members
      */
-    void addMember(std::vector<Member>&, const QString&, const int&, const bool&, const Date&);
+    void AddMember(std::vector<Member>&, const QString&, const int&, const bool&, const Date&);
 
     /*!
      * \brief helper function that constructs Item object and adds it to the vector of member's receipts
      * \return true if added correctly, false otherwise
      */
-    bool addToReceipt(const QString&, const float&, const int&, const Date&, const int&, std::vector<Member>&);
-
-    /*!
-     * \brief rounds decimal to 2 places
-     * \param number: float
-     */
-    void round(float&) const;
+    bool AddToReceipt(const QString&, const float&, const int&, const Date&, const int&, std::vector<Member>&);
 
 public:
     /*!
@@ -78,18 +72,18 @@ public:
      * \brief reads the entire file and parses it into a vector of members
      * \return true if everything parsed correctly, false otherwise
      */
-    bool read(std::vector<Member>&);
+    bool Read(std::vector<Member>&);
 
     /*!
      * \brief returns an inventory of items
      * \return inventory: std::vector<Item*>
      */
-    ItemList inventory() const;
+    ItemList Inventory() const;
 
     /*!
      * \brief for debugging purposes: prints member information
      */
-    void debug(const std::vector<Member>&);
+    void DebugParser(const std::vector<Member>&);
 };
 
 #endif // PARSER_H

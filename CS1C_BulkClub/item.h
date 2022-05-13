@@ -33,41 +33,41 @@ public:
      * \brief returns name
      * \return name: QString
      */
-    QString name() const;
+    QString Name() const;
 
     /*!
      * \brief returns price
      * \return price: float
      */
-    float price() const;
+    float Price() const;
 
     /*!
      * \brief returns item quantity
      * \return quantity: int
      */
-    int quantity() const;
+    int Quantity() const;
 
     /*!
      * \brief sets item name
      * \param name: QString
      */
-    void setName(const QString&);
+    void SetName(const QString&);
 
     /*!
      * \brief sets item price
      * \param price: float
      */
-    void setPrice(const float&);
+    void SetPrice(const float&);
 
     /*!
      * \brief addQuantity
      */
-    void addQuantity(const int&);
+    void AddQuantity(const int&);
 
     /*!
      * \brief setQuantity
      */
-    void setQuantity(const int&);
+    void SetQuantity(const int&);
 
 };
 
@@ -75,14 +75,14 @@ namespace std {
 template<>
 struct less<Item> {
     bool operator()(const Item& one, const Item& two) const {
-        return one.name() < two.name();
+        return one.Name() < two.Name();
     }
 };
 
 template<>
 struct less<Item*> {
     bool operator()(const Item* one, const Item* two) const {
-        return one->name() < two->name();
+        return one->Name() < two->Name();
     }
 };
 }

@@ -17,13 +17,13 @@ private:
     Parser m_FileParser; /*!< \var parser object */
 
 private:
-    Item itemFromRecord(const QSqlRecord&) const;
+    Item ItemFromRecord(const QSqlRecord&) const;
 
     /*!
      * \brief checks if database is empty
      * \return true if empty, false otherwise
      */
-    bool empty() const;
+    bool Empty() const;
 
 public:
     /*!
@@ -41,52 +41,52 @@ public:
      * \brief initializes database
      * \return true if initialized correctly, false otherwise
      */
-    bool initialize();
+    bool InitializeInventoryDB();
 
     /*!
      * \brief item by name
      * \return item: Item
      */
-    Item itemByName(const QString&) const;
+    Item ItemByName(const QString&) const;
 
     /*!
      * \brief returns a vector of item pointers
      * \return inventory: std::vector<Item*>
      */
-    ItemList allItems() const;
+    ItemList AllItems() const;
 
     /*!
      * \brief returns how many items are in the database
      * \return count: unsigned
      */
-    unsigned itemCount() const;
+    unsigned ItemCount() const;
 
     /*!
      * \brief adds item into database
      * \return true if added correctly, false otherwise
      */
-    bool addItem(const Item*);
+    bool AddItem(const Item*);
 
     /*!
      * \brief updates Item in database
      * \return true if updated correctly, false otherwise
      */
-    bool updateItem(const Item&);
+    bool UpdateItem(const Item&);
     /*!
      * \brief deletes member by id from database
      * \return true if deleted correctly, false otherwise
      */
-    bool deleteItemByName(const QString&);
+    bool DeleteItemByName(const QString&);
 
     /*!
      * \brief deletes all members from the database
      */
-    void deleteAllItems();
+    void DeleteAllItems();
 
     /*!
      * \brief for debug purposes: prints all member data
      */
-    void print() const;
+    void PrintInventoryDB() const;
 };
 
 #endif // INVENTORYMANAGER_H

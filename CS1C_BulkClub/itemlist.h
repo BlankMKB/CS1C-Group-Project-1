@@ -13,7 +13,7 @@ private:
      * \brief helper function that returns the index of a particular item
      * \return index: int
      */
-    int indexOf(const QString&);
+    int IndexOf(const QString&);
 
 public:
     /*!
@@ -66,30 +66,30 @@ public:
     /*!
      * \brief inserts item into item list
      */
-    void insert(Item*);
+    void Insert(Item*);
 
     /*!
      * \brief inserts item into inventory
      */
-    void insertInventory(Item*);
+    void InsertInventory(Item*);
 
     /*!
      * \brief removes item
      * \return true if removed successfully, false otherwise
      */
-    bool removeItem(const QString&);
+    bool RemoveItem(const QString&);
 
     /*!
      * \brief returns the pointer to an item if it exists, null otherwise
      * \return pItem: Item*
      */
-    Item* find(const QString&);
+    Item* Find(const QString&);
 
     /*!
      * \brief returns the item list in string format: for database use
      * \return itemListString: QString
      */
-    QString itemListString() const;
+    QString ItemListString() const;
 
 };
 

@@ -3,7 +3,7 @@
 //==========================================PRIVATE MEMBER FUNCTIONS==========================================
 
 //parse date string into date object
-Date dbManager::parseDate(const QString& line) const {
+Date DbManager::ParseDate(const QString& line) const {
     //split date format: [month]/[day]/[year]
     auto dates = line.split("/");
 
@@ -42,7 +42,7 @@ Date dbManager::parseDate(const QString& line) const {
 }
 
 //parse receipt string into date object
-Receipt dbManager::parseReceipt(Member& member, const QString& line) const {
+Receipt DbManager::ParseReceipt(Member& member, const QString& line) const {
     //receipt object
     Receipt receipt;
 
@@ -71,7 +71,7 @@ Receipt dbManager::parseReceipt(Member& member, const QString& line) const {
         }
 
         //first item is the purchase date
-        Date date(parseDate(items[0]));
+        Date date(ParseDate(items[0]));
 
         //for all of the items
         for(qsizetype i = 1; i < items.size(); i++) {
@@ -102,8 +102,8 @@ Receipt dbManager::parseReceipt(Member& member, const QString& line) const {
                 //create item
                 item = new Item(itemName, itemPrice, itemQuantity);
                 //add to receipt
-                member.purchase(item, date);
-                receipt.add(date, item);
+                member.Purchase(item, date);
+                receipt.Add(date, item);
                 break;
             default:
                 itemName = "";
@@ -118,7 +118,7 @@ Receipt dbManager::parseReceipt(Member& member, const QString& line) const {
 }
 
 //get member from record into member object
-Member dbManager::memberFromRecord(const QSqlRecord& record) const {
+Member DbManager::MemberFromRecord(const QSqlRecord& record) const {
     //assign member information from SQL
     const QString name = record.value("NAME").toString();
     const int id = record.value("ID").toInt();
@@ -127,21 +127,21 @@ Member dbManager::memberFromRecord(const QSqlRecord& record) const {
     const float total = record.value("TOTAL").toFloat();
     const QString receiptString = record.value("RECEIPT").toString();
 
-    const Date date = parseDate(dateString);
+    const Date date = ParseDate(dateString);
 
     if(type) {
         ExecutiveMember member(name, id, type, date);
 
-        parseReceipt(member, receiptString);
-        member.setRunningTotal(total);
+        ParseReceipt(member, receiptString);
+        member.SetRunningTotal(total);
 
         return member;
     }
     else {
         Member member(name, id, type, date);
 
-        parseReceipt(member, receiptString);
-        member.setRunningTotal(total);
+        ParseReceipt(member, receiptString);
+        member.SetRunningTotal(total);
 
         return member;
     }
@@ -149,17 +149,17 @@ Member dbManager::memberFromRecord(const QSqlRecord& record) const {
 }
 
 //get receipt from record into receipt object
-Receipt dbManager::receiptFromRecord(const QSqlRecord& record) const {
+Receipt DbManager::ReceiptFromRecord(const QSqlRecord& record) const {
     const QString receiptString = record.value("RECEIPT").toString();
     Member member;
-    Receipt receipt = parseReceipt(member, receiptString);
+    Receipt receipt = ParseReceipt(member, receiptString);
 
     return receipt;
 }
 
 //empty
-bool dbManager::empty() const {
-    return memberCount() == 0;
+bool DbManager::Empty() const {
+    return MemberCount() == 0;
 }
 
 //=============================================================================================================
@@ -168,7 +168,7 @@ bool dbManager::empty() const {
 //===========================================PUBLIC MEMBER FUNCTIONS===========================================
 
 //constructor
-dbManager::dbManager(const QString& path) {
+DbManager::DbManager(const QString& path) {
     //add database to QT
     m_Database = QSqlDatabase::addDatabase("QSQLITE");
     //set database path
@@ -184,7 +184,7 @@ dbManager::dbManager(const QString& path) {
 }
 
 //destructor
-dbManager::~dbManager() {
+DbManager::~DbManager() {
     //close database
     //deleteAllMembers();
     m_Database.close();
@@ -192,12 +192,12 @@ dbManager::~dbManager() {
 }
 
 //initializes database with text file
-bool dbManager::initialize() {
-    if(empty()) {
+bool DbManager::InitializeMemberDB() {
+    if(Empty()) {
         std::vector<Member> members;
-        m_FileParser.read(members);
+        m_FileParser.Read(members);
         for(const auto& member : members) {
-            if(!addMember(member)) {
+            if(!AddMember(member)) {
                 return false;
             }
         }
@@ -207,7 +207,7 @@ bool dbManager::initialize() {
 }
 
 //get member by id
-Member dbManager::memberById(const int& id) const {
+Member DbManager::MemberById(const int& id) const {
     Member member;
 
     QSqlQuery query;
@@ -217,31 +217,31 @@ Member dbManager::memberById(const int& id) const {
     query.next();
     auto record = query.record();
 
-    member = memberFromRecord(record);
+    member = MemberFromRecord(record);
 
     return member;
 }
 
 //get a vector of members
-std::vector<Member> dbManager::allMembers() const {
+std::vector<Member> DbManager::AllMembers() const {
     std::vector<Member> memberList;
 
     QSqlQuery query("SELECT * FROM MEMBERS");
 
     while(query.next()) {
-        memberList.push_back(memberFromRecord(query.record()));
+        memberList.push_back(MemberFromRecord(query.record()));
     }
 
     return memberList;
 }
 
 //get a vector of [Member, Receipt] pairs
-std::vector<std::pair<Member, Receipt>> dbManager::allReceipts() const {
+std::vector<std::pair<Member, Receipt>> DbManager::AllReceipts() const {
     std::vector<std::pair<Member, Receipt>> receipts;
     QSqlQuery query("SELECT * FROM MEMBERS");
 
     while(query.next()) {
-        receipts.push_back(std::make_pair(memberFromRecord(query.record()), receiptFromRecord(query.record())));
+        receipts.push_back(std::make_pair(MemberFromRecord(query.record()), ReceiptFromRecord(query.record())));
 
     }
 
@@ -249,7 +249,7 @@ std::vector<std::pair<Member, Receipt>> dbManager::allReceipts() const {
 }
 
 //return member count
-unsigned dbManager::memberCount() const {
+unsigned DbManager::MemberCount() const {
     QSqlQuery query("SELECT * FROM MEMBERS");
 
     unsigned count = 0;
@@ -262,14 +262,14 @@ unsigned dbManager::memberCount() const {
 }
 
 //add member to database
-bool dbManager::addMember(const Member& member) {
+bool DbManager::AddMember(const Member& member) {
     //parse member object
-    const QString name = member.name();
-    const int id = member.id();
-    const bool type = member.type();
-    const QString expirationDate = member.expiration().dateString();
-    const double total = member.runningTotal();
-    const QString receipt = member.receipt().receiptString();
+    const QString name = member.Name();
+    const int id = member.Id();
+    const bool type = member.Type();
+    const QString expirationDate = member.Expiration().DateString();
+    const double total = member.RunningTotal();
+    const QString receipt = member.receipt().ReceiptString();
 
     //create an insert query with the perameters to load the table
     QSqlQuery query;
@@ -294,14 +294,14 @@ bool dbManager::addMember(const Member& member) {
 }
 
 //update member in database
-bool dbManager::updateMember(const Member& member) {
+bool DbManager::UpdateMember(const Member& member) {
     //parse member object
-    const QString name = member.name();
-    const int id = member.id();
-    const bool type = member.type();
-    const QString expirationDate = member.expiration().dateString();
-    const double total = member.runningTotal();
-    const QString receipt = member.receipt().receiptString();
+    const QString name = member.Name();
+    const int id = member.Id();
+    const bool type = member.Type();
+    const QString expirationDate = member.Expiration().DateString();
+    const double total = member.RunningTotal();
+    const QString receipt = member.receipt().ReceiptString();
 
 
     //create an insert query with the perameters to load the table
@@ -325,7 +325,7 @@ bool dbManager::updateMember(const Member& member) {
 }
 
 //delete member by id
-bool dbManager::deleteMemberById(const int& id) {
+bool DbManager::DeleteMemberById(const int& id) {
     QSqlQuery query;
 
     query.prepare("DELETE FROM MEMBERS WHERE ID = ?");
@@ -339,12 +339,12 @@ bool dbManager::deleteMemberById(const int& id) {
 }
 
 //delete all members
-void dbManager::deleteAllMembers() {
+void DbManager::DeleteAllMembers() {
     QSqlQuery query("DELETE FROM MEMBERS");
 }
 
 //for debug purposes
-void dbManager::print() const {
+void DbManager::PrintMemberDB() const {
     QSqlQuery query("SELECT * FROM MEMBERS");
 
     while(query.next()) {

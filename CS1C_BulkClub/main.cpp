@@ -32,13 +32,13 @@ int main(int argc, char *argv[])
 
     std::vector<Member> members;
     Parser parser;
-    parser.read(members);
-    dbManager* db = new dbManager(memberPath);
-    db->initialize();
-    db->~dbManager();
+    parser.Read(members);
+    DbManager* db = new DbManager(memberPath);
+    db->InitializeMemberDB();
+    db->~DbManager();
 
     InventoryManager* idb = new InventoryManager(inventoryPath);
-    idb->initialize();
+    idb->InitializeInventoryDB();
     idb->~InventoryManager();
 
     return a.exec();

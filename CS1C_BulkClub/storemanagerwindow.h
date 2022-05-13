@@ -80,7 +80,7 @@ private:
 private:
     Ui::StoreManagerWindow *ui;  // Pointer to the instance of the StoreManagerWindow class object. (SELF)
     QWidget *parent;             // Pointer to the instance of parent window, MainWindow class object.
-    dbManager* m_pDb;
+    DbManager* m_pDb;
     InventoryManager* m_pIdb;
 
     std::vector<Member> m_MemberList;
