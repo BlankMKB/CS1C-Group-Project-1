@@ -78,11 +78,11 @@ QPushButton#logout_button:hover{
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="uploadFile">
     <attribute name="icon">
-     <iconset resource="../../CS1D---Group-Project-1/CS1D_FastFood/Resources.qrc">
+     <iconset>
       <normaloff>:/images/edit.png</normaloff>:/images/edit.png</iconset>
     </attribute>
     <attribute name="title">
@@ -161,7 +161,11 @@ QPushButton#logout_button:hover{
           <widget class="QLineEdit" name="memberNameLE"/>
          </item>
          <item row="1" column="1">
-          <widget class="QLineEdit" name="memberIDLE"/>
+          <widget class="QLineEdit" name="memberIDLE">
+           <property name="inputMethodHints">
+            <set>Qt::ImhNone</set>
+           </property>
+          </widget>
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="typeLabel">
@@ -331,7 +335,7 @@ QPushButton#logout_button:hover{
    </widget>
    <widget class="QWidget" name="editRest">
     <attribute name="icon">
-     <iconset resource="../../CS1D---Group-Project-1/CS1D_FastFood/Resources.qrc">
+     <iconset>
       <normaloff>:/images/edit.png</normaloff>:/images/edit.png</iconset>
     </attribute>
     <attribute name="title">
@@ -588,8 +592,6 @@ QPushButton#logout_button:hover{
    </widget>
   </widget>
  </widget>
- <resources>
-  <include location="../../CS1D---Group-Project-1/CS1D_FastFood/Resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

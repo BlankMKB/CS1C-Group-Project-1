@@ -2,45 +2,6 @@
 
 //==========================================PRIVATE MEMBER FUNCTIONS==========================================
 
-//parse date string into date object
-Date DbManager::ParseDate(const QString& line) const {
-    //split date format: [month]/[day]/[year]
-    auto dates = line.split("/");
-
-    //temp int day month year
-    int day, month, year;
-
-    //iterate through 3 times (dd/mm/yyyy)
-    for(size_t i = 0; i < 3; i++) {
-        /* switch case format
-         * 0: month
-         * 1: day
-         * 2: year
-         */
-        switch(i) {
-        // day
-        case 0:
-            month = (dates[0]).toInt();
-            break;
-        // month
-        case 1:
-            day = (dates[1]).toInt();
-            break;
-        // year
-        case 2:
-            year = (dates[2]).toInt();
-            break;
-        default:
-            break;
-        }
-    }
-
-    //create date object
-    Date date(month, day, year);
-
-    return date;
-}
-
 //parse receipt string into date object
 Receipt DbManager::ParseReceipt(Member& member, const QString& line) const {
     //receipt object
@@ -71,7 +32,7 @@ Receipt DbManager::ParseReceipt(Member& member, const QString& line) const {
         }
 
         //first item is the purchase date
-        Date date(ParseDate(items[0]));
+        Date date(Date::ParseDate(items[0]));
 
         //for all of the items
         for(qsizetype i = 1; i < items.size(); i++) {
@@ -127,7 +88,7 @@ Member DbManager::MemberFromRecord(const QSqlRecord& record) const {
     const float total = record.value("TOTAL").toFloat();
     const QString receiptString = record.value("RECEIPT").toString();
 
-    const Date date = ParseDate(dateString);
+    const Date date = Date::ParseDate(dateString);
 
     if(type) {
         ExecutiveMember member(name, id, type, date);

@@ -24,12 +24,6 @@ private:
     Receipt ParseReceipt(Member&, const QString&) const;
 
     /*!
-     * \brief helper function that parses date from date string
-     * \return date: Date
-     */
-    Date ParseDate(const QString&) const;
-
-    /*!
      * \brief helper function that builds and returns member from the SQL database
      * \return member: Member
      */

@@ -52,3 +52,40 @@ bool Date::operator==(const Date& other) {
 bool Date::operator<(const Date& other) {
     return m_Day < other.m_Day;
 }
+
+Date Date::ParseDate(const QString& line) {
+    QStringList temp;
+    int day, month, year;
+
+    for(size_t i = 0; i < 3; i++) {
+
+        /* switch case format
+         * 0: month
+         * 1: day
+         * 2: year
+         */
+        switch (i) {
+        // day
+        case 0:
+            temp = line.split("/");
+            month = (temp[0]).toInt();
+            break;
+        // month
+        case 1:
+            temp = line.split("/");
+            day = (temp[1]).toInt();
+            break;
+        // year
+        case 2:
+            temp = line.split("/");
+            year = (temp[2]).toInt();
+            break;
+        default:
+            break;
+        }
+    }
+
+    Date date(month, day, year);
+
+    return date;
+}

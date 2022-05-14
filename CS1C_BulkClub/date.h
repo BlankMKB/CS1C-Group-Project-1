@@ -71,5 +71,9 @@ public:
      */
     bool operator<(const Date&);
 
+
+public:
+    static Date ParseDate(const QString& line);
+
 };
 #endif // DATE_H
