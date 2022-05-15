@@ -39,6 +39,10 @@ AdministratorWindow::AdministratorWindow(QWidget *parent) :
 
 
     m_pDb = new DbManager(memberPath);
+
+    m_MemberList = m_pDb->AllMembers();
+
+    SetMembersCB();
 }
 
 /**********************************************************
@@ -106,3 +110,26 @@ void AdministratorWindow::on_addMemberButton_clicked() {
     this->ui->memberExpirationLE->clear();
 
 }
+
+void AdministratorWindow::SetMembersCB() {
+    this->ui->deleteMemberCB->clear();
+    for(const auto& member : m_MemberList) {
+        this->ui->deleteMemberCB->addItem(member.Name());
+    }
+}
+
+void AdministratorWindow::on_deleteMemberButton_clicked() {
+    QString name = this->ui->deleteMemberCB->currentText();
+
+    for(size_t i = 0; i < m_MemberList.size(); i++) {
+        if(m_MemberList[i].Name() == name) {
+            if(m_pDb->DeleteMemberById(m_MemberList[i].Id())) {
+                qDebug().noquote().nospace() << "Member " << m_MemberList[i].Name() << " deleted successfully";
+                m_MemberList.erase(m_MemberList.begin() + i);
+            }
+            SetMembersCB();
+            break;
+        }
+    }
+}
+

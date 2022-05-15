@@ -111,6 +111,12 @@ public:
      * \brief for debug purposes: prints all member data
      */
     void PrintMemberDB() const;
+
+
+    /*!
+     * \brief reset with text file
+     */
+    void ResetWithTextFile();
 };
 
 #endif // DBMANAGER_H

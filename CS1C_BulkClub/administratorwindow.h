@@ -22,11 +22,18 @@ private slots:
 
     void on_addMemberButton_clicked();
 
+    void on_deleteMemberButton_clicked();
+
+private:
+    void SetMembersCB();
+
 private:
     Ui::AdministratorWindow *ui;  // Pointer to the instance of the AdministratorWindow class object. (SELF)
     QWidget *parent;              // Pointer to the instance of parent window, MainWindow class object.
 
     DbManager* m_pDb;
+
+    std::vector<Member> m_MemberList;
 };
 
 #endif // ADMINISTRATORWINDOW_H

@@ -147,7 +147,7 @@ DbManager::DbManager(const QString& path) {
 //destructor
 DbManager::~DbManager() {
     //close database
-    //deleteAllMembers();
+    //DeleteAllMembers();
     m_Database.close();
     qDebug() << "database connection closed\n";
 }
@@ -323,6 +323,12 @@ void DbManager::PrintMemberDB() const {
         }
         qDebug() << "";
     }
+}
+
+// reset with text file
+void DbManager::ResetWithTextFile() {
+    DeleteAllMembers();
+    InitializeMemberDB();
 }
 
 //=============================================================================================================
