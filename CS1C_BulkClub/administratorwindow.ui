@@ -249,7 +249,7 @@ QPushButton#logout_button:hover{
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
+       <enum>Qt::ScrollBarAsNeeded</enum>
       </property>
       <property name="sizeAdjustPolicy">
        <enum>QAbstractScrollArea::AdjustToContents</enum>
@@ -258,7 +258,7 @@ QPushButton#logout_button:hover{
        <set>QAbstractItemView::AllEditTriggers</set>
       </property>
       <property name="columnCount">
-       <number>2</number>
+       <number>5</number>
       </property>
       <attribute name="horizontalHeaderCascadingSectionResizes">
        <bool>true</bool>
@@ -277,12 +277,27 @@ QPushButton#logout_button:hover{
       </attribute>
       <column>
        <property name="text">
-        <string>Item Name</string>
+        <string>Name</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Item Price</string>
+        <string>ID</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Type</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Expiration</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Running Total</string>
        </property>
       </column>
      </widget>

@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "member.h"
 #include "dbmanager.h"
+#include <queue>
 
 namespace Ui {
     class AdministratorWindow;
@@ -24,8 +25,14 @@ private slots:
 
     void on_deleteMemberButton_clicked();
 
+    void on_editMembersTW_cellChanged(int row, int column);
+
+    void on_updateMembersButton_clicked();
+
 private:
     void SetMembersCB();
+
+    void SetMembersTW();
 
 private:
     Ui::AdministratorWindow *ui;  // Pointer to the instance of the AdministratorWindow class object. (SELF)

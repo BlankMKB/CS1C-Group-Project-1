@@ -147,7 +147,6 @@ DbManager::DbManager(const QString& path) {
 //destructor
 DbManager::~DbManager() {
     //close database
-    //DeleteAllMembers();
     m_Database.close();
     qDebug() << "database connection closed\n";
 }
@@ -256,13 +255,20 @@ bool DbManager::AddMember(const Member& member) {
 
 //update member in database
 bool DbManager::UpdateMember(const Member& member) {
+    const Member* p_Member = &member;
+    ExecutiveMember execMember;
+
+    if(member.Type()) {
+        execMember = member;
+        p_Member = &execMember;
+    }
     //parse member object
-    const QString name = member.Name();
-    const int id = member.Id();
-    const bool type = member.Type();
-    const QString expirationDate = member.Expiration().DateString();
-    const double total = member.RunningTotal();
-    const QString receipt = member.receipt().ReceiptString();
+    const QString name = p_Member->Name();
+    const int id = p_Member->Id();
+    const bool type = p_Member->Type();
+    const QString expirationDate = p_Member->Expiration().DateString();
+    const double total = p_Member->RunningTotal();
+    const QString receipt = p_Member->receipt().ReceiptString();
 
 
     //create an insert query with the perameters to load the table
