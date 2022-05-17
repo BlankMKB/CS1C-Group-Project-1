@@ -1,13 +1,14 @@
 #ifndef MEMBER_H
 #define MEMBER_H
 
-#define SALES_TAX 0.0775
-
 #include <QString>
 #include <QDebug>
 #include "date.h"
 #include "item.h"
 #include "receipt.h"
+
+#define USE_TAX
+#include "defines.h"
 
 /*!
  * \class Member

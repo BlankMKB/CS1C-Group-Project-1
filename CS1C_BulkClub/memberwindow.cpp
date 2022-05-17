@@ -1,10 +1,8 @@
 #include "memberwindow.h"
 #include "ui_memberwindow.h"
 
-MemberWindow::MemberWindow(QWidget *parent, Member* member) :
-    QDialog(parent),
-    ui(new Ui::MemberWindow)
-{
+MemberWindow::MemberWindow(QWidget *parent, Member* member) : QDialog(parent),
+                                                              ui(new Ui::MemberWindow) {
     ui->setupUi(this);
 
     m_CurrMember = *member;
@@ -14,39 +12,61 @@ MemberWindow::MemberWindow(QWidget *parent, Member* member) :
     delete m_pIdb;
 
     SetItemCB();
+    SetHeaderLabels();
     this->ui->cartTotalLabel->hide();
-
-
 }
 
-MemberWindow::~MemberWindow()
-{
-    delete ui;
-}
+MemberWindow::~MemberWindow() { delete ui; }
 
 void MemberWindow::on_addToCartButton_clicked() {
-    QString itemName = this->ui->cartItemCB->currentText();
-    int itemQuantity = this->ui->quantitySB->value();
+    const QString& itemName = this->ui->cartItemCB->currentText();
+    const int& itemQuantity = this->ui->quantitySB->value();
 
     if(itemQuantity > 0) {
-        AddToTableWidget(itemName, itemQuantity);
+        AddToCart(itemName, itemQuantity);
     }
+
     this->ui->quantitySB->setValue(0);
 }
 
+void MemberWindow::on_purchaseButton_clicked() {
+
+    Date date(5, 18, 2022);
+
+    for(size_t i = 0; i < m_Cart.size(); i++) {
+        m_CurrMember.Purchase(m_Cart[i], date);
+        m_Inventory.InsertInventory(m_Cart[i]);
+        DEBUG << "Name: " << m_Cart[i]->Name() << ", Quantity: " << m_Cart[i]->Quantity() << " purchased";
+    }
+
+    m_pIdb = new InventoryManager(INVENTORY_PATH);
+    for(size_t i = 0; i < m_Inventory.size(); i++) {
+        m_pIdb->UpdateItem(m_Inventory[i]);
+    }
+    delete m_pIdb;
+
+    m_pDb = new DbManager(MEMBERS_PATH);
+    m_pDb->UpdateMember(m_CurrMember);
+    delete m_pDb;
+
+    ClearTable(this->ui->cartTW);
+    this->ui->cartTotalLabel->hide();
+}
+
 void MemberWindow::SetItemCB() {
+    m_Inventory.sort();
     for(size_t i = 0; i < m_Inventory.size(); i++) {
         this->ui->cartItemCB->addItem(m_Inventory[i]->Name());
     }
 }
 
-void MemberWindow::AddToTableWidget(const QString& itemName, const int& itemQuantity) {
+void MemberWindow::AddToCart(const QString& itemName, const int& itemQuantity) {
     const Item* p_Item = nullptr;
     for(size_t i = 0; i < m_Inventory.size(); i++) {
         if(m_Inventory[i]->Name() == itemName) {
             p_Item = m_Inventory[i];
             Item* tempItem = new Item(p_Item->Name(), p_Item->Price(), itemQuantity);
-            DEBUG << "Item: " << tempItem->Name() << ". Quantity " << tempItem->Quantity() << " added";
+            DEBUG << "Item: " << tempItem->Name() << ". Quantity " << tempItem->Quantity() << " added to cart";
             m_Cart.InsertInventory(tempItem);
             break;
         }
@@ -131,44 +151,8 @@ void MemberWindow::AddToTableWidget(const QString& itemName, const int& itemQuan
 
     //set revenue text to revenue label
     this->ui->cartTotalLabel->setText(revenue);
-    if(this->ui->cartTotalLabel->isVisible()) {
-        return;
-    }
+    if(this->ui->cartTotalLabel->isVisible()) { return; }
     this->ui->cartTotalLabel->show();
-}
-
-void MemberWindow::on_purchaseButton_clicked() {
-
-    Date date(5, 18, 2022);
-
-    for(size_t i = 0; i < m_Cart.size(); i++) {
-        m_CurrMember.Purchase(m_Cart[i], date);
-        m_Inventory.InsertInventory(m_Cart[i]);
-    }
-
-    m_pIdb = new InventoryManager(INVENTORY_PATH);
-    for(size_t i = 0; i < m_Inventory.size(); i++) {
-        m_pIdb->UpdateItem(m_Inventory[i]);
-    }
-    delete m_pIdb;
-
-
-    m_pDb = new DbManager(MEMBERS_PATH);
-    m_pDb->UpdateMember(m_CurrMember);
-    delete m_pDb;
-
-    ClearTable(this->ui->cartTW);
-    this->ui->cartTotalLabel->hide();
-
-}
-void MemberWindow::ClearTable(QTableWidget* tableWidget) {
-    tableWidget->clear();
-    int count = tableWidget->rowCount();
-    while(count > 0) {
-        tableWidget->removeRow(0);
-        count = tableWidget->rowCount();
-    }
-    SetHeaderLabels();
 }
 
 void MemberWindow::SetHeaderLabels() {
@@ -179,4 +163,14 @@ void MemberWindow::SetHeaderLabels() {
     headerLabels.push_back("Item Quantity");
     headerLabels.push_back("Item Total");
     this->ui->cartTW->setHorizontalHeaderLabels(headerLabels);
+}
+
+void MemberWindow::ClearTable(QTableWidget* tableWidget) {
+    tableWidget->clear();
+    int count = tableWidget->rowCount();
+    while(count > 0) {
+        tableWidget->removeRow(0);
+        count = tableWidget->rowCount();
+    }
+    SetHeaderLabels();
 }

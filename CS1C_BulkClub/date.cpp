@@ -1,12 +1,20 @@
 #include "date.h"
 
 //copy constructor
-Date::Date(const Date& other) : m_Month(other.Month()), m_Day(other.Day()), m_Year(other.Year()), m_DateString(other.DateString()) {
+Date::Date(const Date& other) : m_Month(other.Month()),
+                                m_Day(other.Day()),
+                                m_Year(other.Year()),
+                                m_DateString(other.DateString()) {
 
 }
 
 //overloaded constructor
-Date::Date(const int& month, const int& day, const int& year) : m_Month(month), m_Day(day), m_Year(year), m_DateString(QString::number(m_Month) + "/" + QString::number(m_Day) + "/" + QString::number(m_Year)) { }
+Date::Date(const int& month, const int& day, const int& year) : m_Month(month),
+                                                                m_Day(day),
+                                                                m_Year(year),
+                                                                m_DateString(QString::number(m_Month) + "/" +
+                                                                             QString::number(m_Day) + "/" +
+                                                                             QString::number(m_Year)) { }
 
 
 

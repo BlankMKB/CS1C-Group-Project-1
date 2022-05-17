@@ -14,29 +14,13 @@ int main(int argc, char *argv[])
 
     QString memberPath, inventoryPath;
 
-#if __APPLE__ && TARGET_OS_MAC
-    memberPath = "../../../../CS1C_BulkClub/members.db";
-#elif __linux__
-    memberPath = "../CS1C_BulkClub/members.db";
-#else
-    memberPath = "..\\CS1C_BulkClub\\members.db";
-#endif
+    DbManager* p_Db = new DbManager(MEMBERS_PATH);
+    //p_Db->ResetWithTextFile();
+    p_Db->InitializeMemberDB();
 
-#if __APPLE__ && TARGET_OS_MAC
-    inventoryPath = "../../../../CS1C_BulkClub/inventory.db";
-#elif __linux__
-    inventoryPath = "../CS1C_BulkClub/inventory.db";
-#else
-    inventoryPath = "..\\CS1C_BulkClub\\inventory.db";
-#endif
-
-    DbManager* pDb = new DbManager(memberPath);
-    //pDb->ResetWithTextFile();
-    pDb->InitializeMemberDB();
-
-    InventoryManager* pIdb = new InventoryManager(inventoryPath);
-    //pIdb->ResetWithTextFile();
-    pIdb->InitializeInventoryDB();
+    InventoryManager* p_Idb = new InventoryManager(INVENTORY_PATH);
+    //p_Idb->ResetWithTextFile();
+    p_Idb->InitializeInventoryDB();
 
     return a.exec();
 }

@@ -2,11 +2,10 @@
 
 //copy constructor
 ItemList::ItemList(const ItemList& other) {
-    for(const auto& x : other.itemList()) {
-        Item* temp = new Item(*x);
+    for(const auto& item : other.itemList()) {
+        Item* temp = new Item(*item);
         m_ItemList.push_back(temp);
     }
-    //m_ItemList = other.itemList();
 }
 
 //overloaded constructor
@@ -58,9 +57,7 @@ QString ItemList::ItemListString() const {
             str += name + ", " + price + ", " + quantity + ", ";
         }
 
-        name = "";
-        price = "";
-        quantity = "";
+        name = price = quantity = "";
     }
     return str;
 }
@@ -81,16 +78,14 @@ void ItemList::InsertInventory(Item* item) {
             return;
         }
     }
+
     Insert(item);
 }
 
 //removeItem
 bool ItemList::RemoveItem(const QString& name) {
-    //find item
-    if(Find(name) == nullptr) {
-        //item doesn't exist
-        return false;
-    }
+    //item doesn't exist
+    if(Find(name) == nullptr) { return false; }
 
     //for each item in the item list
     for(auto& item : m_ItemList) {
@@ -101,6 +96,7 @@ bool ItemList::RemoveItem(const QString& name) {
             return true;
         }
     }
+
     //item doesn't exist
     return false;
 }
@@ -110,9 +106,7 @@ Item* ItemList::Find(const QString& name) {
     //for each item in item list
     for(auto& item : m_ItemList) {
         //if the item names match
-        if(item->Name() == name) {
-            return item;
-        }
+        if(item->Name() == name) { return item; }
     }
 
     //item doesn't exist

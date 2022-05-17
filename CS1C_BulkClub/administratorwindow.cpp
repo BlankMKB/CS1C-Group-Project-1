@@ -50,7 +50,7 @@ void AdministratorWindow::on_logout_button_clicked()
    //this->parent->show();
 }
 
-// add member
+// members
 void AdministratorWindow::on_addMemberButton_clicked() {
     m_pDb = new DbManager(MEMBERS_PATH);
 
@@ -101,6 +101,198 @@ void AdministratorWindow::on_addMemberButton_clicked() {
     delete m_pDb;
 }
 
+void AdministratorWindow::on_updateMembersButton_clicked() {
+    m_pDb = new DbManager(MEMBERS_PATH);
+
+    for(const auto& member : m_MemberList) {
+        m_pDb->UpdateMember(member);
+    }
+
+    m_MemberList = m_pDb->AllMembers();
+
+    UpdateAll();
+
+    delete m_pDb;
+}
+
+void AdministratorWindow::on_editMembersTW_cellChanged(int row, int column) {
+    Member* p_EditedMember = nullptr;
+    for(auto& member : m_MemberList) {
+        if(member.Name() == this->ui->editMembersTW->item(row, 0)->text()) {
+            p_EditedMember = &member;
+            break;
+        }
+    }
+
+    if(!p_EditedMember) {
+        return;
+    }
+
+    bool wasRegular = p_EditedMember->Type();
+
+    QString editedText = this->ui->editMembersTW->item(row, column)->text();
+
+    switch(column) {
+    case 0:
+        p_EditedMember->SetName(editedText);
+        break;
+    case 1:
+        p_EditedMember->SetID(editedText.toInt());
+        break;
+    case 2:
+        p_EditedMember->SetType(editedText.toUpper() == "EXECUTIVE" ? true : false);
+        if(!wasRegular && p_EditedMember->Type()) {
+            p_EditedMember->SetRunningTotal(p_EditedMember->RunningTotal() + 55);
+        }
+        break;
+    case 3:
+        if(this->ui->editMembersTW->item(row, column)->text().count('/') != 2) {
+            QMessageBox::critical(this, "Error", "Please input date in the format MM/DD/YYYY");
+            break;
+        }
+            p_EditedMember->SetExpiration(Date::ParseDate(editedText));
+        break;
+    case 4:
+        if(editedText.contains("$")) {
+            break;
+        }
+        p_EditedMember->SetRunningTotal(editedText.toFloat());
+        break;
+    }
+}
+
+void AdministratorWindow::on_deleteMemberButton_clicked() {
+    m_pDb = new DbManager(MEMBERS_PATH);
+
+    QString name = this->ui->deleteMemberCB->currentText();
+
+    for(size_t i = 0; i < m_MemberList.size(); i++) {
+        if(m_MemberList[i].Name() == name) {
+            if(m_pDb->DeleteMemberById(m_MemberList[i].Id())) {
+                qDebug().noquote().nospace() << "Member " << m_MemberList[i].Name() << " deleted successfully";
+                m_MemberList.erase(m_MemberList.begin() + i);
+            }
+            UpdateAll();
+            break;
+        }
+    }
+    delete m_pDb;
+}
+
+
+
+
+
+// items
+void AdministratorWindow::on_addItemButton_clicked() {
+    m_pIdb = new InventoryManager(INVENTORY_PATH);
+
+    if(this->ui->addItemNameLE->text() == "") {
+        QMessageBox::critical(this, "Error", "One or more text fields are empty");
+        return;
+    }
+
+
+    QString name = this->ui->addItemNameLE->text();
+    float price = static_cast<float>(this->ui->addItemPriceDSB->value());
+
+    Item* item = new Item(name, price, 0);
+
+    m_pIdb->AddItem(item);
+    m_Inventory.Insert(item);
+
+
+    this->ui->addItemNameLE->clear();
+    this->ui->addItemPriceDSB->clear();
+
+    UpdateAll();
+
+    delete m_pIdb;
+}
+
+void AdministratorWindow::on_editItemsTW_cellChanged(int row, int column) {
+    if(m_Setting) {
+        return;
+    }
+
+    Item* p_Item = nullptr, *p_NewItem = nullptr;
+
+    QString editedText = this->ui->editItemsTW->item(row, column)->text();
+    QString name = this->ui->editItemsTW->item(row, 0)->text();
+
+    for(size_t i = 0; i < m_Inventory.size(); i++) {
+        if((m_Inventory[i]->Name() == name)) {
+            p_Item = m_Inventory[i];
+            break;
+        }
+    }
+
+    if(!p_Item) {
+        return;
+    }
+
+    switch(column) {
+    case 0:
+        p_Item->SetName(editedText);
+        return;
+    case 1:
+        if(editedText.contains("$")) {
+            return;
+        }
+        p_Item->SetPrice(editedText.toFloat());
+        p_Item->SetQuantity(0);
+        break;
+    case 2:
+        if(editedText.contains("units")) {
+            return;
+        }
+        p_Item->SetQuantity(editedText.toInt());
+        return;
+    default:
+        if(editedText.contains("$")) {
+            return;
+        }
+        return;
+    }
+}
+
+void AdministratorWindow::on_updateItemsButton_clicked() {
+    m_pIdb = new InventoryManager(INVENTORY_PATH);
+
+    for(size_t i = 0; i < m_Inventory.size(); i++) {
+        m_pIdb->UpdateItem(m_Inventory[i]);
+    }
+
+    m_Inventory = m_pIdb->AllItems();
+
+    UpdateAll();
+
+    delete m_pIdb;
+}
+
+void AdministratorWindow::on_deleteItemButton_clicked() {
+    m_pIdb = new InventoryManager(INVENTORY_PATH);
+
+    QString name = this->ui->deleteItemCB->currentText();
+
+    for(size_t i = 0; i < m_Inventory.size(); i++) {
+        if(m_Inventory[i]->Name() == name) {
+            if(m_pIdb->DeleteItemByName(name)) {
+                qDebug().noquote().nospace() << "Item " << m_Inventory[i]->Name() << " deleted successfully";
+                m_Inventory.RemoveItem(m_Inventory[i]->Name());
+            }
+            UpdateAll();
+            break;
+        }
+    }
+    delete m_pIdb;
+}
+
+
+
+
+
+// members
 void AdministratorWindow::SetMembersCB() {
     this->ui->deleteMemberCB->clear();
     for(const auto& member : m_MemberList) {
@@ -169,87 +361,11 @@ void AdministratorWindow::SetMembersTW() {
     }
 }
 
-void AdministratorWindow::on_deleteMemberButton_clicked() {
-    m_pDb = new DbManager(MEMBERS_PATH);
-
-    QString name = this->ui->deleteMemberCB->currentText();
-
-    for(size_t i = 0; i < m_MemberList.size(); i++) {
-        if(m_MemberList[i].Name() == name) {
-            if(m_pDb->DeleteMemberById(m_MemberList[i].Id())) {
-                qDebug().noquote().nospace() << "Member " << m_MemberList[i].Name() << " deleted successfully";
-                m_MemberList.erase(m_MemberList.begin() + i);
-            }
-            UpdateAll();
-            break;
-        }
-    }
-    delete m_pDb;
-}
 
 
-void AdministratorWindow::on_editMembersTW_cellChanged(int row, int column) {
-    Member* p_EditedMember = nullptr;
-    for(auto& member : m_MemberList) {
-        if(member.Name() == this->ui->editMembersTW->item(row, 0)->text()) {
-            p_EditedMember = &member;
-            break;
-        }
-    }
-
-    if(!p_EditedMember) {
-        return;
-    }
-
-    bool wasRegular = p_EditedMember->Type();
-
-    QString editedText = this->ui->editMembersTW->item(row, column)->text();
-
-    switch(column) {
-    case 0:
-        p_EditedMember->SetName(editedText);
-        break;
-    case 1:
-        p_EditedMember->SetID(editedText.toInt());
-        break;
-    case 2:
-        p_EditedMember->SetType(editedText.toUpper() == "EXECUTIVE" ? true : false);
-        if(!wasRegular && p_EditedMember->Type()) {
-            p_EditedMember->SetRunningTotal(p_EditedMember->RunningTotal() + 55);
-        }
-        break;
-    case 3:
-        if(this->ui->editMembersTW->item(row, column)->text().count('/') != 2) {
-            QMessageBox::critical(this, "Error", "Please input date in the format MM/DD/YYYY");
-            break;
-        }
-            p_EditedMember->SetExpiration(Date::ParseDate(editedText));
-        break;
-    case 4:
-        if(editedText.contains("$")) {
-            break;
-        }
-        p_EditedMember->SetRunningTotal(editedText.toFloat());
-        break;
-    }
-}
 
 
-void AdministratorWindow::on_updateMembersButton_clicked() {
-    m_pDb = new DbManager(MEMBERS_PATH);
-
-    for(const auto& member : m_MemberList) {
-        m_pDb->UpdateMember(member);
-    }
-
-    m_MemberList = m_pDb->AllMembers();
-
-    UpdateAll();
-
-    delete m_pDb;
-}
-
-
+// items
 void AdministratorWindow::SetConversionLE() {
     std::vector<Member> regularToExec, execToRegular;
     for(auto& member : m_MemberList) {
@@ -280,14 +396,20 @@ void AdministratorWindow::SetConversionLE(QListWidget* listWidget, QLabel *label
 
 }
 
+
+
+
+
+// general helpers
 void AdministratorWindow::UpdateAll() {
     SetMembersCB();
     SetMembersTW();
-    SetConversionLE();
-    SetItemTotalsTW();
-    SetItemsCB();
-}
 
+    SetConversionLE();
+
+    SetItemsCB();
+    SetItemTotalsTW();
+}
 
 void AdministratorWindow::ClearTable(QTableWidget* tableWidget) {
     tableWidget->clear();
@@ -298,7 +420,12 @@ void AdministratorWindow::ClearTable(QTableWidget* tableWidget) {
     }
 }
 
+// items
 void AdministratorWindow::SetItemsCB() {
+    m_pIdb = new InventoryManager(INVENTORY_PATH);
+    m_Inventory = m_pIdb->AllItems();
+    delete m_pIdb;
+
     this->ui->deleteItemCB->clear();
     for(size_t i = 0; i < m_Inventory.size(); i++) {
         this->ui->deleteItemCB->addItem(m_Inventory[i]->Name());
@@ -321,7 +448,7 @@ void AdministratorWindow::SetItemTotalsTW() {
     this->ui->editItemsTW->setHorizontalHeaderLabels(headerLabels);
 
     //grand total for all items
-    float total = 0;
+    float total = 0.0f;
 
     //local variable for m_Inventory to sort by item name
     ItemList inventory = m_Inventory;
@@ -383,6 +510,7 @@ void AdministratorWindow::SetItemTotalsTW() {
         }
     }
 
+    this->ui->itemTotalLabel->setText("Grand total (w/o tax): $" + QString::number(total, 'f', 2));
     //resize column width to widest column
     this->ui->editItemsTW->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
@@ -391,108 +519,19 @@ void AdministratorWindow::SetItemTotalsTW() {
 
 
 
-void AdministratorWindow::on_addItemButton_clicked() {
+
+
+
+void AdministratorWindow::on_resetButton_clicked() {
+
+    m_pDb = new DbManager(MEMBERS_PATH);
+    m_pDb->ResetWithTextFile();
+    delete m_pDb;
+
     m_pIdb = new InventoryManager(INVENTORY_PATH);
-
-    if(this->ui->addItemNameLE->text() == "") {
-        QMessageBox::critical(this, "Error", "One or more text fields are empty");
-        return;
-    }
-
-
-    QString name = this->ui->addItemNameLE->text();
-    float price = static_cast<float>(this->ui->addItemPriceDSB->value());
-
-    Item* item = new Item(name, price, 0);
-
-    m_pIdb->AddItem(item);
-    m_Inventory.Insert(item);
-
-
-    this->ui->addItemNameLE->clear();
-    this->ui->addItemPriceDSB->clear();
+    m_pIdb->ResetWithTextFile();
+    delete m_pIdb;
 
     UpdateAll();
-
-    delete m_pIdb;
 }
 
-
-void AdministratorWindow::on_deleteItemButton_clicked() {
-    m_pIdb = new InventoryManager(INVENTORY_PATH);
-
-    QString name = this->ui->deleteItemCB->currentText();
-
-    for(size_t i = 0; i < m_Inventory.size(); i++) {
-        if(m_Inventory[i]->Name() == name) {
-            if(m_pIdb->DeleteItemByName(name)) {
-                qDebug().noquote().nospace() << "Item " << m_Inventory[i]->Name() << " deleted successfully";
-                m_Inventory.RemoveItem(m_Inventory[i]->Name());
-            }
-            UpdateAll();
-            break;
-        }
-    }
-    delete m_pIdb;
-}
-
-void AdministratorWindow::on_editItemsTW_cellChanged(int row, int column) {
-    if(m_Setting) {
-        return;
-    }
-
-    Item* p_Item = nullptr, *p_NewItem = nullptr;
-
-    QString editedText = this->ui->editItemsTW->item(row, column)->text();
-    QString name = this->ui->editItemsTW->item(row, 0)->text();
-
-    for(size_t i = 0; i < m_Inventory.size(); i++) {
-        if((m_Inventory[i]->Name() == name)) {
-            p_Item = m_Inventory[i];
-            break;
-        }
-    }
-
-    if(!p_Item) {
-        return;
-    }
-
-    switch(column) {
-    case 0:
-        p_Item->SetName(editedText);
-        return;
-    case 1:
-        if(editedText.contains("$")) {
-            return;
-        }
-        p_Item->SetPrice(editedText.toFloat());
-        p_Item->SetQuantity(0);
-        break;
-    case 2:
-        if(editedText.contains("units")) {
-            return;
-        }
-        p_Item->SetQuantity(editedText.toInt());
-        return;
-    default:
-        if(editedText.contains("$")) {
-            return;
-        }
-        return;
-    }
-}
-
-
-void AdministratorWindow::on_updateItemsButton_clicked() {
-    m_pIdb = new InventoryManager(INVENTORY_PATH);
-
-    for(size_t i = 0; i < m_Inventory.size(); i++) {
-        m_pIdb->UpdateItem(m_Inventory[i]);
-    }
-
-    m_Inventory = m_pIdb->AllItems();
-
-    UpdateAll();
-
-    delete m_pIdb;
-}

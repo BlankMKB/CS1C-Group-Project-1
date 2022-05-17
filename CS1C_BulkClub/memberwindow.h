@@ -6,6 +6,10 @@
 #include "dbmanager.h"
 #include "inventorymanager.h"
 
+#define USE_PATHS
+#define USE_DEBUG
+#include "defines.h"
+
 namespace Ui {
 class MemberWindow;
 }
@@ -28,7 +32,7 @@ private slots:
 
 private:
     void SetItemCB();
-    void AddToTableWidget(const QString& itemName, const int& itemQuantity);
+    void AddToCart(const QString& itemName, const int& itemQuantity);
     void ClearTable(QTableWidget* tableWidget);
     void SetHeaderLabels();
 

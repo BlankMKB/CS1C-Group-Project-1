@@ -7,7 +7,7 @@
 
 
 #define USE_PATHS
-#include "paths.h"
+#include "defines.h"
 
 namespace Ui {
 class RegisterWindow;
@@ -23,6 +23,9 @@ public:
 
 private slots:
     void on_registerButton_clicked();
+
+private:
+    bool ValidInput();
 
 private:
     Ui::RegisterWindow *ui;

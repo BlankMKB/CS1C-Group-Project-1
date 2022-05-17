@@ -8,10 +8,8 @@
 #include "storemanagerwindow.h"
 #include "memberwindow.h"
 
-
-
 #define USE_PATHS
-#include "paths.h"
+#include "defines.h"
 
 namespace Ui {
 class LoginWindow;
@@ -29,10 +27,18 @@ private slots:
     void on_login_button_clicked();
 
 private:
+    void AdminLogin();
+    void ManagerLogin();
+    void MemberLogin();
+
+private:
     Ui::LoginWindow *ui;
+
     AdministratorWindow *adminWindow;  // Pointer to an instance of an AdmininstratorWindow class object.
+
     StoreManagerWindow *managerWindow; // Pointer to an instance of an StoreManagerWindow class object.
-    MemberWindow* m_MemberWindow;
+
+    MemberWindow* m_MemberWindow; // Pointer to an instance of a MemberWindow
 };
 
 #endif // LOGINWINDOW_H

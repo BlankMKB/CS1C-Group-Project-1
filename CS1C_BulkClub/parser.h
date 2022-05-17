@@ -10,7 +10,7 @@
 #include <QFile>
 
 #define USE_PATHS
-#include "paths.h"
+#include "defines.h"
 
 
 

@@ -6,13 +6,17 @@
 #include <QSqlDatabase>
 #include <QDebug>
 #include <QString>
+
 #include <cmath>
+
 #include "member.h"
 #include "parser.h"
 
 #define USE_PATHS
-#include "paths.h"
+#define USE_DEBUG
+#include "defines.h"
 #define NUM_MEMBER_COLUMNS 6
+
 
 /*!
  * \class DbManager

@@ -6,13 +6,18 @@
 #include <QSqlDatabase>
 #include <QDebug>
 #include <QString>
+
 #include <cmath>
+
 #include "member.h"
 #include "parser.h"
 
 #define USE_PATHS
-#include "paths.h"
-#define NUM_COLUMNS 3
+#define USE_DEBUG
+#include "defines.h"
+
+#define NUM_INVENTORY_COLUMNS 3
+
 
 /*!
  * \class InventoryManager

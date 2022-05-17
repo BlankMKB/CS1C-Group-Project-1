@@ -22,17 +22,9 @@ RegisterWindow::~RegisterWindow()
 }
 
 void RegisterWindow::on_registerButton_clicked() {
-    if(this->ui->nameLE->text() == "" ||
-       this->ui->idLE->text() == "" ||
-       this->ui->dateLE->text() == "") {
-        QMessageBox::critical(this, "Error", "One or more text fields are empty");
-        return;
-    }
 
-    if(this->ui->dateLE->text().count('/') != 2) {
-        QMessageBox::critical(this, "Error", "Please input date in the format MM/DD/YYYY");
-        return;
-    }
+    if(!ValidInput()) { return; }
+
     QString name = this->ui->nameLE->text();
     int id = this->ui->idLE->text().toInt();
     bool type = this->ui->typeCB->currentText() == "Executive" ? true : false;
@@ -49,3 +41,19 @@ void RegisterWindow::on_registerButton_clicked() {
     return;
 }
 
+
+bool RegisterWindow::ValidInput() {
+    if(this->ui->nameLE->text() == "" ||
+       this->ui->idLE->text() == "" ||
+       this->ui->dateLE->text() == "") {
+        QMessageBox::critical(this, "Error", "One or more text fields are empty");
+        return false;
+    }
+
+    if(this->ui->dateLE->text().count('/') != 2) {
+        QMessageBox::critical(this, "Error", "Please input date in the format MM/DD/YYYY");
+        return false;
+    }
+
+    return true;
+}

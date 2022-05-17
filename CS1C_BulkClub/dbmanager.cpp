@@ -8,19 +8,15 @@ DbManager::DbManager(const QString& path) {
     m_Database.setDatabaseName(path);
 
     //check if database opened successfully
-    if(!m_Database.open()) {
-        qDebug() << "connection with database unsuccessful\n";
-    }
-    else {
-        qDebug() << "connection with database successful\n";
-    }
+    if(!m_Database.open()) { DEBUG << "connection with database unsuccessful\n"; }
+    else { DEBUG << "connection with database successful\n"; }
 }
 
 //destructor
 DbManager::~DbManager() {
     //close database
     m_Database.close();
-    qDebug() << "database connection closed\n";
+    DEBUG << "database connection closed\n";
 }
 
 
@@ -33,9 +29,7 @@ bool DbManager::InitializeMemberDB() {
         std::vector<Member> members;
         m_FileParser.Read(members);
         for(const auto& member : members) {
-            if(!AddMember(member)) {
-                return false;
-            }
+            if(!AddMember(member)) { return false; }
         }
     }
     //everything initialized correctly
@@ -78,7 +72,6 @@ std::vector<std::pair<Member, Receipt>> DbManager::AllReceipts() const {
 
     while(query.next()) {
         receipts.push_back(std::make_pair(MemberFromRecord(query.record()), ReceiptFromRecord(query.record())));
-
     }
 
     return receipts;
@@ -90,17 +83,13 @@ size_t DbManager::MemberCount() const {
 
     size_t count = 0;
 
-    if(query.last()) {
-        count = query.at() + 1;
-    }
+    if(query.last()) { count = query.at() + 1; }
 
     return count;
 }
 
 //empty
-bool DbManager::Empty() const {
-    return MemberCount() == 0;
-}
+bool DbManager::Empty() const { return MemberCount() == 0; }
 
 
 
@@ -130,11 +119,11 @@ bool DbManager::AddMember(const Member& member) {
 
     //check to see if member was added successfully
     if(query.exec()) {
-        qDebug().noquote().nospace() << name << " added successfully\n";
+        DEBUG.noquote().nospace() << name << " added successfully\n";
         return true;
     }
 
-    qDebug() << "could not add member";
+    DEBUG << "could not add member";
     return false;
 }
 
@@ -169,10 +158,11 @@ bool DbManager::UpdateMember(const Member& member) {
 
     //check to see if member was updated successfully
     if(query.exec()) {
-        qDebug().noquote().nospace() << name << " updated successfully\n";
+        DEBUG.noquote().nospace() << name << " updated successfully\n";
         return true;
     }
-    qDebug() << "could not update member";
+
+    DEBUG << "could not update member";
     return false;
 }
 
@@ -183,17 +173,13 @@ bool DbManager::DeleteMemberById(const int& id) {
     query.prepare("DELETE FROM MEMBERS WHERE ID = ?");
     query.addBindValue(id);
 
-    if(query.exec()) {
-        return true;
-    }
-    qDebug() << "could not delete member";
+    if(query.exec()) { return true; }
+    DEBUG << "could not delete member";
     return false;
 }
 
 //delete all members
-void DbManager::DeleteAllMembers() {
-    QSqlQuery query("DELETE FROM MEMBERS");
-}
+void DbManager::DeleteAllMembers() { QSqlQuery query("DELETE FROM MEMBERS"); }
 
 
 
@@ -204,19 +190,13 @@ void DbManager::PrintMemberDB() const {
     QSqlQuery query("SELECT * FROM MEMBERS");
 
     while(query.next()) {
-        qDebug() << "member: ";
+        DEBUG << "member: ";
         for(size_t i = 0; i < NUM_MEMBER_COLUMNS; i++) {
             QString value = query.value(i).toString();
-            if(value == "1") {
-                value = "Executive";
-            }
-            else if(value == "0") {
-                value = "Regular";
-            }
 
-            qDebug().noquote().nospace() << value;
+            value = "1" ? "Executive" : "Regular";
         }
-        qDebug() << "";
+        DEBUG << "";
     }
 }
 
@@ -236,9 +216,7 @@ Receipt DbManager::ParseReceipt(Member& member, const QString& line) const {
     Receipt receipt;
 
     //if receipt is empty, return empty receipt
-    if(line == "") {
-        return receipt;
-    }
+    if(line == "") { return receipt; }
 
     //split receipts by day using '#' flag
     auto fullReceipt = line.split("#");
@@ -255,9 +233,7 @@ Receipt DbManager::ParseReceipt(Member& member, const QString& line) const {
         auto items = receiptDay.split(", ");
 
         //ignore extraneous split ""
-        if(items[0] == "") {
-            continue;
-        }
+        if(items[0] == "") { continue; }
 
         //first item is the purchase date
         Date date(Date::ParseDate(items[0]));

@@ -32,6 +32,7 @@ HEADERS += \
     administratorwindow.h \
     date.h \
     dbmanager.h \
+    defines.h \
     executivemember.h \
     inventorymanager.h \
     item.h \
@@ -41,7 +42,6 @@ HEADERS += \
     member.h \
     memberwindow.h \
     parser.h \
-    paths.h \
     receipt.h \
     registerwindow.h \
     storemanagerwindow.h

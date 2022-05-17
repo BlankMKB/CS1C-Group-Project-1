@@ -11,9 +11,7 @@ bool Parser::Read(std::vector<Member>& memberList) {
     return members && items;
 }
 
-ItemList Parser::Inventory() const {
-    return m_Inventory;
-}
+ItemList Parser::Inventory() const { return m_Inventory; }
 
 
 
@@ -22,20 +20,14 @@ ItemList Parser::Inventory() const {
 //debug
 void Parser::DebugParser(const std::vector<Member>& memberList) {
     for(const auto& member : memberList) {
+        QString type = member.Type() ? "Executive" : "Regular";
 
-        QString type = "Regular";
-
-        if(member.Type()) {
-            type = "Executive";
-        }
-
-        QDebug dbg = qDebug().noquote().nospace();
-        dbg << "name: " << member.Name() << "\n";
-        dbg << "number: " << member.Id() << "\n";
-        dbg << "type: " << type << "\n";
-        dbg << "expiration date: " << member.Expiration().DateString() << "\n";
-        dbg << "running total: " << member.RunningTotal() << "\n";
-        dbg << "receipt: " << member.receipt().ReceiptString() << "\n\n";
+        DEBUG << "Name: " << member.Name() << "\n";
+        DEBUG << "Number: " << member.Id() << "\n";
+        DEBUG << "Type: " << type << "\n";
+        DEBUG << "Expiration date: " << member.Expiration().DateString() << "\n";
+        DEBUG << "Running total: " << member.RunningTotal() << "\n";
+        DEBUG << "Receipt: " << member.receipt().ReceiptString() << "\n\n";
     }
 }
 
@@ -50,7 +42,7 @@ bool Parser::ReadMembers(std::vector<Member>& memberList) {
 
     //check to see if file opens correctly
     if (!inFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << "error reading file\n";
+        DEBUG << "Error reading file\n";
         return false;
     }
 
@@ -89,14 +81,7 @@ bool Parser::ReadMembers(std::vector<Member>& memberList) {
             break;
         // type
         case 2:
-            if (temp[0] == "Executive")
-            {
-                type = true;
-            }
-            else if (temp[0] == "Regular")
-            {
-                type = false;
-            }
+            type = temp[0] == "Executive" ? true : false;
             break;
         // date
         case 3:
@@ -125,7 +110,7 @@ bool Parser::ReadItems(std::vector<Member>& memberList) {
 
     //check to see if file opened correctly
     if (!inFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << "error reading file\n";
+        DEBUG << "error reading file\n";
         return false;
     }
 

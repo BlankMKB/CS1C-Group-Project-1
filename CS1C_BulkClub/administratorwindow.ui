@@ -78,7 +78,7 @@ QPushButton#logout_button:hover{
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="uploadFile">
     <attribute name="icon">
@@ -301,6 +301,19 @@ QPushButton#logout_button:hover{
        </property>
       </column>
      </widget>
+     <widget class="QPushButton" name="resetButton">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>131</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Reset Database</string>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QWidget" name="editRest">
@@ -418,7 +431,7 @@ QPushButton#logout_button:hover{
       <property name="geometry">
        <rect>
         <x>300</x>
-        <y>320</y>
+        <y>340</y>
         <width>441</width>
         <height>31</height>
        </rect>
@@ -506,6 +519,19 @@ QPushButton#logout_button:hover{
         <string>total</string>
        </property>
       </column>
+     </widget>
+     <widget class="QLabel" name="itemTotalLabel">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>320</y>
+        <width>191</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Item Totals:</string>
+      </property>
      </widget>
     </widget>
    </widget>

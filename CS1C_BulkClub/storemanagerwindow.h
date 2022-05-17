@@ -4,13 +4,15 @@
 #include <QDialog>
 #include <QTableWidget>
 #include "QtWidgets/qlabel.h"
+
 #include "member.h"
 #include "executivemember.h"
+
 #include "dbmanager.h"
 #include "inventorymanager.h"
 
 #define USE_PATHS
-#include "paths.h"
+#include "defines.h"
 
 namespace Ui {
 class StoreManagerWindow;
@@ -27,60 +29,52 @@ public:
 private slots:
     void on_logout_button_clicked();
 
-    //sales report by date
+    // sales report by date
     void on_dateByDayCB_currentIndexChanged(int index);
-
     void on_dateTypeByDayCB_currentIndexChanged(int index);
 
-    //sales report by member type
+    // sales report by member type
     void on_typeByMemberCB_currentIndexChanged(int index);
-
     void on_dateByMemberCB_currentIndexChanged(int index);
 
-    //member information
+    // member information
     void on_memberTypeCB_currentIndexChanged(int index);
-
     void on_memberInfoCB_currentIndexChanged(int index);
-
     void on_expirationMonthCB_currentIndexChanged(int index);
-
-    void on_itemSearchButton_clicked();
-
-    void on_itemResetButton_clicked();
-
-    void on_memberSearchButton_clicked();
-
-    void on_memberResetButton_clicked();
-
     void on_memberReceiptCB_currentIndexChanged(int index);
 
-private:
-   Date parseDate(const QString&);
+    // item search
+    void on_itemSearchButton_clicked();
+    void on_itemResetButton_clicked();
+
+    // member search
+    void on_memberSearchButton_clicked();
+    void on_memberResetButton_clicked();
 
 private:
-    void setTypesCB();
-    void setDateCB();
-    void setMemberCB();
-    void setExpirationMonthCB();
-    void setDropDownMenus();
-    void setMemberReceiptsTW(const Member& member);
+    void SetTypesCB();
+    void SetDateCB();
+    void SetMemberCB();
+    void SetExpirationMonthCB();
+    void SetDropDownMenus();
 
 private:
-    void noEdits(QTableWidget*);
-    void clearTable(QTableWidget*);
+    void NoEdits(QTableWidget*);
+    void ClearTable(QTableWidget*);
 
 private:
-    void setMembersTW(QTableWidget*, const int&, const std::vector<Member>&);
-    void setMemberTotalsTW();
+    void SetMembersTW(QTableWidget*, const int&, const std::vector<Member>&);
+    void SetMemberReceiptsTW(const Member& member);
+    void SetMemberTotalsTW();
 
 private:
-    void setItemsTW(QTableWidget*, const ItemList&, QLabel*);
-    void setItemTotalsTW();
+    void SetItemsTW(QTableWidget*, const ItemList&, QLabel*);
+    void SetItemTotalsTW();
 
 private:
-    std::vector<Member> membersShoppedByDate(const Date&);
-    std::vector<ItemList> salesListByDate(const Date&);
-    ItemList allItemsByType(const int&, const Date&);
+    std::vector<Member> MembersShoppedByDate(const Date&);
+    std::vector<ItemList> SalesListByDate(const Date&);
+    ItemList AllItemsByType(const int&, const Date&);
 
 
 private:
@@ -92,10 +86,6 @@ private:
     std::vector<Member> m_MemberList;
     std::vector<std::pair<Member, Receipt>> m_Sales;
     ItemList m_Inventory;
-
-
-
-
 };
 
 #endif // STOREMANAGERWINDOW_H

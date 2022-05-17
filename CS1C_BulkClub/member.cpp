@@ -1,9 +1,11 @@
 #include "member.h"
 
 //overloaded constructor
-Member::Member(const QString& name, const int& id, const bool& type, const Date& date) : m_Name(name), m_Number(id), m_Type(type), m_ExpirationDate(date), m_RunningTotal(65) {
-
-}
+Member::Member(const QString& name, const int& id, const bool& type, const Date& date) : m_Name(name),
+                                                                                         m_Number(id),
+                                                                                         m_Type(type),
+                                                                                         m_ExpirationDate(date),
+                                                                                         m_RunningTotal(65) { }
 
 
 

@@ -8,19 +8,15 @@ InventoryManager::InventoryManager(const QString& path) {
     m_Database.setDatabaseName(path);
 
     //check if database opened successfully
-    if(!m_Database.open()) {
-        qDebug() << "connection with database unsuccessful\n";
-    }
-    else {
-        qDebug() << "connection with database successful\n";
-    }
+    if(!m_Database.open()) { DEBUG << "connection with database unsuccessful\n"; }
+    else { DEBUG << "connection with database successful\n"; }
 }
 
 //destructor
 InventoryManager::~InventoryManager() {
     //close database
     m_Database.close();
-    qDebug() << "database connection closed\n";
+    DEBUG << "database connection closed\n";
 }
 
 
@@ -30,8 +26,8 @@ InventoryManager::~InventoryManager() {
 //initializes database with text file
 bool InventoryManager::InitializeInventoryDB() {
     if(Empty()) {
-        std::vector<Member> x;
-        m_FileParser.Read(x);
+        std::vector<Member> members;
+        m_FileParser.Read(members);
         ItemList inventory = m_FileParser.Inventory();
         for(const auto& item : inventory.itemList()) {
             AddItem(item);
@@ -85,9 +81,7 @@ size_t InventoryManager::ItemCount() const {
 }
 
 // empty
-bool InventoryManager::Empty() const {
-    return ItemCount() == 0;
-}
+bool InventoryManager::Empty() const { return ItemCount() == 0; }
 
 
 
@@ -111,11 +105,11 @@ bool InventoryManager::AddItem(const Item* item) {
 
     //check to see if item was added successfully
     if(query.exec()) {
-        qDebug().noquote().nospace() << name << " added successfully\n";
+        DEBUG.noquote().nospace() << name << " added successfully\n";
         return true;
     }
 
-    qDebug() << "could not add item";
+    DEBUG << "could not add item";
     return false;
 }
 
@@ -136,10 +130,11 @@ bool InventoryManager::UpdateItem(const Item& item) {
 
     //check to see if item was updated successfully
     if(query.exec()) {
-        qDebug().noquote().nospace() << name << " updated successfully\n";
+        DEBUG.noquote().nospace() << name << " updated successfully\n";
         return true;
     }
-    qDebug() << "could not update item";
+
+    DEBUG << "could not update item";
     return false;
 }
 
@@ -150,30 +145,25 @@ bool InventoryManager::DeleteItemByName(const QString& name) {
     query.prepare("DELETE FROM INVENTORY WHERE NAME = ?");
     query.addBindValue(name);
 
-    if(query.exec()) {
-        return true;
-    }
-    qDebug() << "could not delete item";
+    if(query.exec()) { return true; }
+
+    DEBUG << "could not delete item";
     return false;
 }
 
 //delete all item
-void InventoryManager::DeleteAllItems() {
-    QSqlQuery query("DELETE FROM INVENTORY");
-}
+void InventoryManager::DeleteAllItems() { QSqlQuery query("DELETE FROM INVENTORY"); }
 
 //for debug purposes
 void InventoryManager::PrintInventoryDB() const {
     QSqlQuery query("SELECT * FROM INVENTORY");
 
     while(query.next()) {
-        qDebug() << "item: ";
-        for(size_t i = 0; i < NUM_COLUMNS; i++) {
+        DEBUG << "item: ";
+        for(size_t i = 0; i < NUM_INVENTORY_COLUMNS; i++) {
             QString value = query.value(i).toString();
-
-            qDebug().noquote().nospace() << value;
         }
-        qDebug() << "";
+        DEBUG << "";
     }
 }
 

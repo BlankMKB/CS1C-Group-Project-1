@@ -17,7 +17,9 @@ ExecutiveMember::ExecutiveMember(const Member& member) : m_RebateAmount(0.02) {
 }
 
 //overloaded constructor
-ExecutiveMember::ExecutiveMember(const QString& name, const int& id, const bool& type, const Date& date) : Member(name, id, type, date), m_RebateAmount(0.02) { m_RunningTotal = 120; }
+ExecutiveMember::ExecutiveMember(const QString& name, const int& id, const bool& type, const Date& date) : Member(name, id, type, date),
+                                                                                                           m_RebateAmount(0.02)
+                                                                                                           { m_RunningTotal = 120; }
 
 //rebate amount
 float ExecutiveMember::RebateAmount() const { return m_RebateAmount; }
