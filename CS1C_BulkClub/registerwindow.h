@@ -5,23 +5,9 @@
 #include <QDialog>
 #include <qmessagebox.h>
 
-//define member path for different OS
-#if __APPLE__ && TARGET_OS_MAC
-    #define MEMBERS_PATH "../../../../CS1C_BulkClub/members.db"
-#elif __linux__
-    #define MEMBERS_PATH "../CS1C_BulkClub/members.db"
-#else
-    #define MEMBERS_PATH "..\\CS1C_BulkClub\\members.db"
-#endif
 
-//define sales path for different OS
-#if __APPLE__ && TARGET_OS_MAC
-    #define INVENTORY_PATH "../../../../CS1C_BulkClub/inventory.db"
-#elif __linux__
-    #define INVENTORY_PATH "../CS1C_BulkClub/inventory.db"
-#else
-    #define INVENTORY_PATH "..\\CS1C_BulkClub\\inventory.db"
- #endif
+#define USE_PATHS
+#include "paths.h"
 
 namespace Ui {
 class RegisterWindow;

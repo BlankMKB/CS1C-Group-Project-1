@@ -9,6 +9,9 @@
 #include <cmath>
 #include "member.h"
 #include "parser.h"
+
+#define USE_PATHS
+#include "paths.h"
 #define NUM_MEMBER_COLUMNS 6
 
 /*!

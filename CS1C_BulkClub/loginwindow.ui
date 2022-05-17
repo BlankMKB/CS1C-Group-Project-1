@@ -102,9 +102,9 @@ QLineEdit#password_textbox:hover {
   <widget class="QLabel" name="password_label">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>100</x>
      <y>140</y>
-     <width>101</width>
+     <width>121</width>
      <height>31</height>
     </rect>
    </property>
@@ -115,7 +115,7 @@ QLineEdit#password_textbox:hover {
 }</string>
    </property>
    <property name="text">
-    <string>Password:</string>
+    <string>ID/Password:</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

@@ -551,46 +551,6 @@ QPushButton#logout_button:hover{
      <property name="midLineWidth">
       <number>3</number>
      </property>
-     <widget class="QTableWidget" name="memberTotalsTW">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>30</y>
-        <width>551</width>
-        <height>251</height>
-       </rect>
-      </property>
-      <column>
-       <property name="text">
-        <string>Member Name</string>
-       </property>
-       <property name="font">
-        <font>
-         <bold>true</bold>
-        </font>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string notr="true">Membership Number</string>
-       </property>
-       <property name="font">
-        <font>
-         <bold>true</bold>
-        </font>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Member Type</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Running Total (with tax)</string>
-       </property>
-      </column>
-     </widget>
      <widget class="QLabel" name="grandTotalLabel">
       <property name="geometry">
        <rect>
@@ -603,6 +563,36 @@ QPushButton#logout_button:hover{
       <property name="text">
        <string>Grand Total (with tax):</string>
       </property>
+     </widget>
+     <widget class="QTableWidget" name="memberTotalsTW">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>30</y>
+        <width>611</width>
+        <height>251</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>name</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>number</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>type</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>total w/ tax</string>
+       </property>
+      </column>
      </widget>
     </widget>
     <widget class="QFrame" name="frame_12">
@@ -1074,6 +1064,60 @@ QPushButton#logout_button:hover{
        </property>
       </column>
      </widget>
+     <widget class="QLabel" name="memberReceiptTotalLabel">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>290</y>
+        <width>171</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Label</string>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="memberReceiptTW">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>20</y>
+        <width>341</width>
+        <height>271</height>
+       </rect>
+      </property>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Item Name</string>
+       </property>
+       <property name="font">
+        <font>
+         <bold>true</bold>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Item Quantity</string>
+       </property>
+       <property name="font">
+        <font>
+         <bold>true</bold>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Item Total</string>
+       </property>
+      </column>
+     </widget>
     </widget>
     <widget class="QFrame" name="frame_10">
      <property name="geometry">
@@ -1128,6 +1172,39 @@ QPushButton#logout_button:hover{
       <property name="text">
        <string>Sort by type: </string>
       </property>
+     </widget>
+     <widget class="QWidget" name="verticalLayoutWidget_9">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>0</y>
+        <width>201</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_11">
+       <item>
+        <widget class="QLabel" name="memberLabel_2">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Select Member: </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="memberReceiptCB">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>

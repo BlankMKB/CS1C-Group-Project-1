@@ -306,6 +306,8 @@ void AdministratorWindow::SetItemsCB() {
 }
 
 void AdministratorWindow::SetItemTotalsTW() {
+    m_Setting = true;
+
     m_pIdb = new InventoryManager(INVENTORY_PATH);
     //clear table
     ClearTable(this->ui->editItemsTW);
@@ -383,6 +385,8 @@ void AdministratorWindow::SetItemTotalsTW() {
 
     //resize column width to widest column
     this->ui->editItemsTW->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    m_Setting = false;
 }
 
 
@@ -433,35 +437,46 @@ void AdministratorWindow::on_deleteItemButton_clicked() {
 }
 
 void AdministratorWindow::on_editItemsTW_cellChanged(int row, int column) {
-    Item* p_Item = nullptr;
+    if(m_Setting) {
+        return;
+    }
+
+    Item* p_Item = nullptr, *p_NewItem = nullptr;
+
+    QString editedText = this->ui->editItemsTW->item(row, column)->text();
+    QString name = this->ui->editItemsTW->item(row, 0)->text();
+
     for(size_t i = 0; i < m_Inventory.size(); i++) {
-        if(m_Inventory[i]->Name() == this->ui->editItemsTW->item(row, 0)->text()) {
+        if((m_Inventory[i]->Name() == name)) {
             p_Item = m_Inventory[i];
             break;
         }
     }
 
-    QString editedText = this->ui->editItemsTW->item(row, column)->text();
+    if(!p_Item) {
+        return;
+    }
 
     switch(column) {
     case 0:
         p_Item->SetName(editedText);
-        break;
+        return;
     case 1:
         if(editedText.contains("$")) {
-            break;
+            return;
         }
         p_Item->SetPrice(editedText.toFloat());
+        p_Item->SetQuantity(0);
         break;
     case 2:
         if(editedText.contains("units")) {
-            break;
+            return;
         }
         p_Item->SetQuantity(editedText.toInt());
-        break;
+        return;
     default:
         if(editedText.contains("$")) {
-            break;
+            return;
         }
         return;
     }
@@ -481,4 +496,3 @@ void AdministratorWindow::on_updateItemsButton_clicked() {
 
     delete m_pIdb;
 }
-

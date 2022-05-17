@@ -9,6 +9,9 @@
 #include "dbmanager.h"
 #include "inventorymanager.h"
 
+#define USE_PATHS
+#include "paths.h"
+
 namespace Ui {
 class StoreManagerWindow;
 }
@@ -49,6 +52,8 @@ private slots:
 
     void on_memberResetButton_clicked();
 
+    void on_memberReceiptCB_currentIndexChanged(int index);
+
 private:
    Date parseDate(const QString&);
 
@@ -58,6 +63,7 @@ private:
     void setMemberCB();
     void setExpirationMonthCB();
     void setDropDownMenus();
+    void setMemberReceiptsTW(const Member& member);
 
 private:
     void noEdits(QTableWidget*);

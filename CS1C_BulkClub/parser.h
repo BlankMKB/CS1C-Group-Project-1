@@ -9,24 +9,10 @@
 #include <limits>
 #include <QFile>
 
+#define USE_PATHS
+#include "paths.h"
 
-//define member path for different OS
-#if __APPLE__ && TARGET_OS_MAC
-    #define MEMBER_PATH "../../../../CS1C_BulkClub/warehouse_shoppers.txt"
-#elif __linux__
-    #define MEMBER_PATH "../CS1C_BulkClub/warehouse_shoppers.txt"
-#else
-    #define MEMBER_PATH "..\\CS1C_BulkClub\\warehouse_shoppers.txt"
-#endif
 
-//define sales path for different OS
-#if __APPLE__ && TARGET_OS_MAC
-    #define SALES_PATH "../../../../CS1C_BulkClub/sales.txt"
-#elif __linux__
-    #define SALES_PATH "../CS1C_BulkClub/sales.txt"
-#else
-    #define SALES_PATH "..\\CS1C_BulkClub\\sales.txt"
-#endif
 
 /*!
  * \class Parser

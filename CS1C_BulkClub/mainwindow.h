@@ -6,6 +6,7 @@
 #include "storemanagerwindow.h"
 #include "registerwindow.h"
 #include "loginwindow.h"
+#include "memberwindow.h"
 
 QT_BEGIN_NAMESPACE
 

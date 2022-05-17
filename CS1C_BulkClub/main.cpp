@@ -31,9 +31,12 @@ int main(int argc, char *argv[])
 #endif
 
     DbManager* pDb = new DbManager(memberPath);
-    pDb->ResetWithTextFile();
+    //pDb->ResetWithTextFile();
+    pDb->InitializeMemberDB();
 
     InventoryManager* pIdb = new InventoryManager(inventoryPath);
-    pIdb->ResetWithTextFile();
+    //pIdb->ResetWithTextFile();
+    pIdb->InitializeInventoryDB();
+
     return a.exec();
 }

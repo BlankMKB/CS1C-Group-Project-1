@@ -6,6 +6,12 @@
 #include <QMessageBox>
 #include "administratorwindow.h"
 #include "storemanagerwindow.h"
+#include "memberwindow.h"
+
+
+
+#define USE_PATHS
+#include "paths.h"
 
 namespace Ui {
 class LoginWindow;
@@ -26,6 +32,7 @@ private:
     Ui::LoginWindow *ui;
     AdministratorWindow *adminWindow;  // Pointer to an instance of an AdmininstratorWindow class object.
     StoreManagerWindow *managerWindow; // Pointer to an instance of an StoreManagerWindow class object.
+    MemberWindow* m_MemberWindow;
 };
 
 #endif // LOGINWINDOW_H

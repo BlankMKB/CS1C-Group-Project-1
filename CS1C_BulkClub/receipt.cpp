@@ -12,9 +12,9 @@ bool Receipt::Empty() const { return m_Receipt.size() == 0; }
 //receipt by date
 ItemList Receipt::ReceiptByDay(const Date& key) {
     ItemList empty;
-    for(auto& x : m_Receipt) {
-        if(x.first == key) {
-            return x.second;
+    for(auto& [date, itemlist] : m_Receipt) {
+        if(date == key) {
+            return itemlist;
         }
     }
     return empty;

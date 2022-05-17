@@ -22,6 +22,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     member.cpp \
+    memberwindow.cpp \
     parser.cpp \
     receipt.cpp \
     registerwindow.cpp \
@@ -38,7 +39,9 @@ HEADERS += \
     loginwindow.h \
     mainwindow.h \
     member.h \
+    memberwindow.h \
     parser.h \
+    paths.h \
     receipt.h \
     registerwindow.h \
     storemanagerwindow.h
@@ -47,6 +50,7 @@ FORMS += \
     administratorwindow.ui \
     loginwindow.ui \
     mainwindow.ui \
+    memberwindow.ui \
     registerwindow.ui \
     storemanagerwindow.ui
 

@@ -101,17 +101,26 @@ void StoreManagerWindow::setTypesCB() {
 void StoreManagerWindow::setDateCB() {
     this->ui->dateByDayCB->clear();
     this->ui->dateByMemberCB->clear();
-    for(int i = 1; i < 8; i++) {
+    int size = salesListByDate(Date(5, 18, 2022)).empty() ? 7 : 8;
+    for(int i = 1; i < size; i++) {
         this->ui->dateByDayCB->addItem("4/" + QString::number(i) + "/2021");
         this->ui->dateByMemberCB->addItem("4/" + QString::number(i) + "/2021");
+
+    }
+
+    if(size == 8) {
+        this->ui->dateByDayCB->addItem("5/18/2022");
+        this->ui->dateByMemberCB->addItem("5/18/2022");
     }
 }
 
 void StoreManagerWindow::setMemberCB() {
     this->ui->memberInfoCB->clear();
+    this->ui->memberReceiptCB->clear();
 
     for(const auto& member : m_MemberList) {
         this->ui->memberInfoCB->addItem(member.Name());
+        this->ui->memberReceiptCB->addItem(member.Name());
     }
 }
 
@@ -441,7 +450,7 @@ void StoreManagerWindow::setItemsTW(QTableWidget* tableWidget, const ItemList& a
 
             // item price
             case 1:
-                itemPrice = QString::number(allItems[i]->Price());
+                itemPrice = "$" + QString::number(allItems[i]->Price(), 'f', 2);
                 item->setText(itemPrice);
                 break;
 
@@ -498,79 +507,18 @@ void StoreManagerWindow::setItemTotalsTW() {
     headerLabels.push_back("Item Total");
     this->ui->itemTotalsTW->setHorizontalHeaderLabels(headerLabels);
 
-    //grand total for all items
-    float total = 0;
-
     //local variable for m_Inventory to sort by item name
     ItemList inventory = m_Inventory;
 
     //sort by item name
     inventory.sort();
 
-    for(size_t i = 0; i < inventory.size(); i++) {
+    setItemsTW(this->ui->itemTotalsTW, inventory, this->ui->itemTotRevLabel);
 
-        //insert row
-        this->ui->itemTotalsTW->insertRow(i);
+    auto price = this->ui->itemTotRevLabel->text().split("$");
+    float total = price[1].toFloat() / (1 + SALES_TAX);
 
-        //temp name, price, quantity, total
-        QString itemName, itemPrice, itemQuantity, itemTotal;
-
-        //set item name, price, quantity, then total
-        for(int col = 0; col < 4; col++) {
-            //new item
-            QTableWidgetItem* item = new QTableWidgetItem;
-
-            /* switch case format:
-             * 0: item name
-             * 1: item price
-             * 2: item quantity
-             * 3: item total
-             */
-            switch(col) {
-            // item name
-            case 0:
-                itemName = inventory[i]->Name();
-                item->setText(itemName);
-                break;
-
-            // item price
-            case 1:
-                itemPrice = "$" + QString::number(inventory[i]->Price(), 'f', 2);
-                item->setText(itemPrice);
-                break;
-
-            // item quantity
-            case 2:
-                itemQuantity = QString::number(inventory[i]->Quantity());
-                item->setText(itemQuantity);
-                break;
-
-            // item total
-            case 3:
-                itemTotal = "$" + QString::number(inventory[i]->Quantity() * inventory[i]->Price(), 'f', 2);
-                item->setText(itemTotal);
-                total += (inventory[i]->Quantity() * inventory[i]->Price());
-            }
-
-            //align text
-            item->setTextAlignment(Qt::AlignCenter);
-
-            //add item to table
-            this->ui->itemTotalsTW->setItem(i, col, item);
-        }
-    }
-
-    //resize column width to widest column
-    this->ui->itemTotalsTW->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-
-    //clear total revenue label
-    this->ui->itemTotRevLabel->clear();
-
-    //set total revenue string
-    QString revenue = "Grand Total (without tax): $" + QString::number(total, 'f', 2);
-
-    //set revenue text to revenue label
-    this->ui->itemTotRevLabel->setText(revenue);
+    this->ui->itemTotRevLabel->setText("$" + QString::number(total, 'f', 2));
 }
 
 //sales report by date
@@ -746,10 +694,10 @@ std::vector<ItemList> StoreManagerWindow::salesListByDate(const Date& day) {
     std::vector<ItemList> salesReport;
 
     //for all <Member, Receipt> pairs
-    for(auto& x : m_Sales) {
+    for(auto& [member, receipt] : m_Sales) {
 
         //add all item lists by given day
-        salesReport.push_back(x.second.ReceiptByDay(day));
+        salesReport.push_back(receipt.ReceiptByDay(day));
     }
 
     return salesReport;
@@ -1193,3 +1141,30 @@ void StoreManagerWindow::on_memberResetButton_clicked() {
     this->ui->memberSearchLE->clear();
 }
 
+
+void StoreManagerWindow::on_memberReceiptCB_currentIndexChanged(int index) {
+    QString name = this->ui->memberReceiptCB->itemText(index);
+    Member currMember;
+
+    for(const auto& member : m_MemberList) {
+        if(member.Name() == name) {
+            currMember = member;
+            break;
+        }
+    }
+
+    setMemberReceiptsTW(currMember);
+}
+
+void StoreManagerWindow::setMemberReceiptsTW(const Member& member) {
+    std::vector<std::pair<Date, ItemList>> receipt = member.receipt().receipt();
+    ItemList allItems;
+
+    for(const auto& itemList : receipt) {
+        for(size_t i = 0; i < itemList.second.size(); i++) {
+            allItems.InsertInventory(itemList.second[i]);
+        }
+    }
+
+    setItemsTW(this->ui->memberReceiptTW, allItems, this->ui->memberReceiptTotalLabel);
+}
