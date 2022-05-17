@@ -15,7 +15,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog#AdministratorWindow{
-	background: #5a6166
+	background: black;
 }</string>
   </property>
   <widget class="QLabel" name="header_label">
@@ -32,7 +32,7 @@
 	font-size: 34px;
 	font-weight: bold;
 	text-decoration: overline underline;
-	color: #3d1a1a;
+	color: white;
 }</string>
    </property>
    <property name="text">
@@ -56,7 +56,7 @@
 	background: gray;
 	color: black;
 	font-size: 16px;
-	border:2px solid #000000;
+	border:2px solid #292d36;
 	border-radius: 5px;
 }
 
@@ -74,11 +74,16 @@ QPushButton#logout_button:hover{
      <x>10</x>
      <y>60</y>
      <width>781</width>
-     <height>491</height>
+     <height>481</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QTabWidget#restModifier {
+	background: black;
+}</string>
+   </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="uploadFile">
     <attribute name="icon">
@@ -96,6 +101,13 @@ QPushButton#logout_button:hover{
        <width>761</width>
        <height>421</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QFrame#frame_2 {
+	background: #333947;
+	border: 2px solid black;
+	border-radius: 3px;
+}</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -123,8 +135,15 @@ QPushButton#logout_button:hover{
         <widget class="QLabel" name="addMemberLabel">
          <property name="font">
           <font>
-           <pointsize>12</pointsize>
+           <pointsize>-1</pointsize>
+           <underline>true</underline>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel#addMemberLabel {
+	font-size:  18px;
+	text-decoration: underline;
+}</string>
          </property>
          <property name="text">
           <string>Add Member:</string>
@@ -158,10 +177,37 @@ QPushButton#logout_button:hover{
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="memberNameLE"/>
+          <widget class="QLineEdit" name="memberNameLE">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit#memberNameLE {
+	background: black;
+	color: white;
+	font-size: 12px;
+	border:1px solid #FFFFFF;
+	border-radius: 1px;
+}
+
+QLineEdit#memberNameLE:hover {
+	background: #202121;
+}</string>
+           </property>
+          </widget>
          </item>
          <item row="1" column="1">
           <widget class="QLineEdit" name="memberIDLE">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit#memberIDLE {
+	background: black;
+	color: white;
+	font-size: 12px;
+	border:1px solid #FFFFFF;
+	border-radius: 1px;
+}
+
+QLineEdit#memberIDLE:hover {
+	background: #202121;
+}</string>
+           </property>
            <property name="inputMethodHints">
             <set>Qt::ImhNone</set>
            </property>
@@ -182,10 +228,38 @@ QPushButton#logout_button:hover{
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QLineEdit" name="memberTypeLE"/>
+          <widget class="QLineEdit" name="memberTypeLE">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit#memberTypeLE {
+	background: black;
+	color: white;
+	font-size: 12px;
+	border:1px solid #FFFFFF;
+	border-radius: 1px;
+}
+
+QLineEdit#memberTypeLE:hover {
+	background: #202121;
+}</string>
+           </property>
+          </widget>
          </item>
          <item row="3" column="1">
-          <widget class="QLineEdit" name="memberExpirationLE"/>
+          <widget class="QLineEdit" name="memberExpirationLE">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit#memberExpirationLE {
+	background: black;
+	color: white;
+	font-size: 12px;
+	border:1px solid #FFFFFF;
+	border-radius: 1px;
+}
+
+QLineEdit#memberExpirationLE:hover {
+	background: #202121;
+}</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -193,8 +267,21 @@ QPushButton#logout_button:hover{
         <widget class="QPushButton" name="addMemberButton">
          <property name="font">
           <font>
-           <pointsize>12</pointsize>
+           <pointsize>-1</pointsize>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#addMemberButton {
+	background: #121d2b;
+	color: white;
+	font-size: 16px;
+	border:2px solid #FFFFFF;
+	border-radius: 5px;
+}
+
+QPushButton#addMemberButton:hover {
+	background: #374a63;
+}</string>
          </property>
          <property name="text">
           <string>Add</string>
@@ -214,8 +301,21 @@ QPushButton#logout_button:hover{
       </property>
       <property name="font">
        <font>
-        <pointsize>12</pointsize>
+        <pointsize>-1</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton#updateMembersButton {
+	background: #121d2b;
+	color: white;
+	font-size: 16px;
+	border:2px solid #FFFFFF;
+	border-radius: 5px;
+}
+
+QPushButton#updateMembersButton:hover {
+	background: #374a63;
+}</string>
       </property>
       <property name="text">
        <string>Update Members</string>
@@ -235,8 +335,15 @@ QPushButton#logout_button:hover{
         <widget class="QLabel" name="deleteMemberLabel">
          <property name="font">
           <font>
-           <pointsize>12</pointsize>
+           <pointsize>-1</pointsize>
+           <underline>true</underline>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel#deleteMemberLabel {
+	font-size:  18px;
+	text-decoration: underline;
+}</string>
          </property>
          <property name="text">
           <string>Delete Member:</string>
@@ -247,8 +354,21 @@ QPushButton#logout_button:hover{
         <widget class="QComboBox" name="deleteMemberCB">
          <property name="font">
           <font>
-           <pointsize>12</pointsize>
+           <pointsize>-1</pointsize>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox#deleteMemberCB {
+	background: black;
+	color: white;
+	font-size: 12px;
+	border:1px solid #FFFFFF;
+	border-radius: 1px;
+}
+
+QComboBox#deleteMemberCB:hover {
+	background: #202121;
+}</string>
          </property>
         </widget>
        </item>
@@ -256,8 +376,21 @@ QPushButton#logout_button:hover{
         <widget class="QPushButton" name="deleteMemberButton">
          <property name="font">
           <font>
-           <pointsize>12</pointsize>
+           <pointsize>-1</pointsize>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#deleteMemberButton {
+	background: #121d2b;
+	color: white;
+	font-size: 16px;
+	border:2px solid #FFFFFF;
+	border-radius: 5px;
+}
+
+QPushButton#deleteMemberButton:hover {
+	background: #374a63;
+}</string>
          </property>
          <property name="text">
           <string>Delete</string>
@@ -320,6 +453,13 @@ QPushButton#logout_button:hover{
        <height>421</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QFrame#frame {
+	background: #333947;
+	border: 2px solid black;
+	border-radius: 3px;
+}</string>
+     </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -346,8 +486,15 @@ QPushButton#logout_button:hover{
         <widget class="QLabel" name="addItemLabel">
          <property name="font">
           <font>
-           <pointsize>12</pointsize>
+           <pointsize>-1</pointsize>
+           <underline>true</underline>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel#addItemLabel {
+	font-size:  18px;
+	text-decoration: underline;
+}</string>
          </property>
          <property name="text">
           <string>Add Item:</string>
@@ -360,8 +507,13 @@ QPushButton#logout_button:hover{
           <widget class="QLabel" name="itemNameLabel">
            <property name="font">
             <font>
-             <pointsize>12</pointsize>
+             <pointsize>-1</pointsize>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel#itemNameLabel {
+	font-size:  14px;
+}</string>
            </property>
            <property name="text">
             <string>Item Name</string>
@@ -372,8 +524,21 @@ QPushButton#logout_button:hover{
           <widget class="QLineEdit" name="addItemNameLE">
            <property name="font">
             <font>
-             <pointsize>12</pointsize>
+             <pointsize>-1</pointsize>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit#addItemNameLE {
+	background: black;
+	color: white;
+	font-size: 12px;
+	border:1px solid #FFFFFF;
+	border-radius: 1px;
+}
+
+QLineEdit#addItemNameLE:hover {
+	background: #202121;
+}</string>
            </property>
           </widget>
          </item>
@@ -381,8 +546,13 @@ QPushButton#logout_button:hover{
           <widget class="QLabel" name="priceLabel">
            <property name="font">
             <font>
-             <pointsize>12</pointsize>
+             <pointsize>-1</pointsize>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel#priceLabel {
+	font-size:  14px;
+}</string>
            </property>
            <property name="text">
             <string>Price</string>
@@ -393,8 +563,21 @@ QPushButton#logout_button:hover{
           <widget class="QDoubleSpinBox" name="addItemPriceDSB">
            <property name="font">
             <font>
-             <pointsize>12</pointsize>
+             <pointsize>-1</pointsize>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QDoubleSpinBox#addItemPriceDSB {
+	background: black;
+	color: white;
+	font-size: 12px;
+	border:1px solid #FFFFFF;
+	border-radius: 1px;
+}
+
+QDoubleSpinBox#addItemPriceDSB:hover {
+	background: #202121;
+}</string>
            </property>
           </widget>
          </item>
@@ -404,8 +587,21 @@ QPushButton#logout_button:hover{
         <widget class="QPushButton" name="addItemButton">
          <property name="font">
           <font>
-           <pointsize>12</pointsize>
+           <pointsize>-1</pointsize>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#addItemButton {
+	background: #121d2b;
+	color: white;
+	font-size: 16px;
+	border:2px solid #FFFFFF;
+	border-radius: 5px;
+}
+
+QPushButton#addItemButton:hover {
+	background: #374a63;
+}</string>
          </property>
          <property name="text">
           <string>Add</string>
@@ -425,8 +621,21 @@ QPushButton#logout_button:hover{
       </property>
       <property name="font">
        <font>
-        <pointsize>12</pointsize>
+        <pointsize>-1</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton#updateItemsButton {
+	background: #121d2b;
+	color: white;
+	font-size: 16px;
+	border:2px solid #FFFFFF;
+	border-radius: 5px;
+}
+
+QPushButton#updateItemsButton:hover {
+	background: #374a63;
+}</string>
       </property>
       <property name="text">
        <string>Update Items</string>
@@ -446,8 +655,15 @@ QPushButton#logout_button:hover{
         <widget class="QLabel" name="deleteItemsLabel">
          <property name="font">
           <font>
-           <pointsize>12</pointsize>
+           <pointsize>-1</pointsize>
+           <underline>true</underline>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel#deleteItemsLabel {
+	font-size:  18px;
+	text-decoration: underline;
+}</string>
          </property>
          <property name="text">
           <string>Delete Item:</string>
@@ -458,8 +674,21 @@ QPushButton#logout_button:hover{
         <widget class="QComboBox" name="deleteItemCB">
          <property name="font">
           <font>
-           <pointsize>12</pointsize>
+           <pointsize>-1</pointsize>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox#deleteItemCB {
+	background: black;
+	color: white;
+	font-size: 12px;
+	border:1px solid #FFFFFF;
+	border-radius: 1px;
+}
+
+QComboBox#deleteItemCB:hover {
+	background: #202121;
+}</string>
          </property>
         </widget>
        </item>
@@ -467,8 +696,21 @@ QPushButton#logout_button:hover{
         <widget class="QPushButton" name="deleteItemButton">
          <property name="font">
           <font>
-           <pointsize>12</pointsize>
+           <pointsize>-1</pointsize>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#deleteItemButton {
+	background: #121d2b;
+	color: white;
+	font-size: 16px;
+	border:2px solid #FFFFFF;
+	border-radius: 5px;
+}
+
+QPushButton#deleteItemButton:hover {
+	background: #374a63;
+}</string>
          </property>
          <property name="text">
           <string>Delete</string>
@@ -485,6 +727,9 @@ QPushButton#logout_button:hover{
         <width>441</width>
         <height>271</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
       </property>
       <column>
        <property name="text">
@@ -568,6 +813,12 @@ QPushButton#logout_button:hover{
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel#label {
+	font-size: 14px;
+	text-decoration: underline;
+}</string>
+     </property>
      <property name="text">
       <string>Suggested Regular To Executive Conversions</string>
      </property>
@@ -580,6 +831,12 @@ QPushButton#logout_button:hover{
        <width>311</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel#label_2 {
+	font-size: 14px;
+	text-decoration: underline;
+}</string>
      </property>
      <property name="text">
       <string>Suggested Executive To Regular Conversions</string>
