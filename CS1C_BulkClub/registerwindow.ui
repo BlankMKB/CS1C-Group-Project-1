@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QLabel#password_label {
+    <string notr="true">QLabel#idLabel {
 	color: white;
 	font-size: 20px;
 }</string>
@@ -46,7 +46,6 @@
    </property>
    <property name="font">
     <font>
-     <family>Arial Narrow</family>
      <pointsize>32</pointsize>
      <bold>true</bold>
     </font>
@@ -78,7 +77,7 @@
     <enum>Qt::ClickFocus</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">QLineEdit#password_textbox {
+    <string notr="true">QLineEdit#idLE {
 	color: white;
 	background: black;
 	font-family: arial;
@@ -87,7 +86,7 @@
 	border-radius: 2px;
 }
 
-QLineEdit#password_textbox:hover {
+QLineEdit#idLE:hover {
 	background: #191b1c;
 	border: 2px solid white;
 }</string>
@@ -112,7 +111,7 @@ QLineEdit#password_textbox:hover {
     <enum>Qt::ClickFocus</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">QComboBox#user_type_combo{
+    <string notr="true">QComboBox#typeCB{
 	color: white;
 	font-family: arial;
 	background: pale;
@@ -120,7 +119,7 @@ QLineEdit#password_textbox:hover {
 	border-radius: 2px;
 }
 
-QComboBox#user_type_combo:hover {
+QComboBox#typeCB:hover {
 	background: #191b1c;
 	border: 2px solid white;
 }</string>
@@ -146,7 +145,7 @@ QComboBox#user_type_combo:hover {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QLabel#username_label {
+    <string notr="true">QLabel#nameLabel {
 	font-size: 20px;
 	color: white;
 }</string>
@@ -161,17 +160,17 @@ QComboBox#user_type_combo:hover {
   <widget class="QPushButton" name="registerButton">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>270</y>
-     <width>131</width>
-     <height>31</height>
+     <x>280</x>
+     <y>250</y>
+     <width>171</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="focusPolicy">
     <enum>Qt::ClickFocus</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">QPushButton#login_button{
+    <string notr="true">QPushButton#registerButton{
 	background: gray;
 	color: black;
 	font-size: 16px;
@@ -179,7 +178,7 @@ QComboBox#user_type_combo:hover {
 	border-radius: 5px;
 }
 
-QPushButton#login_button:hover{
+QPushButton#registerButton:hover{
 	background: #b2b9bf;
 }</string>
    </property>
@@ -200,7 +199,7 @@ QPushButton#login_button:hover{
     <enum>Qt::ClickFocus</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">QLineEdit#username_textbox {
+    <string notr="true">QLineEdit#nameLE {
 	color: white;
 	background: black;
 	font-family: arial;
@@ -209,7 +208,7 @@ QPushButton#login_button:hover{
 	border-radius: 2px;
 }
 
-QLineEdit#username_textbox:hover {
+QLineEdit#nameLE:hover {
 	background: #191b1c;
 	border: 2px solid white;
 }</string>
@@ -225,7 +224,7 @@ QLineEdit#username_textbox:hover {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QLabel#user_type_label {
+    <string notr="true">QLabel#typeLabel {
 	font-size: 18px;
 	color: white;
 }</string>
@@ -247,7 +246,7 @@ QLineEdit#username_textbox:hover {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QLabel#confirm_password_label {
+    <string notr="true">QLabel#dateLabel {
 	color: white;
 	font-size: 20px;
 }</string>
@@ -272,7 +271,7 @@ QLineEdit#username_textbox:hover {
     <enum>Qt::ClickFocus</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">QLineEdit#confirm_password_textbox {
+    <string notr="true">QLineEdit#dateLE {
 	color: white;
 	background: black;
 	font-family: arial;
@@ -281,7 +280,7 @@ QLineEdit#username_textbox:hover {
 	border-radius: 2px;
 }
 
-QLineEdit#confirm_password_textbox:hover {
+QLineEdit#dateLE:hover {
 	background: #191b1c;
 	border: 2px solid white;
 }</string>

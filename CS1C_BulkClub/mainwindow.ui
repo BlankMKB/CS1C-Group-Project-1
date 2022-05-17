@@ -15,7 +15,31 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow {
-	background: #485e6e;
+	background: #273038;
+}
+
+QPushButton#loginButton{
+	background: gray;
+	color: black;
+	font-size: 16px;
+	border:2px solid #000000;
+	border-radius: 5px;
+}
+
+QPushButton#loginButton:hover{
+	background: #b2b9bf;
+}
+
+QPushButton#registerButton{
+	background: gray;
+	color: black;
+	font-size: 16px;
+	border:2px solid #000000;
+	border-radius: 5px;
+}
+
+QPushButton#registerButton:hover{
+	background: #b2b9bf;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
