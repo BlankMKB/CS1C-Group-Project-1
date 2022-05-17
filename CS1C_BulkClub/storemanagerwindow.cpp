@@ -314,6 +314,7 @@ void StoreManagerWindow::setMemberTotalsTW() {
     QStringList headerLabels;
     headerLabels.push_back("Member Name");
     headerLabels.push_back("Membership Number");
+    headerLabels.push_back("Membership Type");
     headerLabels.push_back("Running Total (with tax)");
     this->ui->memberTotalsTW->setHorizontalHeaderLabels(headerLabels);
 
@@ -337,14 +338,15 @@ void StoreManagerWindow::setMemberTotalsTW() {
         float totalWTax = 0;
 
         //set member name, id, then total
-        for(int col = 0; col < 3; col++) {
+        for(int col = 0; col < 4; col++) {
             //new member
             QTableWidgetItem* member = new QTableWidgetItem;
 
             /* switch case format:
              * 0: member name
              * 1: member id
-             * 2: member total (with tax)
+             * 2: member type
+             * 3: member total (with tax)
              */
             switch(col) {
             // member name
@@ -359,8 +361,12 @@ void StoreManagerWindow::setMemberTotalsTW() {
                 member->setText(memberId);
                 break;
 
-            // member total (with tax)
             case 2:
+                member->setText(allMembers[i].Type() ? "Executive" : "Regular");
+                break;
+
+            // member total (with tax)
+            case 3:
                 totalWTax = allMembers[i].RunningTotal() + (allMembers[i].RunningTotal() * SALES_TAX);
                 memberTotal = "$" + QString::number(totalWTax, 'f', 2);
                 member->setText(memberTotal);
@@ -565,7 +571,6 @@ void StoreManagerWindow::setItemTotalsTW() {
 
     //set revenue text to revenue label
     this->ui->itemTotRevLabel->setText(revenue);
-
 }
 
 //sales report by date

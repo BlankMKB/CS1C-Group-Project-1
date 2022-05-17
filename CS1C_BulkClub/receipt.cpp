@@ -1,29 +1,13 @@
 #include "receipt.h"
 
-//default constructor
-Receipt::Receipt() {
-
-}
-
-//destructor
-Receipt::~Receipt() {
-
-}
-
 //receipt
-std::vector<std::pair<Date, ItemList>> Receipt::receipt() const {
-    return m_Receipt;
-}
+std::vector<std::pair<Date, ItemList>> Receipt::receipt() const { return m_Receipt; }
 
 //size
-size_t Receipt::size() const {
-    return m_Receipt.size();
-}
+size_t Receipt::size() const { return m_Receipt.size(); }
 
 //empty
-bool Receipt::Empty() const {
-    return m_Receipt.size() == 0;
-}
+bool Receipt::Empty() const { return m_Receipt.size() == 0; }
 
 //receipt by date
 ItemList Receipt::ReceiptByDay(const Date& key) {
@@ -34,25 +18,6 @@ ItemList Receipt::ReceiptByDay(const Date& key) {
         }
     }
     return empty;
-}
-
-//add item
-bool Receipt::Add(const Date& day, Item* item) {
-    //for each element in receip
-    for(auto& x : m_Receipt) {
-        //add to date
-        if(x.first == day) {
-            x.second.Insert(item);
-            //not a new day
-            return false;
-        }
-    }
-    //else make a new item list with a new date and push it back to receipt
-    ItemList temp;
-    temp.Insert(item);
-    m_Receipt.push_back(std::make_pair(day, temp));
-
-    return true;
 }
 
 //receipt string
@@ -78,4 +43,27 @@ QString Receipt::ReceiptString() const {
     }
 
     return str;
+}
+
+
+
+
+
+//add item
+bool Receipt::Add(const Date& day, Item* item) {
+    //for each element in receip
+    for(auto& x : m_Receipt) {
+        //add to date
+        if(x.first == day) {
+            x.second.Insert(item);
+            //not a new day
+            return false;
+        }
+    }
+    //else make a new item list with a new date and push it back to receipt
+    ItemList temp;
+    temp.Insert(item);
+    m_Receipt.push_back(std::make_pair(day, temp));
+
+    return true;
 }

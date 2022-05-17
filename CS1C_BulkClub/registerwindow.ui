@@ -13,12 +13,12 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="password_label">
+  <widget class="QLabel" name="idLabel">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>30</x>
      <y>130</y>
-     <width>101</width>
+     <width>201</width>
      <height>31</height>
     </rect>
    </property>
@@ -29,39 +29,10 @@
 }</string>
    </property>
    <property name="text">
-    <string>Password:</string>
+    <string>Member ID(password):</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="information_button">
-   <property name="geometry">
-    <rect>
-     <x>250</x>
-     <y>310</y>
-     <width>201</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::ClickFocus</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton#information_button{
-	background: gray;
-	color: black;
-	font-size: 16px;
-	border:2px solid #000000;
-	border-radius: 5px;
-}
-
-QPushButton#information_button:hover{
-	background: #b2b9bf;
-}</string>
-   </property>
-   <property name="text">
-    <string>Read Terms and Conditions</string>
    </property>
   </widget>
   <widget class="QLabel" name="header_label">
@@ -75,6 +46,7 @@ QPushButton#information_button:hover{
    </property>
    <property name="font">
     <font>
+     <family>Arial Narrow</family>
      <pointsize>32</pointsize>
      <bold>true</bold>
     </font>
@@ -93,7 +65,7 @@ QPushButton#information_button:hover{
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLineEdit" name="password_textbox">
+  <widget class="QLineEdit" name="idLE">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -124,10 +96,10 @@ QLineEdit#password_textbox:hover {
     <string/>
    </property>
    <property name="echoMode">
-    <enum>QLineEdit::Password</enum>
+    <enum>QLineEdit::Normal</enum>
    </property>
   </widget>
-  <widget class="QComboBox" name="user_type_combo">
+  <widget class="QComboBox" name="typeCB">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -155,21 +127,16 @@ QComboBox#user_type_combo:hover {
    </property>
    <item>
     <property name="text">
-     <string>None Selected</string>
+     <string>Executive</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Administrator</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Store Manager</string>
+     <string>Regular</string>
     </property>
    </item>
   </widget>
-  <widget class="QLabel" name="username_label">
+  <widget class="QLabel" name="nameLabel">
    <property name="geometry">
     <rect>
      <x>130</x>
@@ -191,7 +158,7 @@ QComboBox#user_type_combo:hover {
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="login_button">
+  <widget class="QPushButton" name="registerButton">
    <property name="geometry">
     <rect>
      <x>320</x>
@@ -220,7 +187,7 @@ QPushButton#login_button:hover{
     <string>Register Now</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="username_textbox">
+  <widget class="QLineEdit" name="nameLE">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -248,7 +215,7 @@ QLineEdit#username_textbox:hover {
 }</string>
    </property>
   </widget>
-  <widget class="QLabel" name="user_type_label">
+  <widget class="QLabel" name="typeLabel">
    <property name="geometry">
     <rect>
      <x>120</x>
@@ -270,12 +237,12 @@ QLineEdit#username_textbox:hover {
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="confirm_password_label">
+  <widget class="QLabel" name="dateLabel">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>30</x>
      <y>170</y>
-     <width>181</width>
+     <width>201</width>
      <height>31</height>
     </rect>
    </property>
@@ -286,13 +253,13 @@ QLineEdit#username_textbox:hover {
 }</string>
    </property>
    <property name="text">
-    <string>Confirm Password:</string>
+    <string>Date (MM/DD/YYYY):</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
-  <widget class="QLineEdit" name="confirm_password_textbox">
+  <widget class="QLineEdit" name="dateLE">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -323,7 +290,7 @@ QLineEdit#confirm_password_textbox:hover {
     <string/>
    </property>
    <property name="echoMode">
-    <enum>QLineEdit::Password</enum>
+    <enum>QLineEdit::Normal</enum>
    </property>
   </widget>
  </widget>

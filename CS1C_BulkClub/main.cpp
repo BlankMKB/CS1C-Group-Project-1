@@ -22,8 +22,18 @@ int main(int argc, char *argv[])
     memberPath = "..\\CS1C_BulkClub\\members.db";
 #endif
 
+#if __APPLE__ && TARGET_OS_MAC
+    inventoryPath = "../../../../CS1C_BulkClub/inventory.db";
+#elif __linux__
+    inventoryPath = "../CS1C_BulkClub/inventory.db";
+#else
+    inventoryPath = "..\\CS1C_BulkClub\\inventory.db";
+#endif
+
     DbManager* pDb = new DbManager(memberPath);
     pDb->ResetWithTextFile();
 
+    InventoryManager* pIdb = new InventoryManager(inventoryPath);
+    pIdb->ResetWithTextFile();
     return a.exec();
 }

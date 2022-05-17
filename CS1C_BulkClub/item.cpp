@@ -1,21 +1,20 @@
 #include "item.h"
 
-//default constructor
-Item::Item() : m_Name(""), m_Price(0), m_Quantity(0) {
-
-}
-
-//copy constructor
-Item::Item(const Item& other) {
-    m_Name = other.Name();
-    m_Price = other.Price();
-    m_Quantity = other.Quantity();
-}
-
 //overloaded constructor
 Item::Item(const QString& name, const float& price, const int& quantity) : m_Name(name), m_Price(price), m_Quantity(quantity) {
 
 }
+
+//copy constructor
+Item::Item(const Item* other) {
+    m_Name = other->Name();
+    m_Price = other->Price();
+    m_Quantity = other->Quantity();
+}
+
+
+
+
 
 //name
 QString Item::Name() const {
@@ -31,6 +30,11 @@ float Item::Price() const {
 int Item::Quantity() const {
     return m_Quantity;
 }
+
+
+
+
+
 
 //set name
 void Item::SetName(const QString& name) {

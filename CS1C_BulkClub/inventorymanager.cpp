@@ -1,29 +1,5 @@
 #include "inventorymanager.h"
 
-//==========================================PRIVATE MEMBER FUNCTIONS==========================================
-
-Item InventoryManager::ItemFromRecord(const QSqlRecord& record) const {
-    //assign item information from SQL
-    const QString name = record.value("NAME").toString();
-    const float price = record.value("PRICE").toFloat();
-    const int quantity = record.value("QUANTITY").toInt();
-
-    Item item(name, price, quantity);
-
-    return item;
-}
-
-//empty
-bool InventoryManager::Empty() const {
-    return ItemCount() == 0;
-}
-
-
-//=============================================================================================================
-
-
-//===========================================PUBLIC MEMBER FUNCTIONS===========================================
-
 //constructor
 InventoryManager::InventoryManager(const QString& path) {
     //add database to QT
@@ -46,6 +22,10 @@ InventoryManager::~InventoryManager() {
     m_Database.close();
     qDebug() << "database connection closed\n";
 }
+
+
+
+
 
 //initializes database with text file
 bool InventoryManager::InitializeInventoryDB() {
@@ -92,10 +72,10 @@ ItemList InventoryManager::AllItems() const {
 }
 
 //return item count
-unsigned InventoryManager::ItemCount() const {
+size_t InventoryManager::ItemCount() const {
     QSqlQuery query("SELECT * FROM INVENTORY");
 
-    unsigned count = 0;
+    size_t count = 0;
 
     if(query.last()) {
         count = query.at() + 1;
@@ -103,6 +83,15 @@ unsigned InventoryManager::ItemCount() const {
 
     return count;
 }
+
+// empty
+bool InventoryManager::Empty() const {
+    return ItemCount() == 0;
+}
+
+
+
+
 
 //add item to database
 bool InventoryManager::AddItem(const Item* item) {
@@ -158,7 +147,7 @@ bool InventoryManager::UpdateItem(const Item& item) {
 bool InventoryManager::DeleteItemByName(const QString& name) {
     QSqlQuery query;
 
-    query.prepare("DELETE FROM INVENTORY WHERE ID = ?");
+    query.prepare("DELETE FROM INVENTORY WHERE NAME = ?");
     query.addBindValue(name);
 
     if(query.exec()) {
@@ -188,4 +177,29 @@ void InventoryManager::PrintInventoryDB() const {
     }
 }
 
-//=============================================================================================================
+
+
+
+
+// reset with text file
+void InventoryManager::ResetWithTextFile() {
+    DeleteAllItems();
+    InitializeInventoryDB();
+}
+
+
+
+
+
+
+// item from record
+Item InventoryManager::ItemFromRecord(const QSqlRecord& record) const {
+    //assign item information from SQL
+    const QString name = record.value("NAME").toString();
+    const float price = record.value("PRICE").toFloat();
+    const int quantity = record.value("QUANTITY").toInt();
+
+    Item item(name, price, quantity);
+
+    return item;
+}

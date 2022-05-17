@@ -24,6 +24,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Arial Narrow</family>
      <pointsize>32</pointsize>
      <bold>true</bold>
     </font>
@@ -40,62 +41,6 @@
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="QLabel" name="access_date">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>180</y>
-     <width>111</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>-1</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QLabel#access_date{
-	font-size: 18px;
-	color: white;
-}</string>
-   </property>
-   <property name="text">
-    <string>Access Date:</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="information_button">
-   <property name="geometry">
-    <rect>
-     <x>240</x>
-     <y>320</y>
-     <width>201</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::ClickFocus</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton#information_button{
-	background: gray;
-	color: black;
-	font-size: 16px;
-	border:2px solid #000000;
-	border-radius: 5px;
-}
-
-QPushButton#information_button:hover{
-	background: #b2b9bf;
-}</string>
-   </property>
-   <property name="text">
-    <string>Read Terms and Conditions</string>
    </property>
   </widget>
   <widget class="QLabel" name="username_label">
@@ -180,7 +125,7 @@ QLineEdit#password_textbox:hover {
    <property name="geometry">
     <rect>
      <x>110</x>
-     <y>220</y>
+     <y>190</y>
      <width>111</width>
      <height>21</height>
     </rect>
@@ -202,7 +147,7 @@ QLineEdit#password_textbox:hover {
    <property name="geometry">
     <rect>
      <x>310</x>
-     <y>280</y>
+     <y>250</y>
      <width>131</width>
      <height>31</height>
     </rect>
@@ -259,7 +204,7 @@ QLineEdit#username_textbox:hover {
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>220</y>
+     <y>190</y>
      <width>211</width>
      <height>31</height>
     </rect>
@@ -283,7 +228,7 @@ QComboBox#user_type_combo:hover {
    </property>
    <item>
     <property name="text">
-     <string>None Selected</string>
+     <string>Member</string>
     </property>
    </item>
    <item>
@@ -296,31 +241,6 @@ QComboBox#user_type_combo:hover {
      <string>Store Manager</string>
     </property>
    </item>
-  </widget>
-  <widget class="QDateTimeEdit" name="date_edit">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>180</y>
-     <width>211</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::ClickFocus</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QDateTimeEdit#date_edit{
-	color: white;
-	background: black;
-	font-family: arial;
-}
-
-QDateTimeEdit#date_edit:hover{
-	background: #191b1c;
-}
-</string>
-   </property>
   </widget>
  </widget>
  <resources/>
