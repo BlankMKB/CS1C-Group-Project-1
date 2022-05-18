@@ -53,7 +53,7 @@
    </property>
    <property name="styleSheet">
     <string notr="true">QLabel#username_label {
-	font-size: 20px;
+	font-size: 17px;
 	color: white;
 }</string>
    </property>
@@ -110,7 +110,7 @@ QLineEdit#password_textbox:hover {
    <property name="styleSheet">
     <string notr="true">QLabel#password_label {
 	color: white;
-	font-size: 20px;
+	font-size: 17px;
 }</string>
    </property>
    <property name="text">
@@ -131,7 +131,7 @@ QLineEdit#password_textbox:hover {
    </property>
    <property name="styleSheet">
     <string notr="true">QLabel#user_type_label {
-	font-size: 18px;
+	font-size: 17px;
 	color: white;
 }</string>
    </property>

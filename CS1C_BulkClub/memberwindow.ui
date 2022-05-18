@@ -13,6 +13,11 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog#MemberWindow {
+	background: #333947
+}</string>
+  </property>
   <widget class="QWidget" name="verticalLayoutWidget_2">
    <property name="geometry">
     <rect>
@@ -27,8 +32,15 @@
      <widget class="QLabel" name="addToCartLabel">
       <property name="font">
        <font>
-        <pointsize>12</pointsize>
+        <pointsize>-1</pointsize>
+        <underline>true</underline>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel#addToCartLabel {
+	font-size: 16px;
+	text-decoration: underline;
+}</string>
       </property>
       <property name="text">
        <string>Purchase Item:</string>
@@ -39,20 +51,58 @@
      <widget class="QComboBox" name="cartItemCB">
       <property name="font">
        <font>
-        <pointsize>12</pointsize>
+        <pointsize>-1</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox#cartItemCB {
+	background: black;
+	color: white;
+	font-size: 12px;
+	border:1px solid #FFFFFF;
+	border-radius: 1px;
+}
+
+QComboBox#cartItemCB:hover {
+	background: #202121;
+}</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QSpinBox" name="quantitySB"/>
+     <widget class="QSpinBox" name="quantitySB">
+      <property name="styleSheet">
+       <string notr="true">QSpinBox#quantitySB {
+	background: black;
+	color: white;
+	font-size: 12px;
+}
+
+QSpinBox#quantitySB:hover {
+	background: #202121;
+}</string>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QPushButton" name="addToCartButton">
       <property name="font">
        <font>
-        <pointsize>12</pointsize>
+        <pointsize>-1</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton#addToCartButton {
+	background: #121d2b;
+	color: white;
+	font-size: 16px;
+	border:2px solid #FFFFFF;
+	border-radius: 5px;
+}
+
+QPushButton#addToCartButton:hover {
+	background: #374a63;
+}</string>
       </property>
       <property name="text">
        <string>Add to Cart</string>
@@ -99,6 +149,19 @@
      <width>100</width>
      <height>32</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#purchaseButton {
+	background: #121d2b;
+	color: white;
+	font-size: 16px;
+	border:2px solid #FFFFFF;
+	border-radius: 5px;
+}
+
+QPushButton#purchaseButton:hover {
+	background: #374a63;
+}</string>
    </property>
    <property name="text">
     <string>Purchase</string>
