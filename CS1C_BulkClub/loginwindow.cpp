@@ -57,7 +57,7 @@ void LoginWindow::MemberLogin() {
     auto memberList = p_Db->AllMembers();
 
     for(auto& member : memberList) {
-        if(member.Name() == name && member.Id() == id.toInt()) {
+        if(member.Name().toUpper() == name.toUpper() && member.Id() == id.toInt()) {
             p_Member = &member;
         }
     }

@@ -16,6 +16,7 @@ AdministratorWindow::AdministratorWindow(QWidget *parent) :
     this->parent = this->parentWidget();
 
     this->ui->memberIDLE->setValidator( new QIntValidator(0, 10000000, this) );
+    this->ui->addItemPriceDSB->setMaximum(static_cast<float>(INT_MAX));
 
 
     m_pDb = new DbManager(MEMBERS_PATH);
@@ -526,12 +527,17 @@ void AdministratorWindow::on_resetButton_clicked() {
 
     m_pDb = new DbManager(MEMBERS_PATH);
     m_pDb->ResetWithTextFile();
+    m_MemberList = m_pDb->AllMembers();
     delete m_pDb;
 
     m_pIdb = new InventoryManager(INVENTORY_PATH);
     m_pIdb->ResetWithTextFile();
+    m_Inventory = m_pIdb->AllItems();
     delete m_pIdb;
 
     UpdateAll();
+
+    QMessageBox::information(this, "Info", "Successfully reset database!");
+    return;
 }
 

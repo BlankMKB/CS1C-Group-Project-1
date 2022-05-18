@@ -59,22 +59,22 @@ private:
     void SetDropDownMenus();
 
 private:
-    void NoEdits(QTableWidget*);
-    void ClearTable(QTableWidget*);
+    void NoEdits(QTableWidget* tableWidget);
+    void ClearTable(QTableWidget* tableWidget);
 
 private:
-    void SetMembersTW(QTableWidget*, const int&, const std::vector<Member>&);
+    void SetMembersTW(QTableWidget*, const int&, const std::vector<Member>& members);
     void SetMemberReceiptsTW(const Member& member);
     void SetMemberTotalsTW();
 
 private:
-    void SetItemsTW(QTableWidget*, const ItemList&, QLabel*);
+    void SetItemsTW(QTableWidget* tableWidget, const ItemList& allItems, QLabel* revenueLabel);
     void SetItemTotalsTW();
 
 private:
-    std::vector<Member> MembersShoppedByDate(const Date&);
-    std::vector<ItemList> SalesListByDate(const Date&);
-    ItemList AllItemsByType(const int&, const Date&);
+    std::vector<Member> MembersShoppedByDate(const Date& day);
+    std::vector<ItemList> SalesListByDate(const Date& day);
+    ItemList AllItemsByType(const int& type, const Date& day);
 
 
 private:

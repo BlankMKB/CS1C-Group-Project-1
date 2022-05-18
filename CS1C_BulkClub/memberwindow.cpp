@@ -14,6 +14,9 @@ MemberWindow::MemberWindow(QWidget *parent, Member* member) : QDialog(parent),
     SetItemCB();
     SetHeaderLabels();
     this->ui->cartTotalLabel->hide();
+    this->ui->quantitySB->setMaximum(INT_MAX);
+
+    this->ui->nameLabel->setText("Hello, " + member->Name());
 }
 
 MemberWindow::~MemberWindow() { delete ui; }
@@ -51,6 +54,25 @@ void MemberWindow::on_purchaseButton_clicked() {
 
     ClearTable(this->ui->cartTW);
     this->ui->cartTotalLabel->hide();
+
+    QMessageBox::information(this, "Info", "Successfully purchased items!");
+    return;
+}
+
+void MemberWindow::on_logout_button_clicked() { close(); }
+
+
+
+
+
+void MemberWindow::SetHeaderLabels() {
+    //assign header labels
+    QStringList headerLabels;
+    headerLabels.push_back("Item Name");
+    headerLabels.push_back("Item Price");
+    headerLabels.push_back("Item Quantity");
+    headerLabels.push_back("Item Total");
+    this->ui->cartTW->setHorizontalHeaderLabels(headerLabels);
 }
 
 void MemberWindow::SetItemCB() {
@@ -58,6 +80,16 @@ void MemberWindow::SetItemCB() {
     for(size_t i = 0; i < m_Inventory.size(); i++) {
         this->ui->cartItemCB->addItem(m_Inventory[i]->Name());
     }
+}
+
+void MemberWindow::ClearTable(QTableWidget* tableWidget) {
+    tableWidget->clear();
+    int count = tableWidget->rowCount();
+    while(count > 0) {
+        tableWidget->removeRow(0);
+        count = tableWidget->rowCount();
+    }
+    SetHeaderLabels();
 }
 
 void MemberWindow::AddToCart(const QString& itemName, const int& itemQuantity) {
@@ -155,22 +187,4 @@ void MemberWindow::AddToCart(const QString& itemName, const int& itemQuantity) {
     this->ui->cartTotalLabel->show();
 }
 
-void MemberWindow::SetHeaderLabels() {
-    //assign header labels
-    QStringList headerLabels;
-    headerLabels.push_back("Item Name");
-    headerLabels.push_back("Item Price");
-    headerLabels.push_back("Item Quantity");
-    headerLabels.push_back("Item Total");
-    this->ui->cartTW->setHorizontalHeaderLabels(headerLabels);
-}
 
-void MemberWindow::ClearTable(QTableWidget* tableWidget) {
-    tableWidget->clear();
-    int count = tableWidget->rowCount();
-    while(count > 0) {
-        tableWidget->removeRow(0);
-        count = tableWidget->rowCount();
-    }
-    SetHeaderLabels();
-}

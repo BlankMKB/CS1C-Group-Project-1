@@ -37,7 +37,8 @@ void RegisterWindow::on_registerButton_clicked() {
     delete p_Db;
     delete p_Member;
 
-    QMessageBox::information(this, "Success", "You may now log in using the login feature");
+    close();
+    QMessageBox::information(this, "Info", "You may now log in using the login feature");
     return;
 }
 
@@ -53,6 +54,16 @@ bool RegisterWindow::ValidInput() {
     if(this->ui->dateLE->text().count('/') != 2) {
         QMessageBox::critical(this, "Error", "Please input date in the format MM/DD/YYYY");
         return false;
+    }
+
+    DbManager* p_Db = new DbManager(MEMBERS_PATH);
+    std::vector<Member> memberList = p_Db->AllMembers();
+
+    for(const auto& member : memberList) {
+        if(this->ui->idLE->text().toInt() == member.Id()) {
+            QMessageBox::critical(this, "Error", "Member ID in use. Please enter a different ID");
+            return false;
+        }
     }
 
     return true;

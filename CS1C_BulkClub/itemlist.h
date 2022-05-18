@@ -29,7 +29,7 @@ public:
 
     /*!
      * \fn ItemList(const std::vector<Item*>&)
-     * \brief overloaded constructor using
+     * \brief Overloaded constructor
      * \param otherItemList: std::vector<std::pair<Item*, int>>
      */
     ItemList(const std::vector<Item*>& other);
