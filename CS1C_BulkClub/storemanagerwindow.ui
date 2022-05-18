@@ -438,7 +438,7 @@ QComboBox#dateTypeByDayCB:hover {
        <rect>
         <x>290</x>
         <y>30</y>
-        <width>341</width>
+        <width>351</width>
         <height>271</height>
        </rect>
       </property>
@@ -614,7 +614,7 @@ QComboBox#dateByMemberCB:hover {
        <rect>
         <x>536</x>
         <y>10</y>
-        <width>191</width>
+        <width>194</width>
         <height>61</height>
        </rect>
       </property>
@@ -1124,7 +1124,7 @@ QComboBox#expirationMonthCB:hover {
        <rect>
         <x>20</x>
         <y>20</y>
-        <width>431</width>
+        <width>441</width>
         <height>301</height>
        </rect>
       </property>
@@ -1178,9 +1178,9 @@ QComboBox#expirationMonthCB:hover {
      <widget class="QLabel" name="itemTotRevLabel">
       <property name="geometry">
        <rect>
-        <x>460</x>
+        <x>470</x>
         <y>290</y>
-        <width>281</width>
+        <width>271</width>
         <height>41</height>
        </rect>
       </property>
@@ -1433,6 +1433,11 @@ QPushButton#itemSearchButton:hover {
         <font>
          <bold>true</bold>
         </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Item Price</string>
        </property>
       </column>
       <column>

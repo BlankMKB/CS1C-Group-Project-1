@@ -14,6 +14,8 @@ MemberWindow::MemberWindow(QWidget *parent, Member* member) : QDialog(parent),
     SetItemCB();
     SetHeaderLabels();
     this->ui->cartTotalLabel->hide();
+
+    this->ui->nameLabel->setText("Hello, " + member->Name());
 }
 
 MemberWindow::~MemberWindow() { delete ui; }
