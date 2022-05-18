@@ -5,9 +5,6 @@
 #include <QDialog>
 #include <qmessagebox.h>
 
-#include "dbmanager.h"
-#include "membermanager.h"
-
 
 #define USE_PATHS
 #include "defines.h"

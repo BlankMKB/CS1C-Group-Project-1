@@ -1,5 +1,6 @@
 #include "registerwindow.h"
 #include "ui_registerwindow.h"
+#include "dbmanager.h"
 
 /**********************************************************
  * This is the default constructor for the RegisterWindow
@@ -34,13 +35,10 @@ void RegisterWindow::on_registerButton_clicked() {
     DbManager* p_Db = new DbManager(MEMBERS_PATH);
     p_Db->AddMember(*p_Member);
     delete p_Db;
-
-    MemberManager* p_Mdb = new MemberManager(ALL_MEMBERS_PATH);
-    p_Mdb->AddMember(*p_Member);
-
     delete p_Member;
 
-    QMessageBox::information(this, "Success", "You may now log in using the login feature");
+    close();
+    QMessageBox::information(this, "Info", "You may now log in using the login feature");
     return;
 }
 
@@ -56,6 +54,16 @@ bool RegisterWindow::ValidInput() {
     if(this->ui->dateLE->text().count('/') != 2) {
         QMessageBox::critical(this, "Error", "Please input date in the format MM/DD/YYYY");
         return false;
+    }
+
+    DbManager* p_Db = new DbManager(MEMBERS_PATH);
+    std::vector<Member> memberList = p_Db->AllMembers();
+
+    for(const auto& member : memberList) {
+        if(this->ui->idLE->text().toInt() == member.Id()) {
+            QMessageBox::critical(this, "Error", "Member ID in use. Please enter a different ID");
+            return false;
+        }
     }
 
     return true;

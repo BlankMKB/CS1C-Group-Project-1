@@ -207,6 +207,32 @@ QPushButton#purchaseButton:hover {
     <string>Purchase Item:</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="logout_button">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>380</y>
+     <width>261</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#logout_button{
+	background: gray;
+	color: black;
+	font-size: 16px;
+	border:2px solid #34362d;
+	border-radius: 5px;
+}
+
+QPushButton#logout_button:hover{
+	background: #b2b9bf;
+}</string>
+   </property>
+   <property name="text">
+    <string>Logout Now</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
