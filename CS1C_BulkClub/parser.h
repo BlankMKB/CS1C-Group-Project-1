@@ -39,6 +39,12 @@ public:
     bool Read(std::vector<Member>& members);
 
     /*!
+     * \fn MemberList()
+     * \brief Returns a vector of members
+     * \return memberList: std::vector<Member>
+     */
+    std::vector<Member> MemberList() const;
+    /*!
      * \fn Inventory()
      * \brief Returns an inventory of items
      * \return inventory: std::vector<Item*>
@@ -136,6 +142,7 @@ private:
 
 // variables
 private:
+    std::vector<Member> m_MemberList; /*!< \var member list */
     ItemList m_Inventory; /*!< \var inventory itemlist */
 
 };

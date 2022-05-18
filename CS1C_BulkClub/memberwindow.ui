@@ -21,8 +21,8 @@
   <widget class="QWidget" name="verticalLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>90</y>
+     <x>30</x>
+     <y>120</y>
      <width>261</width>
      <height>132</height>
     </rect>
@@ -114,8 +114,8 @@ QPushButton#addToCartButton:hover {
   <widget class="QTableWidget" name="cartTW">
    <property name="geometry">
     <rect>
-     <x>340</x>
-     <y>40</y>
+     <x>330</x>
+     <y>60</y>
      <width>441</width>
      <height>271</height>
     </rect>
@@ -144,8 +144,8 @@ QPushButton#addToCartButton:hover {
   <widget class="QPushButton" name="purchaseButton">
    <property name="geometry">
     <rect>
-     <x>680</x>
-     <y>370</y>
+     <x>670</x>
+     <y>390</y>
      <width>100</width>
      <height>32</height>
     </rect>
@@ -170,8 +170,8 @@ QPushButton#purchaseButton:hover {
   <widget class="QLabel" name="cartTotalLabel">
    <property name="geometry">
     <rect>
-     <x>610</x>
-     <y>320</y>
+     <x>600</x>
+     <y>340</y>
      <width>171</width>
      <height>31</height>
     </rect>
@@ -183,8 +183,8 @@ QPushButton#purchaseButton:hover {
   <widget class="QLabel" name="nameLabel">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>20</y>
+     <x>30</x>
+     <y>30</y>
      <width>255</width>
      <height>48</height>
     </rect>
@@ -194,7 +194,7 @@ QPushButton#purchaseButton:hover {
      <pointsize>20</pointsize>
      <italic>true</italic>
      <bold>true</bold>
-     <underline>true</underline>
+     <underline>false</underline>
     </font>
    </property>
    <property name="styleSheet">
@@ -204,15 +204,15 @@ QPushButton#purchaseButton:hover {
 }</string>
    </property>
    <property name="text">
-    <string>Hello, </string>
+    <string>Purchase Item:</string>
    </property>
   </widget>
   <widget class="QPushButton" name="logout_button">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>410</y>
-     <width>321</width>
+     <x>30</x>
+     <y>380</y>
+     <width>261</width>
      <height>41</height>
     </rect>
    </property>

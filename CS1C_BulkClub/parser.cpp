@@ -7,9 +7,15 @@ bool Parser::Read(std::vector<Member>& memberList) {
 
     DebugParser(memberList);
 
+    for(const auto& member : memberList) {
+        m_MemberList.push_back(member);
+    }
+
     //everything parsed correctly
     return members && items;
 }
+
+std::vector<Member> Parser::MemberList() const { return m_MemberList; }
 
 ItemList Parser::Inventory() const { return m_Inventory; }
 

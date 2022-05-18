@@ -22,6 +22,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     member.cpp \
+    membermanager.cpp \
     memberwindow.cpp \
     parser.cpp \
     receipt.cpp \
@@ -40,6 +41,7 @@ HEADERS += \
     loginwindow.h \
     mainwindow.h \
     member.h \
+    membermanager.h \
     memberwindow.h \
     parser.h \
     receipt.h \

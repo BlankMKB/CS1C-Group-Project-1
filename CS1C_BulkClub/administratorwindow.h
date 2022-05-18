@@ -9,6 +9,7 @@
 #include <queue>
 
 #include "dbmanager.h"
+#include "membermanager.h"
 #include "inventorymanager.h"
 
 #define USE_TAX

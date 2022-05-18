@@ -79,17 +79,17 @@ void AdministratorWindow::on_addMemberButton_clicked() {
     bool type = this->ui->memberTypeLE->text().toUpper() == "EXECUTIVE" ? true : false;
     Date date = Date::ParseDate(this->ui->memberExpirationLE->text());
 
-    Member* pNewMember;
+    Member* p_NewMember;
     if(type) {
         ExecutiveMember newMember(name, id, type, date);
-        pNewMember = &newMember;
+        p_NewMember = &newMember;
     }
     else {
         Member newMember(name, id, type, date);
-        pNewMember = &newMember;
+        p_NewMember = &newMember;
     }
 
-    m_pDb->AddMember(*pNewMember);
+    m_pDb->AddMember(*p_NewMember);
     m_MemberList.clear();
     m_MemberList = m_pDb->AllMembers();
 
@@ -100,6 +100,9 @@ void AdministratorWindow::on_addMemberButton_clicked() {
 
     UpdateAll();
     delete m_pDb;
+
+    MemberManager* p_Mdb = new MemberManager(ALL_MEMBERS_PATH);
+    p_Mdb->AddMember(*p_NewMember);
 }
 
 void AdministratorWindow::on_updateMembersButton_clicked() {
@@ -114,6 +117,18 @@ void AdministratorWindow::on_updateMembersButton_clicked() {
     UpdateAll();
 
     delete m_pDb;
+
+    MemberManager* p_Mdb = new MemberManager(ALL_MEMBERS_PATH);
+
+    for(const auto& member : m_MemberList) {
+        p_Mdb->UpdateMember(member);
+    }
+
+    m_MemberList = p_Mdb->AllMembers();
+
+    UpdateAll();
+
+    delete p_Mdb;
 }
 
 void AdministratorWindow::on_editMembersTW_cellChanged(int row, int column) {
@@ -529,6 +544,10 @@ void AdministratorWindow::on_resetButton_clicked() {
     m_pDb->ResetWithTextFile();
     m_MemberList = m_pDb->AllMembers();
     delete m_pDb;
+
+    MemberManager* m_pMdb = new MemberManager(ALL_MEMBERS_PATH);
+    m_pMdb->ResetWithTextFile();
+    delete m_pMdb;
 
     m_pIdb = new InventoryManager(INVENTORY_PATH);
     m_pIdb->ResetWithTextFile();

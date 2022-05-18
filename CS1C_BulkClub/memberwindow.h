@@ -4,7 +4,10 @@
 #include <QDialog>
 #include <QMessageBox>
 #include "QtWidgets/qtablewidget.h"
+
+
 #include "dbmanager.h"
+#include "membermanager.h"
 #include "inventorymanager.h"
 
 #define USE_PATHS
@@ -50,6 +53,7 @@ private:
 
 
     DbManager* m_pDb;
+    MemberManager* m_pMdb;
     InventoryManager* m_pIdb;
 };
 

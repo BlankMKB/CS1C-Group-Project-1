@@ -9,6 +9,7 @@
 #include "executivemember.h"
 
 #include "dbmanager.h"
+#include "membermanager.h"
 #include "inventorymanager.h"
 
 #define USE_PATHS
@@ -80,11 +81,12 @@ private:
 private:
     Ui::StoreManagerWindow *ui;  // Pointer to the instance of the StoreManagerWindow class object. (SELF)
     QWidget *parent;             // Pointer to the instance of parent window, MainWindow class object.
+
     DbManager* m_pDb;
     InventoryManager* m_pIdb;
 
-    std::vector<Member> m_MemberList;
     std::vector<std::pair<Member, Receipt>> m_Sales;
+    std::vector<Member> m_MemberList;
     ItemList m_Inventory;
 };
 

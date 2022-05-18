@@ -10,14 +10,19 @@
 StoreManagerWindow::StoreManagerWindow(QWidget *parent) : QDialog(parent), ui(new Ui::StoreManagerWindow) {
     this->ui->setupUi(this);
 
+
     m_pDb = new DbManager(MEMBERS_PATH);
     m_MemberList = m_pDb->AllMembers();
-    m_Sales = m_pDb->AllReceipts();
-    m_pDb->~DbManager();
+    delete m_pDb;
+
+    MemberManager* p_Mdb = new MemberManager(ALL_MEMBERS_PATH);
+    m_Sales = p_Mdb->AllReceipts();
+    m_MemberList = p_Mdb->AllMembers();
+    delete p_Mdb;
 
     m_pIdb = new InventoryManager(INVENTORY_PATH);
     m_Inventory = m_pIdb->AllItems();
-    m_pIdb->~InventoryManager();
+    delete m_pIdb;
 
     SetDropDownMenus();
     SetMemberTotalsTW();
@@ -624,14 +629,13 @@ void StoreManagerWindow::SetTypesCB() {
 void StoreManagerWindow::SetDateCB() {
     this->ui->dateByDayCB->clear();
     this->ui->dateByMemberCB->clear();
-    int size = SalesListByDate(Date(5, 18, 2022)).empty() ? 7 : 8;
-    for(int i = 1; i < size; i++) {
+    for(int i = 1; i < 8; i++) {
         this->ui->dateByDayCB->addItem("4/" + QString::number(i) + "/2021");
         this->ui->dateByMemberCB->addItem("4/" + QString::number(i) + "/2021");
 
     }
 
-    if(size == 8) {
+    if(!SalesListByDate(Date(5, 18, 2022)).empty()) {
         this->ui->dateByDayCB->addItem("5/18/2022");
         this->ui->dateByMemberCB->addItem("5/18/2022");
     }
@@ -940,6 +944,7 @@ void StoreManagerWindow::SetMemberReceiptsTW(const Member& member) {
     ItemList allItems;
 
     for(const auto& itemList : receipt) {
+        auto itemlist = itemList;
         for(size_t i = 0; i < itemList.second.size(); i++) {
             allItems.InsertInventory(itemList.second[i]);
         }
@@ -1076,6 +1081,10 @@ std::vector<ItemList> StoreManagerWindow::SalesListByDate(const Date& day) {
     //for all <Member, Receipt> pairs
     for(auto& [member, receipt] : m_Sales) {
 
+        if(receipt.ReceiptByDay(day).empty()) {
+            continue;
+        }
+
         //add all item lists by given day
         salesReport.push_back(receipt.ReceiptByDay(day));
     }
@@ -1087,11 +1096,11 @@ std::vector<Member> StoreManagerWindow::MembersShoppedByDate(const Date& day) {
     std::vector<Member> membersByDay;
 
     //for all <Member, Receipt> pairs
-    for(auto& x : m_Sales) {
+    for(auto& [member, receipt] : m_Sales) {
 
         //only add members that shopped that day
-        if(!x.first.receipt().ReceiptByDay(day).empty()) {
-            membersByDay.push_back(x.first);
+        if(!member.receipt().ReceiptByDay(day).empty()) {
+            membersByDay.push_back(member);
         }
     }
 

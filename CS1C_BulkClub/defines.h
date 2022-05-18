@@ -16,6 +16,14 @@
 #endif
 
 #if __APPLE__ && TARGET_OS_MAC
+    #define ALL_MEMBERS_PATH "../../../../CS1C_BulkClub/allmembers.db"
+#elif __linux__
+    #define ALL_MEMBERS_PATH "../CS1C_BulkClub/allmembers.db"
+#else
+    #define ALL_MEMBERS_PATH "..\\CS1C_BulkClub\\allmembers.db"
+#endif
+
+#if __APPLE__ && TARGET_OS_MAC
     #define INVENTORY_PATH "../../../../CS1C_BulkClub/inventory.db"
 #elif __linux__
     #define INVENTORY_PATH "../CS1C_BulkClub/inventory.db"

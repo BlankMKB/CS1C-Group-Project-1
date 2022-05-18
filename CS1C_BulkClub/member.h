@@ -138,6 +138,10 @@ public:
       */
      void Purchase(Item* item, const Date& date);
 
+     inline bool operator==(const Member& other) {
+         return this->m_Number == other.m_Number;
+     }
+
 // defaulted constructors
 public:
     /*!
