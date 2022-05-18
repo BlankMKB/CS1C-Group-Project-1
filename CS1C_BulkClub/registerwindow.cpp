@@ -1,6 +1,5 @@
 #include "registerwindow.h"
 #include "ui_registerwindow.h"
-#include "dbmanager.h"
 
 /**********************************************************
  * This is the default constructor for the RegisterWindow
@@ -35,6 +34,10 @@ void RegisterWindow::on_registerButton_clicked() {
     DbManager* p_Db = new DbManager(MEMBERS_PATH);
     p_Db->AddMember(*p_Member);
     delete p_Db;
+
+    MemberManager* p_Mdb = new MemberManager(ALL_MEMBERS_PATH);
+    p_Mdb->AddMember(*p_Member);
+
     delete p_Member;
 
     QMessageBox::information(this, "Success", "You may now log in using the login feature");

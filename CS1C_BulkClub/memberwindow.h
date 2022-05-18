@@ -2,8 +2,12 @@
 #define MEMBERWINDOW_H
 
 #include <QDialog>
+#include <QMessageBox>
 #include "QtWidgets/qtablewidget.h"
+
+
 #include "dbmanager.h"
+#include "membermanager.h"
 #include "inventorymanager.h"
 
 #define USE_PATHS
@@ -30,11 +34,13 @@ private slots:
 
     void on_purchaseButton_clicked();
 
+    void on_logout_button_clicked();
+
 private:
-    void SetItemCB();
-    void AddToCart(const QString& itemName, const int& itemQuantity);
-    void ClearTable(QTableWidget* tableWidget);
     void SetHeaderLabels();
+    void SetItemCB();
+    void ClearTable(QTableWidget* tableWidget);
+    void AddToCart(const QString& itemName, const int& itemQuantity);
 
 
 private:
@@ -47,6 +53,7 @@ private:
 
 
     DbManager* m_pDb;
+    MemberManager* m_pMdb;
     InventoryManager* m_pIdb;
 };
 

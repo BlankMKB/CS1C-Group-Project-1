@@ -50,7 +50,7 @@ QString ItemList::ItemListString() const {
 
         //add to string
         if(i + 1 == m_ItemList.size()) {
-            str += name + ", " + price + ", " + quantity + ", ";
+            str += name + ", " + price + ", " + quantity;
             break;
         }
         else {
@@ -73,7 +73,7 @@ void ItemList::Insert(Item* item) {  m_ItemList.push_back(item); }
 //insert inventory
 void ItemList::InsertInventory(Item* item) {
     for(auto& tempItem : m_ItemList) {
-        if(tempItem->Name() == item->Name() && tempItem->Price() == item->Price()) {
+        if(tempItem->Name() == item->Name() && abs(tempItem->Price() - item->Price()) < 0.02) {
             tempItem->AddQuantity(item->Quantity());
             return;
         }

@@ -32,10 +32,14 @@ QString Receipt::ReceiptString() const {
         date = "#" + m_Receipt[i].first.DateString();
         list = m_Receipt[i].second.ItemListString();
 
+
+        /*
         if(i + 1 == m_Receipt.size()) {
             str += date + ", " + list + " ";
             break;
         }
+        */
+
         str += date + ", " + list + ", ";
 
         date = "";
